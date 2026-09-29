@@ -84,6 +84,7 @@ jobs:
       - name: Publish screenshots to simulator-screenshots branch
         if: always()
         run: |
+          cp RecordSpeed.app.zip screenshots/ || true
           cd screenshots
           git init -q -b simulator-screenshots
           git add -A
