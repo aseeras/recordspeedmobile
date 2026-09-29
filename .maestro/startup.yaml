@@ -18,3 +18,11 @@ appId: com.ingeniousagency.record-speed-mobile
 - tapOn: "Sign In"
 - waitForAnimationToEnd
 - takeScreenshot: 05-sign-in
+# Returning user: onboarding is already done, so the app must go straight
+# to the Sign In screen instead of a blank page.
+- stopApp
+- launchApp
+- extendedWaitUntil:
+    visible: "Sign in or sign up to start your request"
+    timeout: 20000
+- takeScreenshot: 06-relaunch-returning-user

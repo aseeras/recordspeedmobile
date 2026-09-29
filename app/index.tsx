@@ -6,12 +6,12 @@ import {
 } from "@/lib/auth/hooks";
 import { useUpdatePushToken } from "@/lib/notifications/hooks";
 import Onboarding from "@/screens/Onboarding";
-import { router } from "expo-router";
-import { useEffect } from "react";
+import { Redirect, router } from "expo-router";
 import { View } from "react-native";
 
 export default function Index() {
-  const { data: credentials } = useAccountCredentials();
+  const { data: credentials, isSuccess: isSuccessCredentials } =
+    useAccountCredentials();
 
   const {
     isLoading: isLoadingOnboardingFlag,
@@ -22,17 +22,17 @@ export default function Index() {
 
   useUpdatePushToken();
 
-  useEffect(() => {
-    if (!skipOnboardingFlag) return;
-    // Navigate either to Home or Sign In, based on patient token's presence
-    credentials?.authToken
-      ? router.replace("/home")
-      : router.replace("/zero_state");
-  }, [skipOnboardingFlag, credentials?.authToken]);
+  // Redirect declaratively: an imperative router.replace() fired from an
+  // effect on the first screen can run before the root navigator is ready,
+  // leaving a blank screen for returning users.
+  if (skipOnboardingFlag && isSuccessCredentials) {
+    // Navigate either to Home or Sign In, based on the auth token's presence
+    return <Redirect href={credentials?.authToken ? "/home" : "/zero_state"} />;
+  }
 
   return (
     <View className="bg-white h-full">
-      {isLoadingOnboardingFlag && <Loader />}
+      {(isLoadingOnboardingFlag || skipOnboardingFlag) && <Loader />}
 
       {isSuccessOnboardingFlag && !skipOnboardingFlag && (
         <Onboarding
