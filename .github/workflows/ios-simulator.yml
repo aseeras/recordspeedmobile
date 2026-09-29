@@ -36,7 +36,16 @@ jobs:
         run: npx expo prebuild --platform ios --no-install
 
       - name: Install pods
-        run: cd ios && pod install
+        # Retry: pod install clones SDKs such as stripe-ios from GitHub, and a
+        # dropped connection on the runner otherwise fails the whole build.
+        run: |
+          cd ios
+          for attempt in 1 2 3; do
+            pod install && exit 0
+            echo "pod install failed (attempt $attempt), retrying in 20s..."
+            sleep 20
+          done
+          exit 1
 
       - name: Build for iOS Simulator
         run: |
@@ -96,7 +105,9 @@ jobs:
       - name: Publish screenshots to simulator-screenshots branch
         if: always()
         run: |
+          mkdir -p screenshots
           cp RecordSpeed.app.zip screenshots/ || true
+          [ -n "$(ls -A screenshots)" ] || { echo "Nothing to publish"; exit 0; }
           cd screenshots
           git init -q -b simulator-screenshots
           git add -A
