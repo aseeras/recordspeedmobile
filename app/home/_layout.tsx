@@ -30,12 +30,6 @@ export default function HomeLayout() {
     };
   }, []);
 
-  useEffect(() => {
-    if (!credentials) return;
-
-    router.replace(`/home/${credentials.type.toLocaleLowerCase()}`);
-  }, [credentials]);
-
   return (
     <>
       <View className="relative flex-1 w-full h-full bg-primary-green">
