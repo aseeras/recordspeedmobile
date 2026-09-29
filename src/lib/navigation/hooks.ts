@@ -11,5 +11,7 @@ export function useNavigationOptions({
   const navigation = useNavigation();
   useEffect(() => {
     navigation.setOptions(options);
-  }, [navigation, [...dependantKeys]]);
+    // Spread the keys so the effect only re-runs when one of them changes;
+    // a fresh array literal here would re-run it (and re-render) every render.
+  }, [navigation, ...dependantKeys]);
 }
