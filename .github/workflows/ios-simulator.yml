@@ -54,12 +54,12 @@ jobs:
       - name: Package app
         run: |
           APP=$(find build/Build/Products -name 'RecordSpeed.app' -maxdepth 3 | head -1)
-          ditto -c -k --keepParent "$APP" RecordSpeed-simulator.zip
+          ditto -c -k --keepParent "$APP" RecordSpeed.app.zip
 
       - uses: actions/upload-artifact@v4
         with:
           name: RecordSpeed-simulator
-          path: RecordSpeed-simulator.zip
+          path: RecordSpeed.app.zip
 
       - name: Launch in newest iOS Simulator and screenshot
         run: |
