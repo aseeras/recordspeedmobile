@@ -1,0 +1,79 @@
+name: iOS Simulator Build
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 90
+    env:
+      EXPO_PUBLIC_API_BASE_URL: https://recspeed.ingenious.agency
+      EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ vars.EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: npm
+
+      - name: Select newest Xcode
+        run: |
+          XCODE=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
+          sudo xcode-select -s "$XCODE"
+          xcodebuild -version
+          xcrun simctl list runtimes
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate native iOS project
+        run: npx expo prebuild --platform ios --no-install
+
+      - name: Install pods
+        run: cd ios && pod install
+
+      - name: Build for iOS Simulator
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -workspace ios/RecordSpeed.xcworkspace \
+            -scheme RecordSpeed \
+            -configuration Release \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            build | tail -200
+
+      - name: Package app
+        run: |
+          APP=$(find build/Build/Products -name 'RecordSpeed.app' -maxdepth 3 | head -1)
+          ditto -c -k --keepParent "$APP" RecordSpeed-simulator.zip
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RecordSpeed-simulator
+          path: RecordSpeed-simulator.zip
+
+      - name: Launch in newest iOS Simulator and screenshot
+        run: |
+          RUNTIME=$(xcrun simctl list runtimes -j | python3 -c "import json,sys; r=[x for x in json.load(sys.stdin)['runtimes'] if x['platform']=='iOS' and x['isAvailable']]; r.sort(key=lambda x: [int(p) for p in x['version'].split('.')]); print(r[-1]['identifier'])")
+          echo "Runtime: $RUNTIME"
+          UDID=$(xcrun simctl create RecordSpeedTest "iPhone 16 Pro" "$RUNTIME" 2>/dev/null || xcrun simctl create RecordSpeedTest "$(xcrun simctl list devicetypes | grep -m1 -o 'iPhone [^(]*Pro' | sed 's/ *$//')" "$RUNTIME")
+          xcrun simctl boot "$UDID"
+          xcrun simctl bootstatus "$UDID" -b
+          APP=$(find build/Build/Products -name 'RecordSpeed.app' -maxdepth 3 | head -1)
+          xcrun simctl install "$UDID" "$APP"
+          xcrun simctl launch "$UDID" com.ingeniousagency.record-speed-mobile
+          sleep 30
+          mkdir -p screenshots
+          xcrun simctl io "$UDID" screenshot screenshots/launch.png
+          xcrun simctl spawn "$UDID" log show --last 2m --predicate 'process == "RecordSpeed"' --style compact > screenshots/app-log.txt || true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: simulator-screenshot
+          path: screenshots/

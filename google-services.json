@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "934123590026",
+    "project_id": "record-speed-dev",
+    "storage_bucket": "record-speed-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934123590026:android:ed9155341a898f5fc07873",
+        "android_client_info": {
+          "package_name": "com.ingeniousagency.record_speed_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "934123590026-3ua8cdijio2smop17p2a71ar94cnln9l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ingeniousagency.record_speed_mobile",
+            "certificate_hash": "27e8aa8bd32fcf18ddb54a00ceaf5fbdc06429c6"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvyrJi92WnUqJcudDBPkoTV_evAOurXQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "934123590026-76kvl6clj5hd154l46fc0dhpbkmag0v4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ingeniousagency.record-speed-mobile"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
