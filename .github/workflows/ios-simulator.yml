@@ -1,7 +1,11 @@
 name: iOS Simulator Build
 on:
   push:
+    branches-ignore: [simulator-screenshots]
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -67,10 +71,24 @@ jobs:
           APP=$(find build/Build/Products -name 'RecordSpeed.app' -maxdepth 3 | head -1)
           xcrun simctl install "$UDID" "$APP"
           xcrun simctl launch "$UDID" com.ingeniousagency.record-speed-mobile
-          sleep 30
           mkdir -p screenshots
-          xcrun simctl io "$UDID" screenshot screenshots/launch.png
-          xcrun simctl spawn "$UDID" log show --last 2m --predicate 'process == "RecordSpeed"' --style compact > screenshots/app-log.txt || true
+          sleep 15
+          xcrun simctl io "$UDID" screenshot screenshots/launch-15s.png
+          sleep 45
+          xcrun simctl io "$UDID" screenshot screenshots/launch-60s.png
+          xcrun simctl spawn "$UDID" log show --last 3m --predicate 'process == "RecordSpeed"' --style compact > screenshots/app-log.txt || true
+          { xcodebuild -version; echo "Simulator runtime: $RUNTIME"; } > screenshots/versions.txt
+          cat screenshots/versions.txt
+          grep -iE "error|exception|fatal|crash" screenshots/app-log.txt | tail -50 || true
+
+      - name: Publish screenshots to simulator-screenshots branch
+        if: always()
+        run: |
+          cd screenshots
+          git init -q -b simulator-screenshots
+          git add -A
+          git -c user.name="github-actions" -c user.email="github-actions@users.noreply.github.com" commit -qm "Simulator screenshots for ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" simulator-screenshots
 
       - uses: actions/upload-artifact@v4
         if: always()
