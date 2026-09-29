@@ -69,6 +69,7 @@ export default function ViewPdf() {
         </View>
       ),
     },
+    dependantKeys: [uri],
   });
 
   return (

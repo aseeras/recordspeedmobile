@@ -1,0 +1,20 @@
+appId: com.ingeniousagency.record-speed-mobile
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Next"
+    timeout: 30000
+- takeScreenshot: 01-onboarding-step-1
+- tapOn: "Next"
+- takeScreenshot: 02-onboarding-step-2
+- tapOn: "Next"
+- takeScreenshot: 03-onboarding-step-3
+- tapOn: "Next"
+- extendedWaitUntil:
+    visible: "Sign in or sign up to start your request"
+    timeout: 15000
+- takeScreenshot: 04-zero-state
+- tapOn: "Sign In"
+- waitForAnimationToEnd
+- takeScreenshot: 05-sign-in

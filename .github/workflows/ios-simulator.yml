@@ -80,6 +80,18 @@ jobs:
           { xcodebuild -version; echo "Simulator runtime: $RUNTIME"; } > screenshots/versions.txt
           cat screenshots/versions.txt
           grep -iE "error|exception|fatal|crash" screenshots/app-log.txt | tail -50 || true
+          echo "$UDID" > udid.txt
+
+      - name: Tap through startup flow with Maestro
+        continue-on-error: true
+        run: |
+          curl -Ls "https://get.maestro.mobile.dev" | bash
+          export PATH="$PATH:$HOME/.maestro/bin"
+          UDID=$(cat udid.txt)
+          maestro --device "$UDID" test .maestro/startup.yaml --test-output-dir maestro-output 2>&1 | tee screenshots/maestro.txt
+          find . -maxdepth 3 -name '0*.png' -not -path './screenshots/*' -exec cp {} screenshots/ \;
+          xcrun simctl spawn "$UDID" log show --last 5m --predicate 'process == "RecordSpeed"' --style compact > screenshots/app-log-flow.txt || true
+          grep -E "javascript\]|Fatal|crash" screenshots/app-log-flow.txt | tail -40 || true
 
       - name: Publish screenshots to simulator-screenshots branch
         if: always()
