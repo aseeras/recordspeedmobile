@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "EditorConfig.EditorConfig",
+    "bradlc.vscode-tailwindcss",
+    "github.vscode-github-actions",
+    "esbenp.prettier-vscode",
+    "vivaxy.vscode-conventional-commits"
+  ]
+}
