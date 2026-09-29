@@ -1,4 +1,4 @@
-import { View, Pressable } from "react-native";
+import { View, Pressable, Platform } from "react-native";
 import { REGISTRATION_METHODS } from "@/lib/constants";
 import GoogleIcon from "@/utils/svg/Google";
 import { useGoogleAuth } from "@/lib/auth/hooks";
@@ -8,13 +8,22 @@ import { AccountType } from "@/lib/types";
 const iOSClientID = process.env.EXPO_PUBLIC_IOS_OAUTH_CLIENT_ID;
 const androidClientID = process.env.EXPO_PUBLIC_ANDROID_OAUTH_CLIENT_ID;
 
-export default function GoogleSignIn({
-  accountType,
-  handleSubmit,
-}: {
+type GoogleSignInProps = {
   accountType?: AccountType;
   handleSubmit: (params: SignInParams) => void;
-}) {
+};
+
+// expo-auth-session throws while rendering when the platform's client ID is
+// missing, which crashes the Sign In / Sign Up screens. Only render the
+// button when Google sign-in is configured for this platform.
+export default function GoogleSignIn(props: GoogleSignInProps) {
+  const clientId = Platform.OS === "ios" ? iOSClientID : androidClientID;
+  if (!clientId) return null;
+
+  return <GoogleSignInButton {...props} />;
+}
+
+function GoogleSignInButton({ accountType, handleSubmit }: GoogleSignInProps) {
   const googleAuth = useGoogleAuth({
     iosClientId: iOSClientID,
     androidClientId: androidClientID,

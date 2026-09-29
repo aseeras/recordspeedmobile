@@ -16,7 +16,12 @@ appId: com.ingeniousagency.record-speed-mobile
     timeout: 15000
 - takeScreenshot: 04-zero-state
 - tapOn: "Sign In"
+- extendedWaitUntil:
+    visible: "Or use your email and password"
+    timeout: 15000
+# Give a render-time crash a moment to surface, then make sure we're still here.
 - waitForAnimationToEnd
+- assertVisible: "Or use your email and password"
 - takeScreenshot: 05-sign-in
 # Returning user: onboarding is already done, so the app must go straight
 # to the Sign In screen instead of a blank page.
