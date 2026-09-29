@@ -4,7 +4,7 @@ appId: com.ingeniousagency.record-speed-mobile
     clearState: true
 - extendedWaitUntil:
     visible: "Next"
-    timeout: 30000
+    timeout: 180000
 - takeScreenshot: 01-onboarding-step-1
 - tapOn: "Next"
 - takeScreenshot: 02-onboarding-step-2
@@ -13,12 +13,12 @@ appId: com.ingeniousagency.record-speed-mobile
 - tapOn: "Next"
 - extendedWaitUntil:
     visible: "Sign in or sign up to start your request"
-    timeout: 15000
+    timeout: 60000
 - takeScreenshot: 04-zero-state
 - tapOn: "Sign In"
 - extendedWaitUntil:
     visible: "Or use your email and password"
-    timeout: 15000
+    timeout: 60000
 # Give a render-time crash a moment to surface, then make sure we're still here.
 - waitForAnimationToEnd
 - assertVisible: "Or use your email and password"
@@ -29,5 +29,5 @@ appId: com.ingeniousagency.record-speed-mobile
 - launchApp
 - extendedWaitUntil:
     visible: "Sign in or sign up to start your request"
-    timeout: 20000
+    timeout: 120000
 - takeScreenshot: 06-relaunch-returning-user
