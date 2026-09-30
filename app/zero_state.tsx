@@ -2,6 +2,7 @@ import Button from "@/components/Button";
 import Header from "@/components/Header";
 import BrandGradient from "@/components/BrandGradient";
 import { Image } from "expo-image";
+import { StatusBar } from "expo-status-bar";
 import { router, Stack } from "expo-router";
 import { Text, View } from "react-native";
 import Animated, { FadeInDown, ZoomIn } from "react-native-reanimated";
@@ -12,6 +13,7 @@ export default function SignIn() {
     <>
       <View className="relative flex-1 w-full h-full">
         <BrandGradient />
+        <StatusBar style="light" />
         <View className="flex items-center bg-white w-full h-full mt-4 rounded-2xl">
           <Animated.View
             entering={ZoomIn.springify().damping(14)}

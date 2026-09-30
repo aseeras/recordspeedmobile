@@ -54,9 +54,11 @@ const OnboardingStep = ({
     <>
       <View className="flex-1 w-full h-full items-center justify-center px-8">
         <View className={imageContainerClassName}>
+          {/* White card: the illustrations carry their own light backdrops,
+              which blend into white but clash with a tinted shape. */}
           <View
-            className="absolute rounded-full bg-brand-100"
-            style={{ top: "4%", left: "4%", right: "4%", bottom: "4%" }}
+            className="absolute bg-white shadow-lg shadow-brand-900/10"
+            style={{ top: -20, left: -20, right: -20, bottom: -20, borderRadius: 36 }}
           />
           <Animated.View
             style={[{ width: "100%", height: "100%" }, floatStyle]}
