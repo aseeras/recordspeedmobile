@@ -21,8 +21,8 @@ function Title() {
   return (
     <>
       <View>
-        <Text className="text-3xl font-bold text-gray-700">Hi there,</Text>
-        <Text className="text-3xl font-bold text-gray-700">let's sign in!</Text>
+        <Text className="text-3xl font-bold text-ink">Hi there,</Text>
+        <Text className="text-3xl font-bold text-ink">let's sign in!</Text>
       </View>
       <Text className="pt-6 text-lg text-center font-medium text-gray-700">
         You can use these

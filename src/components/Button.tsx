@@ -44,8 +44,8 @@ export default function Button({
           "flex flex-row items-center justify-center rounded-xl h-12 px-4",
           {
             "bg-gray-200": isDisabled,
-            "bg-primary-green": buttonStyle === "primary",
-            "bg-white border-2 border-solid border-primary-green":
+            "bg-brand-700": buttonStyle === "primary",
+            "bg-white border-2 border-solid border-brand-700":
               buttonStyle === "secondary",
             "bg-brand-blue": buttonStyle === "pro",
           }
@@ -67,7 +67,7 @@ export default function Button({
             isDisabled
               ? " text-gray-500"
               : buttonStyle == "secondary"
-              ? "text-primary-green"
+              ? "text-brand-700"
               : "text-white"
           } text-base font-semibold`}
         >

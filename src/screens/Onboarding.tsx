@@ -14,6 +14,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
 import Button from "@/components/Button";
 import OnboardingStepOneImg from "assets/OnboardingStepOne.png";
 import OnboardingStepTwoImg from "assets/OnboardingStepTwo.png";
@@ -29,7 +30,7 @@ const OnboardingStep = ({
   useNavigationOptions({
     options: {
       headerStyle: {
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#ECFDF5", // matches the top of the page gradient
       },
     },
   });
@@ -53,6 +54,10 @@ const OnboardingStep = ({
     <>
       <View className="flex-1 w-full h-full items-center justify-center px-8">
         <View className={imageContainerClassName}>
+          <View
+            className="absolute rounded-full bg-brand-100"
+            style={{ top: "4%", left: "4%", right: "4%", bottom: "4%" }}
+          />
           <Animated.View
             style={[{ width: "100%", height: "100%" }, floatStyle]}
           >
@@ -67,12 +72,12 @@ const OnboardingStep = ({
           </Animated.View>
         </View>
         <Animated.View entering={FadeInDown.delay(120).duration(450)}>
-          <Text className="text-gray-700 text-center text-3xl font-bold leading-9">
+          <Text className="text-ink text-center text-3xl font-bold leading-9">
             {titleText}
           </Text>
         </Animated.View>
         <Animated.View entering={FadeInDown.delay(220).duration(450)}>
-          <Text className="text-gray-800 text-center text-lg font-medium leading-6 mt-4">
+          <Text className="text-ink-muted text-center text-lg leading-7 mt-4">
             {bodyText}
           </Text>
         </Animated.View>
@@ -95,7 +100,7 @@ function Dot({ active }: { active: boolean }) {
         {
           height: 10,
           borderRadius: 5,
-          backgroundColor: active ? "#13C296" : "#C7D2FE", // primary-green / indigo-200
+          backgroundColor: active ? "#059669" : "#C7D2FE", // primary-green / indigo-200
         },
         style,
       ]}
@@ -166,15 +171,20 @@ export default function Onboarding({ onFinish = () => {} }) {
 
   return (
     <View className="flex-1 w-full h-full bg-white">
+      <LinearGradient
+        colors={["#ECFDF5", "#FFFFFF"]}
+        style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
+        pointerEvents="none"
+      />
       {/* Let people who already know the app get straight to signing in. */}
       <View className="flex-row justify-end px-6 pt-2">
         <Pressable
           hitSlop={12}
           accessibilityRole="button"
           onPress={() => onFinish()}
-          className="px-3 py-1.5 rounded-full bg-gray-100"
+          className="px-3 py-1.5 rounded-full bg-white/80"
         >
-          <Text className="text-sm font-semibold text-gray-600">Skip</Text>
+          <Text className="text-sm font-semibold text-brand-700">Skip</Text>
         </Pressable>
       </View>
       <ScrollView>
