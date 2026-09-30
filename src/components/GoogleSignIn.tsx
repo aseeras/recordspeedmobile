@@ -61,9 +61,9 @@ function GoogleSignInButton({ accountType, handleSubmit }: GoogleSignInProps) {
   };
 
   return (
-    <View className="w-32 h-12 rounded-md">
+    <View className="w-32 h-12 rounded-xl">
       <Pressable
-        className="flex items-center justify-center w-full h-full bg-white rounded-md shadow-xl"
+        className="flex items-center justify-center w-full h-full bg-white rounded-xl border-2 border-gray-100"
         onPress={() => {
           googleAuth.mutate();
         }}

@@ -25,7 +25,7 @@ export default function MedicalRequestTile({
     MedicalRecordRequestStatus[MedicalRecordRequestStatus.fulfilled];
 
   return (
-    <View className="w-full bg-white mb-6 p-4 px-6 pb-8 rounded-md border border-gray-300 shadow-md">
+    <View className="w-full bg-white mb-5 p-5 rounded-2xl border border-gray-100 shadow-lg shadow-gray-300/40">
       <View className={`${isFulfilled ? "pb-2" : "pb-6"}`}>
         <Text className="text-base text-gray-700 font-semibold">
           {isFulfilled ? (
@@ -93,7 +93,7 @@ export default function MedicalRequestTile({
         medicalRecordRequest.documents &&
         medicalRecordRequest.documents.map((document) => (
           <View className="pt-4" key={document.id}>
-            <View className={`py-5 px-6 rounded-md bg-indigo-100`}>
+            <View className={`py-4 px-5 rounded-xl bg-indigo-50`}>
               <Text className={`text-base text-indigo-700 pb-4`}>
                 {document.filename}
               </Text>
@@ -111,7 +111,7 @@ export default function MedicalRequestTile({
                         );
                       }
                     }}
-                    className="bg-white rounded-md shadow-[0px_1px_3px_0px_rgba(166,_175,_195,_0.40)] px-4 py-2 flex-row items-center"
+                    className="bg-white rounded-lg shadow-sm px-4 py-2 flex-row items-center"
                   >
                     {!document.purchased && (
                       <View className="h-6 mr-2">
@@ -131,12 +131,12 @@ export default function MedicalRequestTile({
       {isFulfilled && !medicalRecordRequest.sharingPatient && (
         <View className="pt-6">
           <Pressable
-            className={`flex-row items-center justify-center rounded-md border border-indigo-700 bg-white w-full h-8`}
+            className={`flex-row items-center justify-center rounded-xl bg-indigo-600 w-full h-11`}
             onPress={() => {
               router.push(`/share_modal/${medicalRecordRequest.id}`);
             }}
           >
-            <Text className={`text-indigo-700 text-base font-medium`}>
+            <Text className={`text-white text-base font-semibold`}>
               Share
             </Text>
           </Pressable>

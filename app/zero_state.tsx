@@ -13,7 +13,7 @@ export default function SignIn() {
         <View className="flex items-center bg-white w-full h-full mt-4 rounded-2xl">
           <Animated.View
             entering={ZoomIn.springify().damping(14)}
-            style={{ width: 96, height: 96, marginRight: 24, marginTop: 208 }}
+            style={{ width: 96, height: 96, marginRight: 24, marginTop: 160 }}
           >
             <Image
               style={{
@@ -25,19 +25,30 @@ export default function SignIn() {
             />
           </Animated.View>
           <Animated.View entering={FadeInDown.delay(150).duration(500)}>
-            <Text className="text-gray-700 text-center text-2xl w-80 pt-6 font-semibold leading-9">
+            <Text className="text-gray-900 text-center text-2xl w-80 pt-6 font-bold leading-9">
               Sign in or sign up to start your request
+            </Text>
+            <Text className="text-gray-500 text-center text-base w-80 pt-2 leading-6">
+              Request, track and share your medical records in one place.
             </Text>
           </Animated.View>
           <Animated.View
             entering={FadeInDown.delay(300).duration(500)}
-            style={{ flexDirection: "row", padding: 16, justifyContent: "center", marginTop: 24 }}
+            style={{ alignSelf: "stretch", paddingHorizontal: 24, marginTop: 32, gap: 12 }}
           >
-            <Button
-              buttonStyle="secondary"
-              text="Sign In"
-              onPress={() => router.push("/sign_in")}
-            />
+            <View style={{ flexDirection: "row" }}>
+              <Button
+                text="Create account"
+                onPress={() => router.push("/sign_up")}
+              />
+            </View>
+            <View style={{ flexDirection: "row" }}>
+              <Button
+                buttonStyle="secondary"
+                text="Sign In"
+                onPress={() => router.push("/sign_in")}
+              />
+            </View>
           </Animated.View>
         </View>
         <Stack.Screen
