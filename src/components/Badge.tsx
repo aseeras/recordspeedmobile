@@ -20,9 +20,20 @@ export default function Badge({ type }: { type: string }) {
       ? "text-teal-700"
       : "";
 
+  const dotColor =
+    type == MedicalRecordRequestStatus[MedicalRecordRequestStatus.pending]
+      ? "bg-blue-500"
+      : type == MedicalRecordRequestStatus[MedicalRecordRequestStatus.fulfilled]
+      ? "bg-teal-500"
+      : "bg-gray-400";
+
   return (
-    <View className={`py-1.5 px-3.5 rounded-md ${bgColor}`}>
-      <Text className={`text-base ${textColor}`}>{status}</Text>
+    <View
+      className={`flex-row items-center py-1 px-3 rounded-full ${bgColor}`}
+      style={{ gap: 6 }}
+    >
+      <View className={`w-2 h-2 rounded-full ${dotColor}`} />
+      <Text className={`text-sm font-semibold ${textColor}`}>{status}</Text>
     </View>
   );
 }

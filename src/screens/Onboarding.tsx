@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { Pressable, ScrollView, Text, View } from "react-native";
 import Animated, {
   Easing,
   FadeInDown,
@@ -172,6 +172,17 @@ export default function Onboarding({ onFinish = () => {} }) {
 
   return (
     <View className="flex-1 w-full h-full bg-white">
+      {/* Let people who already know the app get straight to signing in. */}
+      <View className="absolute right-6 top-16 z-10">
+        <Pressable
+          hitSlop={12}
+          accessibilityRole="button"
+          onPress={() => onFinish()}
+          className="px-3 py-1.5 rounded-full bg-gray-100"
+        >
+          <Text className="text-sm font-semibold text-gray-600">Skip</Text>
+        </Pressable>
+      </View>
       <ScrollView>
         <View className="pt-24 pb-8">
           {/* Re-keying on step replays the slide-in for each page. */}
@@ -196,14 +207,14 @@ export default function Onboarding({ onFinish = () => {} }) {
             <>
               <Button
                 buttonStyle="secondary"
-                text="Prev"
+                text="Back"
                 onPress={() => previous()}
               />
               <View className="w-4" />
             </>
           )}
           <Button
-            text="Next"
+            text={step < 3 ? "Next" : "Get started"}
             onPress={() =>
               next({
                 onFinalStep: onFinish,
