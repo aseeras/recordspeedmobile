@@ -15,6 +15,7 @@ import {
   View,
 } from "react-native";
 import { z } from "zod";
+import Animated, { FadeInDown } from "react-native-reanimated";
 
 function Title() {
   return (
@@ -160,13 +161,21 @@ export default function SignIn() {
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
-          <Title />
-          <SocialLogins />
-          <Text className="pt-6 pb-6 text-lg text-center font-medium text-gray-700">
-            Or use your email and password
-          </Text>
-          <SignInForm />
-          <SignUpInvitation />
+          <Animated.View entering={FadeInDown.duration(450)}>
+            <Title />
+          </Animated.View>
+          <Animated.View entering={FadeInDown.delay(100).duration(450)}>
+            <SocialLogins />
+          </Animated.View>
+          <Animated.View entering={FadeInDown.delay(200).duration(450)}>
+            <Text className="pt-6 pb-6 text-lg text-center font-medium text-gray-700">
+              Or use your email and password
+            </Text>
+            <SignInForm />
+          </Animated.View>
+          <Animated.View entering={FadeInDown.delay(300).duration(450)}>
+            <SignUpInvitation />
+          </Animated.View>
           <Stack.Screen
             options={{
               headerStyle: { backgroundColor: "white" },
