@@ -4,6 +4,7 @@ import MenuModal from "@/components/MenuModal";
 import * as Notifications from "expo-notifications";
 import Header from "@/components/Header";
 import BrandGradient from "@/components/BrandGradient";
+import { StatusBar } from "expo-status-bar";
 import { Href, router, Slot } from "expo-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAccountCredentials } from "@/lib/auth/hooks";
@@ -35,6 +36,7 @@ export default function HomeLayout() {
     <>
       <View className="relative flex-1 w-full h-full">
         <BrandGradient />
+        <StatusBar style="light" />
         <Header
           onPressMenu={() => {
             setShowMenu(true);
