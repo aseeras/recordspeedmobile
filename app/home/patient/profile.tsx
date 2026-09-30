@@ -563,7 +563,7 @@ function PublicToAttorneysSection() {
               buttonStyle="secondary"
               text="Edit Description"
               textStyle={{
-                color: "#13C296", // primary-green
+                color: "#059669", // primary-green
               }}
               onPress={() => {
                 setIsEditing(true);
@@ -593,7 +593,7 @@ function PublicToAttorneysSection() {
             refetch();
           }}
           trackColor={{
-            true: "#13C296", // primary-green
+            true: "#059669", // primary-green
           }}
         />
       </View>

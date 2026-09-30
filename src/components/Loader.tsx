@@ -11,6 +11,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import RecordSpeedLogo from "../../assets/RecordSpeedLogo.png";
+import BrandGradient from "./BrandGradient";
 
 export default function Loader() {
   const pulse = useSharedValue(1);
@@ -32,7 +33,8 @@ export default function Loader() {
 
   return (
     <>
-      <View className="flex-1 w-full h-full items-center justify-center bg-primary-green pr-6 pb-24">
+      <View className="flex-1 w-full h-full items-center justify-center pr-6 pb-24">
+        <BrandGradient />
         <Animated.View style={[{ width: 176, height: 176 }, logoStyle]}>
           <Image
             style={{

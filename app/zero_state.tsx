@@ -1,5 +1,6 @@
 import Button from "@/components/Button";
 import Header from "@/components/Header";
+import BrandGradient from "@/components/BrandGradient";
 import { Image } from "expo-image";
 import { router, Stack } from "expo-router";
 import { Text, View } from "react-native";
@@ -9,7 +10,8 @@ import DocumentSecondary from "../assets/DocumentSecondary.png";
 export default function SignIn() {
   return (
     <>
-      <View className="relative flex-1 w-full h-full bg-primary-green">
+      <View className="relative flex-1 w-full h-full">
+        <BrandGradient />
         <View className="flex items-center bg-white w-full h-full mt-4 rounded-2xl">
           <Animated.View
             entering={ZoomIn.springify().damping(14)}
@@ -25,10 +27,10 @@ export default function SignIn() {
             />
           </Animated.View>
           <Animated.View entering={FadeInDown.delay(150).duration(500)}>
-            <Text className="text-gray-900 text-center text-2xl w-80 pt-6 font-bold leading-9">
+            <Text className="text-ink text-center text-2xl w-80 pt-6 font-bold leading-9">
               Sign in or sign up to start your request
             </Text>
-            <Text className="text-gray-500 text-center text-base w-80 pt-2 leading-6">
+            <Text className="text-ink-muted text-center text-base w-80 pt-2 leading-6">
               Request, track and share your medical records in one place.
             </Text>
           </Animated.View>
@@ -55,7 +57,8 @@ export default function SignIn() {
           options={{
             header() {
               return (
-                <View className="pt-24 bg-primary-green">
+                <View className="pt-24">
+                  <BrandGradient />
                   <Header onPressMenu={() => router.push("/sign_in")} />
                 </View>
               );

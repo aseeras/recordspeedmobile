@@ -160,7 +160,7 @@ export default function Plan() {
                   {basic.name}
                 </PlanTitle>
                 {currentPlan?.id === basic.id && (
-                  <View className="absolute right-4 top-5 bg-[#13C29614] px-[14px] py-[5px] rounded-md">
+                  <View className="absolute right-4 top-5 bg-brand-50 px-[14px] py-[5px] rounded-md">
                     <Text className="text-primary-green ">Current Plan</Text>
                   </View>
                 )}

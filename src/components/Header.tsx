@@ -5,7 +5,7 @@ import RecordSpeedLogo from "../../assets/RecordSpeedLogo.png";
 
 export default function Header({ onPressMenu }: { onPressMenu: () => void }) {
   return (
-    <View className="pl-3.5 pr-8 bg-primary-green">
+    <View className="pl-3.5 pr-8">
       <View className="flex flex-row items-center justify-between h-10">
         <View className="flex flex-row items-center">
           <View className="w-12 h-12 mt-3">

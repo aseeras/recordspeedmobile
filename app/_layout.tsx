@@ -32,13 +32,16 @@ export default function AppLayout() {
               headerShadowVisible: false,
               headerBackVisible: false,
               headerStyle: {
-                backgroundColor: "#13C296",
+                backgroundColor: "#10B981",
               },
+              // Smooth, consistent push transitions across the app.
+              animation: "slide_from_right",
+              animationDuration: 280,
             }}
           >
             <Stack.Screen name="index" />
-            <Stack.Screen name="home" options={{ animation: "none" }} />
-            <Stack.Screen name="zero_state" options={{ animation: "none" }} />
+            <Stack.Screen name="home" options={{ animation: "fade" }} />
+            <Stack.Screen name="zero_state" options={{ animation: "fade" }} />
             <Stack.Screen name="sign_in" options={{ presentation: "modal" }} />
             <Stack.Screen name="sign_up" options={{ presentation: "modal" }} />
             <Stack.Screen
