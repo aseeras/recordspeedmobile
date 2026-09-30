@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import { MedicalRecordRequest } from "@/lib/types";
 import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 import RefreshHint from "./RefreshHint";
+import Animated, { FadeInDown, LinearTransition } from "react-native-reanimated";
 
 export default function MedicalRequestList({
   zeroState = () => <></>,
@@ -30,8 +31,16 @@ export default function MedicalRequestList({
                 keyExtractor={(item) => item.id.toString()}
                 ItemSeparatorComponent={() => <View className="h-1" />}
                 showsVerticalScrollIndicator={false}
-                renderItem={({ item }) => (
-                  <MedicalRequestTile medicalRecordRequest={item} />
+                renderItem={({ item, index }) => (
+                  // Cards cascade in; cap the delay so long lists stay snappy.
+                  <Animated.View
+                    entering={FadeInDown.delay(Math.min(index, 8) * 70)
+                      .springify()
+                      .damping(16)}
+                    layout={LinearTransition}
+                  >
+                    <MedicalRequestTile medicalRecordRequest={item} />
+                  </Animated.View>
                 )}
                 refreshControl={
                   <RefreshControl
