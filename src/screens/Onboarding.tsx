@@ -139,10 +139,8 @@ export default function Onboarding({ onFinish = () => {} }) {
           <OnboardingStep
             source={OnboardingStepOneImg}
             imageContainerClassName="w-64 h-64 mb-6"
-            titleText="Lorem ipsum dolor sit amet consectetur."
-            bodyText="Lorem ipsum dolor sit amet consectetur. Purus quisque mauris sapien
-        amet. Morbi quam donec gravida mi urna enim scelerisque. Nisl sed
-        semper tempor feugiat."
+            titleText="Request your medical records"
+            bodyText="Pick your hospital or clinic and send a records request in minutes. No phone calls, forms or fax machines."
           />
         );
       case 2: // Step Two
@@ -150,10 +148,8 @@ export default function Onboarding({ onFinish = () => {} }) {
           <OnboardingStep
             source={OnboardingStepTwoImg}
             imageContainerClassName="w-56 h-56 mb-12"
-            titleText="Lorem ipsum dolor sit amet consectetur."
-            bodyText="Lorem ipsum dolor sit amet consectetur. Purus quisque mauris sapien
-        amet. Morbi quam donec gravida mi urna enim scelerisque. Nisl sed
-        semper tempor feugiat."
+            titleText="Track every request"
+            bodyText="See the status of each request at a glance and get notified as soon as your records are ready."
           />
         );
       case 3: // Step Three
@@ -161,10 +157,8 @@ export default function Onboarding({ onFinish = () => {} }) {
           <OnboardingStep
             source={OnboardingStepThreeImg}
             imageContainerClassName="w-56 h-56 mb-12"
-            titleText="Lorem ipsum dolor sit amet consectetur."
-            bodyText="Lorem ipsum dolor sit amet consectetur. Purus quisque mauris sapien
-        amet. Morbi quam donec gravida mi urna enim scelerisque. Nisl sed
-        semper tempor feugiat."
+            titleText="Share them securely"
+            bodyText="Send your records to your attorney or anyone you trust, right from the app. You stay in control of who sees them."
           />
         );
     }
