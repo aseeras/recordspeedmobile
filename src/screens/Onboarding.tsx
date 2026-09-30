@@ -167,7 +167,7 @@ export default function Onboarding({ onFinish = () => {} }) {
   return (
     <View className="flex-1 w-full h-full bg-white">
       {/* Let people who already know the app get straight to signing in. */}
-      <View className="absolute right-6 top-16 z-10">
+      <View className="flex-row justify-end px-6 pt-2">
         <Pressable
           hitSlop={12}
           accessibilityRole="button"
@@ -178,7 +178,7 @@ export default function Onboarding({ onFinish = () => {} }) {
         </Pressable>
       </View>
       <ScrollView>
-        <View className="pt-24 pb-8">
+        <View className="pt-12 pb-8">
           {/* Re-keying on step replays the slide-in for each page. */}
           <Animated.View
             key={step}

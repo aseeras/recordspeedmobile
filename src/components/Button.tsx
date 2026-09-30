@@ -12,7 +12,8 @@ const PRESS_SPRING = { damping: 15, stiffness: 400, mass: 0.6 };
 export default function Button({
   text = "",
   onPress = () => {},
-  buttonStyle = "primary",
+  secondary = false,
+  buttonStyle: buttonStyleProp = "primary",
   containerStyle = {},
   textStyle = {},
 }: {
@@ -24,6 +25,8 @@ export default function Button({
   containerStyle?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
 }) {
+  // `secondary` is a shorthand some screens use; it was previously ignored.
+  const buttonStyle = secondary ? "secondary" : buttonStyleProp;
   const isDisabled = buttonStyle === "disabled";
   const scale = useSharedValue(1);
   const animatedStyle = useAnimatedStyle(() => ({
@@ -41,12 +44,10 @@ export default function Button({
           "flex flex-row items-center justify-center rounded-xl h-12 px-4",
           {
             "bg-gray-200": isDisabled,
-            "bg-primary-green shadow-md shadow-primary-green/30":
-              buttonStyle === "primary",
+            "bg-primary-green": buttonStyle === "primary",
             "bg-white border-2 border-solid border-primary-green":
               buttonStyle === "secondary",
-            "bg-brand-blue shadow-md shadow-brand-blue/30":
-              buttonStyle === "pro",
+            "bg-brand-blue": buttonStyle === "pro",
           }
         )}
         onPressIn={() => {
