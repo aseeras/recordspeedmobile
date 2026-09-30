@@ -8,23 +8,23 @@ export default function Badge({ type }: { type: string }) {
 
   const bgColor =
     type == MedicalRecordRequestStatus[MedicalRecordRequestStatus.pending]
-      ? "bg-blue-100"
+      ? "bg-amber-50"
       : type == MedicalRecordRequestStatus[MedicalRecordRequestStatus.fulfilled]
-      ? "bg-teal-100"
+      ? "bg-brand-50"
       : "";
 
   const textColor =
     type == MedicalRecordRequestStatus[MedicalRecordRequestStatus.pending]
-      ? "text-gray-700"
+      ? "text-amber-800"
       : type == MedicalRecordRequestStatus[MedicalRecordRequestStatus.fulfilled]
-      ? "text-teal-700"
+      ? "text-brand-700"
       : "";
 
   const dotColor =
     type == MedicalRecordRequestStatus[MedicalRecordRequestStatus.pending]
-      ? "bg-blue-500"
+      ? "bg-amber-500"
       : type == MedicalRecordRequestStatus[MedicalRecordRequestStatus.fulfilled]
-      ? "bg-teal-500"
+      ? "bg-brand-600"
       : "bg-gray-400";
 
   return (

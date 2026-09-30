@@ -32,7 +32,7 @@ export default function AppLayout() {
               headerShadowVisible: false,
               headerBackVisible: false,
               headerStyle: {
-                backgroundColor: "#10B981",
+                backgroundColor: "#6282EC",
               },
               // Smooth, consistent push transitions across the app.
               animation: "slide_from_right",

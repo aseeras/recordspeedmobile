@@ -34,9 +34,7 @@ export default function MedicalRequestList({
                 renderItem={({ item, index }) => (
                   // Cards cascade in; cap the delay so long lists stay snappy.
                   <Animated.View
-                    entering={FadeInDown.delay(Math.min(index, 8) * 70)
-                      .springify()
-                      .damping(16)}
+                    entering={FadeInDown.delay(Math.min(index, 8) * 60).duration(380)}
                     layout={LinearTransition}
                   >
                     <MedicalRequestTile medicalRecordRequest={item} />

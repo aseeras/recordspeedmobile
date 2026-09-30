@@ -9,7 +9,7 @@ export default {
     splash: {
       image: "./assets/splash.png",
       resizeMode: "contain",
-      backgroundColor: "#ffffff",
+      backgroundColor: "#4A68DC",
     },
     assetBundlePatterns: ["**/*"],
     plugins: ["expo-apple-authentication", "expo-router"],

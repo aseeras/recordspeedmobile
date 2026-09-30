@@ -2,7 +2,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { StyleProp, ViewStyle } from "react-native";
 
 // Brand gradient used behind headers, the loader and hero areas.
-export const BRAND_GRADIENT = ["#10B981", "#059669", "#047857"] as const;
+export const BRAND_GRADIENT = ["#6282EC", "#4A68DC", "#3F58C6"] as const;
 
 export default function BrandGradient({
   style,
