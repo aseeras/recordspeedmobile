@@ -4,13 +4,12 @@ import Animated, {
   Easing,
   FadeInDown,
   FadeOut,
-  SlideInLeft,
-  SlideInRight,
+  FadeInLeft,
+  FadeInRight,
   useAnimatedStyle,
   useSharedValue,
   withRepeat,
   withSequence,
-  withSpring,
   withTiming,
 } from "react-native-reanimated";
 import { Image } from "expo-image";
@@ -30,7 +29,7 @@ const OnboardingStep = ({
   useNavigationOptions({
     options: {
       headerStyle: {
-        backgroundColor: "#ECFDF5", // matches the top of the page gradient
+        backgroundColor: "#F3F6FE", // matches the top of the page gradient
       },
     },
   });
@@ -40,8 +39,8 @@ const OnboardingStep = ({
   useEffect(() => {
     float.value = withRepeat(
       withSequence(
-        withTiming(-8, { duration: 1600, easing: Easing.inOut(Easing.sin) }),
-        withTiming(0, { duration: 1600, easing: Easing.inOut(Easing.sin) }),
+        withTiming(-6, { duration: 2200, easing: Easing.inOut(Easing.sin) }),
+        withTiming(0, { duration: 2200, easing: Easing.inOut(Easing.sin) }),
       ),
       -1,
     );
@@ -92,7 +91,10 @@ function Dot({ active }: { active: boolean }) {
   // The active dot stretches into a pill; the others shrink back.
   const width = useSharedValue(active ? 24 : 10);
   useEffect(() => {
-    width.value = withSpring(active ? 24 : 10, { damping: 14, stiffness: 180 });
+    width.value = withTiming(active ? 24 : 10, {
+      duration: 320,
+      easing: Easing.out(Easing.cubic),
+    });
   }, [active]);
   const style = useAnimatedStyle(() => ({ width: width.value }));
 
@@ -102,7 +104,7 @@ function Dot({ active }: { active: boolean }) {
         {
           height: 10,
           borderRadius: 5,
-          backgroundColor: active ? "#059669" : "#C7D2FE", // primary-green / indigo-200
+          backgroundColor: active ? "#4A68DC" : "#C7D2FE", // primary-green / indigo-200
         },
         style,
       ]}
@@ -174,7 +176,7 @@ export default function Onboarding({ onFinish = () => {} }) {
   return (
     <View className="flex-1 w-full h-full bg-white">
       <LinearGradient
-        colors={["#ECFDF5", "#FFFFFF"]}
+        colors={["#F3F6FE", "#FFFFFF"]}
         style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
         pointerEvents="none"
       />
@@ -194,10 +196,10 @@ export default function Onboarding({ onFinish = () => {} }) {
           {/* Re-keying on step replays the slide-in for each page. */}
           <Animated.View
             key={step}
-            entering={(direction === "forward" ? SlideInRight : SlideInLeft)
-              .springify()
-              .damping(18)}
-            exiting={FadeOut.duration(120)}
+            entering={(direction === "forward" ? FadeInRight : FadeInLeft)
+              .duration(360)
+              .easing(Easing.out(Easing.cubic))}
+            exiting={FadeOut.duration(140)}
           >
             {renderStep()}
           </Animated.View>

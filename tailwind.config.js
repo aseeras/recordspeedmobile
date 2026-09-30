@@ -6,19 +6,19 @@ module.exports = {
     extend: {
       colors: {
         "brand-blue": "#2D68F8",
-        // Emerald brand scale. 700 is the button fill (white text passes
-        // WCAG AA); 600 is for accents, rings and dots.
+        // Calm periwinkle brand scale. 600 is the button fill (white text
+        // ~4.9:1, WCAG AA); lighter steps are for tints and backgrounds.
         brand: {
-          50: "#ECFDF5",
-          100: "#D1FAE5",
-          200: "#A7F3D0",
-          300: "#6EE7B7",
-          400: "#34D399",
-          500: "#10B981",
-          600: "#059669",
-          700: "#047857",
-          800: "#065F46",
-          900: "#064E3B",
+          50: "#F3F6FE",
+          100: "#E6ECFD",
+          200: "#CCD8FB",
+          300: "#A9BDF7",
+          400: "#7F9AF1",
+          500: "#6282EC",
+          600: "#4A68DC",
+          700: "#3F58C6",
+          800: "#34479F",
+          900: "#2C3B7E",
         },
         ink: {
           DEFAULT: "#0F172A",
@@ -30,8 +30,8 @@ module.exports = {
         "dark-4": "#4B5563",
         "dark-7": "#D1D5DB",
         "primary-black": "#637381",
-        "primary-green": "#059669",
-        "pastel-green": "rgba(19, 194, 150, 0.20)",
+        "primary-green": "#4A68DC", // legacy name; now the brand accent
+        "pastel-green": "rgba(74, 104, 220, 0.15)", // legacy name
         "pastel-violet": "rgba(55, 88, 249, 0.20)",
         "pastel-orange": "rgba(242, 116, 48, 0.20)",
         "pastel-blue": {

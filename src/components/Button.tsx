@@ -7,7 +7,8 @@ import Animated, {
 import * as Haptics from "expo-haptics";
 import cx from "classnames";
 
-const PRESS_SPRING = { damping: 15, stiffness: 400, mass: 0.6 };
+// Firm damping: the press settles smoothly without a visible bounce.
+const PRESS_SPRING = { damping: 24, stiffness: 320, mass: 0.6 };
 
 export default function Button({
   text = "",
@@ -44,14 +45,14 @@ export default function Button({
           "flex flex-row items-center justify-center rounded-xl h-12 px-4",
           {
             "bg-gray-200": isDisabled,
-            "bg-brand-700": buttonStyle === "primary",
-            "bg-white border-2 border-solid border-brand-700":
+            "bg-brand-600": buttonStyle === "primary",
+            "bg-white border-2 border-solid border-brand-600":
               buttonStyle === "secondary",
             "bg-brand-blue": buttonStyle === "pro",
           }
         )}
         onPressIn={() => {
-          scale.value = withSpring(0.96, PRESS_SPRING);
+          scale.value = withSpring(0.97, PRESS_SPRING);
         }}
         onPressOut={() => {
           scale.value = withSpring(1, PRESS_SPRING);
@@ -67,7 +68,7 @@ export default function Button({
             isDisabled
               ? " text-gray-500"
               : buttonStyle == "secondary"
-              ? "text-brand-700"
+              ? "text-brand-600"
               : "text-white"
           } text-base font-semibold`}
         >

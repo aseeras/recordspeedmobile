@@ -16,7 +16,7 @@ export default function SignIn() {
         <StatusBar style="light" />
         <View className="flex items-center bg-white w-full h-full mt-4 rounded-2xl">
           <Animated.View
-            entering={ZoomIn.springify().damping(14)}
+            entering={ZoomIn.duration(420)}
             style={{ width: 96, height: 96, marginRight: 24, marginTop: 160 }}
           >
             <Image

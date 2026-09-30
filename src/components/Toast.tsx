@@ -7,7 +7,7 @@ export const toastConfig = {
   success: (props) => (
     <BaseToast
       {...props}
-      style={{ backgroundColor: "#ECFDF5", borderLeftColor: "#059669" }}
+      style={{ backgroundColor: "#F3F6FE", borderLeftColor: "#4A68DC" }}
       text1NumberOfLines={3}
       contentContainerStyle={{ paddingHorizontal: 24 }}
       text1Style={{
@@ -33,7 +33,7 @@ export const toastConfig = {
   info: (props) => (
     <BaseToast
       {...props}
-      style={{ borderLeftColor: "#059669" }}
+      style={{ borderLeftColor: "#4A68DC" }}
       text1NumberOfLines={2}
       text1Style={{
         fontSize: 14,

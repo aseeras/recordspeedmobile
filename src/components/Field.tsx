@@ -85,7 +85,7 @@ export const TextInput = React.forwardRef<
           accessibilityLabel={hide ? "Show password" : "Hide password"}
           onPress={() => setHide(!hide)}
         >
-          <Eye color={hide ? "#6B7280" : "#059669"} />
+          <Eye color={hide ? "#6B7280" : "#4A68DC"} />
         </Pressable>
       )}
     </View>
