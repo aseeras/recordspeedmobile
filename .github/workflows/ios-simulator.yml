@@ -71,6 +71,36 @@ jobs:
           name: RecordSpeed-simulator
           path: RecordSpeed.app.zip
 
+      - name: Build DMG
+        run: |
+          APP=$(find build/Build/Products -name 'RecordSpeed.app' -maxdepth 3 | head -1)
+          mkdir -p dmg && ditto "$APP" dmg/RecordSpeed.app
+          cat > dmg/README.txt <<'TXT'
+          Record Speed (iOS Simulator build)
+
+          1. Open Xcode > Open Developer Tool > Simulator and wait for the iPhone home screen.
+          2. Drag RecordSpeed.app from this window onto the simulated iPhone.
+          3. Tap the Record Speed icon.
+
+          If an older version is installed, remove it first in Terminal:
+            xcrun simctl uninstall booted com.ingeniousagency.record-speed-mobile
+          TXT
+          hdiutil create -volname RecordSpeed -srcfolder dmg -ov -format UDZO RecordSpeed.dmg
+          ls -lh RecordSpeed.dmg
+
+      # Rolling release so the latest .dmg is always at the same download URL:
+      # https://github.com/<owner>/<repo>/releases/download/simulator-latest/RecordSpeed.dmg
+      - name: Publish DMG to the simulator-latest release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete simulator-latest --yes --cleanup-tag || true
+          gh release create simulator-latest RecordSpeed.dmg \
+            --prerelease \
+            --target "$GITHUB_SHA" \
+            --title "iOS Simulator build (latest)" \
+            --notes "Built from ${GITHUB_SHA::7}. Open the .dmg and drag RecordSpeed.app onto the iOS Simulator."
+
       - name: Launch in newest iOS Simulator and screenshot
         run: |
           RUNTIME=$(xcrun simctl list runtimes -j | python3 -c "import json,sys; r=[x for x in json.load(sys.stdin)['runtimes'] if x['platform']=='iOS' and x['isAvailable']]; r.sort(key=lambda x: [int(p) for p in x['version'].split('.')]); print(r[-1]['identifier'])")
