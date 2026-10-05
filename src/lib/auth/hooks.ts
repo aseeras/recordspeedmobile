@@ -76,6 +76,7 @@ export function useCurrentAccount<T extends Patient | Attorney>() {
 }
 
 function useStoreCredentials() {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({
       authToken,
@@ -89,16 +90,26 @@ function useStoreCredentials() {
         JSON.stringify({ authToken, type })
       );
     },
+    // Keep the cached query in sync with storage. Otherwise screens that
+    // already read "signed out" (e.g. the /home redirect) keep using that
+    // stale value and bounce the user back to Sign In after a successful login.
+    onSuccess: (_, { authToken, type }) => {
+      queryClient.setQueryData([ACCOUNT_KEYS.credentials], { authToken, type });
+    },
   });
 }
 
 export function useStoreAccount() {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({ account }: { account: Account }) => {
       return AsyncStorage.setItem(
         ACCOUNT_KEYS.account,
         JSON.stringify(account)
       );
+    },
+    onSuccess: (_, { account }) => {
+      queryClient.setQueryData([ACCOUNT_KEYS.account], account);
     },
   });
 }
