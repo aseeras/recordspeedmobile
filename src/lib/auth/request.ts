@@ -40,13 +40,18 @@ export async function signIn({
     }),
   });
   const resBody = await response.json();
-  console.log(resBody);
   if (resBody.error) throw new Error(resBody.error);
   if (resBody.status.code !== 200) throw new Error(resBody.status.message);
 
+  // Use the standard Headers API: Expo's fetch has no `headers.map` (the old
+  // whatwg-fetch internal), which left every session without a token.
+  const token = response.headers.get("authorization");
+  if (!token) {
+    throw new Error("Signed in, but the server did not return a session token.");
+  }
+
   return {
-    // @ts-ignore
-    token: response.headers.map?.authorization,
+    token,
     account: resBody.data.account,
     statusCode: resBody.status.code,
     statusMessage: resBody.status.message,
