@@ -36,12 +36,8 @@ export default {
     web: {
       favicon: "./assets/favicon.png",
     },
-    extra: {
-      eas: {
-        projectId: "c8952a0b-236e-483e-b3a5-edb28fd51ff3",
-      },
-    },
-    owner: "ingenious-agency",
+    // extra.eas.projectId: add the ID printed by `eas init` (the old one belonged to the ingenious-agency account).
+    owner: "aseeras",
     scheme: "record-speed-mobile",
   },
 };
