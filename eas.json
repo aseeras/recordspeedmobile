@@ -14,7 +14,7 @@
         "simulator": true
       },
       "env": {
-        "EXPO_PUBLIC_API_BASE_URL": "https://recspeed.ingenious.agency"
+        "EXPO_PUBLIC_API_BASE_URL": "https://api.recordspeed.com"
       }
     },
     "production": {
@@ -26,7 +26,7 @@
         "image": "latest"
       },
       "env": {
-        "EXPO_PUBLIC_API_BASE_URL": "https://recspeed.ingenious.agency"
+        "EXPO_PUBLIC_API_BASE_URL": "https://api.recordspeed.com"
       }
     }
   },

@@ -12,7 +12,7 @@ jobs:
     runs-on: macos-latest
     timeout-minutes: 90
     env:
-      EXPO_PUBLIC_API_BASE_URL: https://recspeed.ingenious.agency
+      EXPO_PUBLIC_API_BASE_URL: https://api.recordspeed.com
       EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ vars.EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
       EXPO_PUBLIC_IOS_OAUTH_CLIENT_ID: ${{ vars.EXPO_PUBLIC_IOS_OAUTH_CLIENT_ID }}
     steps:
