@@ -83,7 +83,7 @@ jobs:
           3. Tap the Record Speed icon.
 
           If an older version is installed, remove it first in Terminal:
-            xcrun simctl uninstall booted com.ingeniousagency.record-speed-mobile
+            xcrun simctl uninstall booted com.recordspeed.app
           TXT
           hdiutil create -volname RecordSpeed -srcfolder dmg -ov -format UDZO RecordSpeed.dmg
           ls -lh RecordSpeed.dmg
@@ -110,7 +110,7 @@ jobs:
           xcrun simctl bootstatus "$UDID" -b
           APP=$(find build/Build/Products -name 'RecordSpeed.app' -maxdepth 3 | head -1)
           xcrun simctl install "$UDID" "$APP"
-          xcrun simctl launch "$UDID" com.ingeniousagency.record-speed-mobile
+          xcrun simctl launch "$UDID" com.recordspeed.app
           mkdir -p screenshots
           sleep 15
           xcrun simctl io "$UDID" screenshot screenshots/launch-15s.png

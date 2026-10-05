@@ -36,9 +36,7 @@
   "submit": {
     "production": {
       "ios": {
-        "appleId": "gchertok@ingsw.com",
-        "ascAppId": "6502834346",
-        "appleTeamId": "6X9Y9NQZR3"
+        "appleTeamId": "558CFPCN3B"
       },
       "android": {
         "serviceAccountKeyPath": "./service-account.json",

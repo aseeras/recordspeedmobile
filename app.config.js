@@ -15,7 +15,7 @@ export default {
     plugins: ["expo-apple-authentication", "expo-router"],
     ios: {
       supportsTablet: true,
-      bundleIdentifier: "com.ingeniousagency.record-speed-mobile",
+      bundleIdentifier: "com.recordspeed.app",
       usesAppleSignIn: true,
       entitlements: {
         "com.apple.developer.applesignin": ["Default"],
