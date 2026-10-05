@@ -6,9 +6,15 @@ appId: com.recordspeed.app
     visible: "Next"
     timeout: 180000
 - takeScreenshot: 01-onboarding-step-1
+# Let each slide finish moving before the next tap; a tap mid-animation is dropped.
 - tapOn: "Next"
+- waitForAnimationToEnd
 - takeScreenshot: 02-onboarding-step-2
 - tapOn: "Next"
+- waitForAnimationToEnd
+- extendedWaitUntil:
+    visible: "Get started"
+    timeout: 15000
 - takeScreenshot: 03-onboarding-step-3
 - tapOn: "Get started"
 - extendedWaitUntil:
