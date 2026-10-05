@@ -1,4 +1,4 @@
-appId: com.ingeniousagency.record-speed-mobile
+appId: com.recordspeed.app
 ---
 - launchApp:
     clearState: true
