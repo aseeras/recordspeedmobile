@@ -22,7 +22,9 @@ export default {
       },
       infoPlist: {
         NSCameraUsageDescription:
-          "Enable Camera Acess so that you can take pictures",
+          "Enable Camera Access so that you can take pictures",
+        // Only standard HTTPS encryption, so TestFlight doesn't ask about export compliance on every build.
+        ITSAppUsesNonExemptEncryption: false,
       },
     },
     android: {
