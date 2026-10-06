@@ -8,6 +8,7 @@ import User from "@/utils/svg/User";
 import { Link, router, useRouter } from "expo-router";
 import { MedicalRecordRequest, MedicalRecordRequestStatus } from "@/lib/types";
 import { useCurrentAccount } from "@/lib/auth/hooks";
+import ConnectMyChartButton from "@/components/ConnectMyChartButton";
 
 const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL;
 
@@ -23,12 +24,15 @@ export default function MedicalRequestTile({
   const isFulfilled =
     medicalRecordRequest.status.toString() ==
     MedicalRecordRequestStatus[MedicalRecordRequestStatus.fulfilled];
+  const fromMyChart = medicalRecordRequest.source === "epic";
 
   return (
     <View className="w-full bg-white mb-5 p-5 rounded-2xl border border-gray-100 shadow-lg shadow-gray-300/40">
       <View className={`${isFulfilled ? "pb-2" : "pb-6"}`}>
         <Text className="text-base text-gray-700 font-semibold">
-          {isFulfilled ? (
+          {isFulfilled && fromMyChart ? (
+            "Imported from MyChart"
+          ) : isFulfilled ? (
             <>
               Certified By{" "}
               <View className="pl-1 pb-0.5">
@@ -127,6 +131,12 @@ export default function MedicalRequestTile({
             </View>
           </View>
         ))}
+
+      {!isFulfilled &&
+        currentAccount?.type === "Patient" &&
+        !medicalRecordRequest.sharingPatient && (
+          <ConnectMyChartButton medicalRecordRequestId={medicalRecordRequest.id} />
+        )}
 
       {isFulfilled && !medicalRecordRequest.sharingPatient && (
         <View className="pt-6">

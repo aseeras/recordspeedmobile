@@ -95,6 +95,8 @@ export interface MedicalRecordRequest {
   documents?: Document[];
   sharingPatient?: Patient;
   sharedAt?: string;
+  // Present only when the records didn't come from the practice.
+  source?: "epic";
 }
 
 export interface Document {
