@@ -92,6 +92,9 @@ jobs:
       # Rolling release so the latest .dmg is always at the same download URL:
       # https://github.com/<owner>/<repo>/releases/download/simulator-latest/RecordSpeed.dmg
       - name: Publish DMG to the simulator-latest release
+        # GitHub refuses release creation for this repo's workflow token (403). The DMG is still in the run's
+        # RecordSpeed-simulator artifact, so a failed publish shouldn't fail the build.
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
