@@ -11,7 +11,7 @@ export default function ConnectMyChartButton({ medicalRecordRequestId }: { medic
       <Pressable
         accessibilityRole="button"
         disabled={busy}
-        onPress={connect}
+        onPress={() => connect()}
         className={`flex-row items-center justify-center rounded-xl border border-indigo-600 w-full h-11 ${busy ? "opacity-60" : ""}`}
       >
         {busy && <ActivityIndicator size="small" color="#4F46E5" style={{ marginRight: 8 }} />}
