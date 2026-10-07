@@ -9,7 +9,8 @@
       "distribution": "internal",
       "env": {
         "EXPO_PUBLIC_API_BASE_URL": "https://api.recordspeed.com"
-      }
+      },
+      "channel": "development"
     },
     "preview": {
       "distribution": "internal",
@@ -18,7 +19,8 @@
       },
       "env": {
         "EXPO_PUBLIC_API_BASE_URL": "https://api.recordspeed.com"
-      }
+      },
+      "channel": "preview"
     },
     "production": {
       "autoIncrement": true,
@@ -31,7 +33,8 @@
       "env": {
         "EXPO_PUBLIC_API_BASE_URL": "https://api.recordspeed.com"
       },
-      "environment": "production"
+      "environment": "production",
+      "channel": "production"
     }
   },
   "submit": {

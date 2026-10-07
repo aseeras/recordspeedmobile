@@ -4,6 +4,7 @@ import { StripeProvider, useStripe } from "@stripe/stripe-react-native";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import * as Linking from "expo-linking";
 import * as Notifications from "expo-notifications";
+import * as Updates from "expo-updates";
 import { Stack } from "expo-router";
 import { useCallback, useEffect } from "react";
 
@@ -17,7 +18,25 @@ Notifications.setNotificationHandler({
 });
 
 const queryClient = new QueryClient();
+// On launch, load any newer update published with EAS Update straight away, rather than on the next launch.
+function useLatestUpdate() {
+  useEffect(() => {
+    if (__DEV__ || !Updates.isEnabled) return;
+    (async () => {
+      try {
+        const { isAvailable } = await Updates.checkForUpdateAsync();
+        if (!isAvailable) return;
+        await Updates.fetchUpdateAsync();
+        await Updates.reloadAsync();
+      } catch {
+        // Offline or the update server is unreachable: keep running the current version.
+      }
+    })();
+  }, []);
+}
+
 export default function AppLayout() {
+  useLatestUpdate();
   return (
     <>
       <QueryClientProvider client={queryClient}>

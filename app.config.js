@@ -44,6 +44,12 @@ export default {
       },
     },
     owner: "aseeras",
+    // Over-the-air updates (EAS Update): JavaScript changes reach installed apps without a new store build.
+    // The fingerprint runtime version changes whenever native code does, so an update only reaches builds it fits.
+    updates: {
+      url: "https://u.expo.dev/82f173e3-9aff-489c-bb33-a77f7ae4f036",
+    },
+    runtimeVersion: { policy: "fingerprint" },
     scheme: "record-speed-mobile",
   },
 };
