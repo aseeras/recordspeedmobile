@@ -1,0 +1,57 @@
+name: Publish app update
+
+# Sends the app's JavaScript changes to installed iOS and Android apps with EAS Update: no store build, no
+# TestFlight or App Review. Apps load it the next time they open. Native changes (new native libraries,
+# permissions, app.config.js native settings) still need a store build; the fingerprint runtime version keeps an
+# update away from builds it doesn't fit.
+#
+# Needs the EXPO_TOKEN repository secret (expo.dev > Account settings > Access tokens).
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: "What changed (shown on expo.dev)"
+        required: true
+      channel:
+        description: "Who gets it"
+        type: choice
+        options: [production, preview]
+        default: production
+
+permissions:
+  contents: read
+
+concurrency:
+  group: eas-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check the Expo token
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          if [ -z "$EXPO_TOKEN" ]; then
+            echo "::error::Add a repository secret named EXPO_TOKEN (expo.dev > Account settings > Access tokens)."
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Publish the update
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          MESSAGE: ${{ inputs.message }}
+          CHANNEL: ${{ inputs.channel }}
+        run: npx eas-cli update --channel "$CHANNEL" --environment "$CHANNEL" --message "$MESSAGE" --non-interactive
