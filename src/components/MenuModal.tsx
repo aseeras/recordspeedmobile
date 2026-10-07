@@ -8,6 +8,7 @@ import { router } from "expo-router";
 import Button from "@/components/Button";
 import { AccountType } from "@/lib/types";
 import People from "@/utils/svg/People";
+import Close from "@/utils/svg/Close";
 
 const PATIENT_MENU_ITEMS: MenuItem[] = [
   {
@@ -55,6 +56,13 @@ const PATIENT_MENU_ITEMS: MenuItem[] = [
     },
   },
   {
+    title: "Delete Account",
+    icon: () => <Close />,
+    onPress: () => {
+      router.replace("/home/patient/deleteAccount");
+    },
+  },
+  {
     title: "Sign Out",
     icon: () => <SignOut />,
     onPress: () => {
@@ -78,6 +86,13 @@ const ATTORNEY_MENU_ITEMS: MenuItem[] = [
     icon: () => <UserLarge />,
     onPress: () => {
       router.replace("/home/attorney/profile");
+    },
+  },
+  {
+    title: "Delete Account",
+    icon: () => <Close />,
+    onPress: () => {
+      router.replace("/home/attorney/deleteAccount");
     },
   },
   {
