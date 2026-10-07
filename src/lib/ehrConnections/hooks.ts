@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as Linking from "expo-linking";
 import * as WebBrowser from "expo-web-browser";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Toast from "react-native-toast-message";
 import { useAccountCredentials } from "../auth/hooks";
 import { ACCOUNT_KEYS } from "../storageKeychain";
@@ -17,14 +17,17 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // Connects the patient's MyChart account for one request: they sign in to MyChart in a secure browser sheet,
 // then RecordSpeed imports their records into the request. `importing` stays true until the records arrive.
-export function useConnectMyChart(medicalRecordRequestId: number) {
+// The request is given here or to connect(), e.g. right after creating it.
+export function useConnectMyChart(medicalRecordRequestId?: number) {
   const { data: credentials } = useAccountCredentials();
   const queryClient = useQueryClient();
   const [importing, setImporting] = useState(false);
+  const [imported, setImported] = useState(false);
+  const target = useRef(medicalRecordRequestId);
 
   const isFulfilled = (requests?: MedicalRecordRequest[]) =>
     requests
-      ?.find((r) => r.id === medicalRecordRequestId)
+      ?.find((r) => r.id === target.current)
       ?.status?.toString() === MedicalRecordRequestStatus[MedicalRecordRequestStatus.fulfilled];
 
   async function waitForImport(connectionId: number) {
@@ -35,6 +38,7 @@ export function useConnectMyChart(medicalRecordRequestId: number) {
         await queryClient.refetchQueries({ queryKey: [ACCOUNT_KEYS.medicalRecordRequests.owned] });
         if (isFulfilled(queryClient.getQueryData([ACCOUNT_KEYS.medicalRecordRequests.owned]))) {
           Toast.show({ type: "success", text1: "Your MyChart records are here" });
+          setImported(true);
           return;
         }
         const connection = await fetchEhrConnection({ authToken: credentials.authToken, id: connectionId });
@@ -50,10 +54,11 @@ export function useConnectMyChart(medicalRecordRequestId: number) {
   }
 
   const connect = useMutation({
-    mutationFn: async () => {
+    mutationFn: async (requestId?: number) => {
+      target.current = requestId ?? medicalRecordRequestId;
       const connection = await startEhrConnection({
         authToken: credentials?.authToken,
-        medicalRecordRequestId,
+        medicalRecordRequestId: target.current,
       });
       const result = await WebBrowser.openAuthSessionAsync(connection.authorizeUrl, EHR_RETURN_URL);
       if (result.type !== "success") return { status: "cancelled", connectionId: connection.id };
@@ -76,5 +81,11 @@ export function useConnectMyChart(medicalRecordRequestId: number) {
     },
   });
 
-  return { connect: () => connect.mutate(), connecting: connect.isPending, importing };
+  return {
+    connect: (requestId?: number) => connect.mutate(requestId),
+    connectAsync: (requestId?: number) => connect.mutateAsync(requestId),
+    connecting: connect.isPending,
+    importing,
+    imported,
+  };
 }

@@ -2,6 +2,7 @@ import { View, Text, Pressable } from "react-native";
 import { router } from "expo-router";
 import MedicalRequestList from "@/components/MedicalRequestList";
 import HomeZeroState from "@/components/HomeZeroState";
+import MyChartBanner from "@/components/MyChartBanner";
 import Plus from "@/utils/svg/Plus";
 import { useOwnedMedicalRecordRequests } from "@/lib/medicalRecordRequests/hooks";
 
@@ -19,7 +20,8 @@ export default function HomePatientIndex() {
           My Medical Requests
         </Text>
       </View>
-      <View className="relative flex items-center bg-white w-full h-full mt-4 pt-6 rounded-2xl">
+      <View className="relative flex items-center bg-white w-full h-full mt-4 pt-2 rounded-2xl">
+        <MyChartBanner />
         <MedicalRequestList
           medicalRecordRequests={medicalRecordRequests}
           isFetching={isFetching}

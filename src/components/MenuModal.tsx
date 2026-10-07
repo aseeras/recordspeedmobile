@@ -27,6 +27,13 @@ const PATIENT_MENU_ITEMS: MenuItem[] = [
     ),
   },
   {
+    title: "Get records from MyChart",
+    icon: () => <File />,
+    onPress: () => {
+      router.replace("/home/patient/connectMyChart");
+    },
+  },
+  {
     title: "Contacts",
     icon: () => <People />,
     onPress: () => {
