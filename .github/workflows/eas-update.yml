@@ -54,4 +54,4 @@ jobs:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
           MESSAGE: ${{ inputs.message }}
           CHANNEL: ${{ inputs.channel }}
-        run: npx eas-cli update --channel "$CHANNEL" --environment "$CHANNEL" --message "$MESSAGE" --non-interactive
+        run: npx eas-cli update --channel "$CHANNEL" --environment "$CHANNEL" --platform ios --message "$MESSAGE" --non-interactive
