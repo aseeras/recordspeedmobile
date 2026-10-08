@@ -63,6 +63,7 @@ export default function AppLayout() {
             <Stack.Screen name="zero_state" options={{ animation: "fade" }} />
             <Stack.Screen name="sign_in" options={{ presentation: "modal" }} />
             <Stack.Screen name="sign_up" options={{ presentation: "modal" }} />
+            <Stack.Screen name="assistant" options={{ presentation: "modal" }} />
             <Stack.Screen
               name="share_modal/[medicalRecordRequestId]"
               options={{

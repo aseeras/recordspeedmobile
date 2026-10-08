@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { View } from "react-native";
 import MenuModal from "@/components/MenuModal";
+import AssistantButton from "@/components/AssistantButton";
 import * as Notifications from "expo-notifications";
 import Header from "@/components/Header";
 import BrandGradient from "@/components/BrandGradient";
@@ -44,6 +45,7 @@ export default function HomeLayout() {
         />
 
         <Slot />
+        {!showMenu && <AssistantButton />}
       </View>
 
       {showMenu && (

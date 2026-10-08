@@ -56,6 +56,13 @@ const PATIENT_MENU_ITEMS: MenuItem[] = [
     },
   },
   {
+    title: "Ask RecordSpeed AI",
+    icon: () => <People />,
+    onPress: () => {
+      router.push({ pathname: "/assistant", params: { from: "menu" } });
+    },
+  },
+  {
     title: "Delete Account",
     icon: () => <Close />,
     onPress: () => {
@@ -86,6 +93,13 @@ const ATTORNEY_MENU_ITEMS: MenuItem[] = [
     icon: () => <UserLarge />,
     onPress: () => {
       router.replace("/home/attorney/profile");
+    },
+  },
+  {
+    title: "Ask RecordSpeed AI",
+    icon: () => <People />,
+    onPress: () => {
+      router.push({ pathname: "/assistant", params: { from: "menu" } });
     },
   },
   {
