@@ -1,8 +1,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ACCOUNT_KEYS } from "../storageKeychain";
 import { AccountType } from "../types";
 
 const API_BASE_URL = String(process.env.EXPO_PUBLIC_API_BASE_URL);
 const LAST_ACTIVITY_KEY = "@app:lastActivity";
+const CREDENTIALS_KEY = ACCOUNT_KEYS.credentials;
 
 // Signed out after this long without using the app, matching the API: attorneys see other people's
 // records (HIPAA automatic logoff); patients only see their own, on a phone with its own lock.
@@ -51,7 +53,8 @@ export function onSessionEnded(listener: () => void) {
 }
 
 // When the API refuses the sign-in token (signed out elsewhere, or idle too long), tell the app so it can
-// go back to Sign In. Wraps fetch once, so every API call is covered.
+// go back to Sign In. Wraps fetch once, so every API call is covered. Only a refusal of the token that's
+// actually stored counts: a request sent before the token loaded is just a failed request.
 let watching = false;
 export function watchForEndedSessions() {
   if (watching) return;
@@ -60,13 +63,10 @@ export function watchForEndedSessions() {
   global.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
     const response = await originalFetch(input, init);
     const url = typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
-    if (
-      response.status === 401 &&
-      new Headers(init?.headers).has("Authorization") &&
-      url.startsWith(API_BASE_URL) &&
-      !url.includes("/accounts/")
-    ) {
-      listeners.forEach((listener) => listener());
+    const sent = new Headers(init?.headers).get("Authorization");
+    if (response.status === 401 && sent && url.startsWith(API_BASE_URL) && !url.includes("/accounts/")) {
+      const stored = await AsyncStorage.getItem(CREDENTIALS_KEY);
+      if (stored && JSON.parse(stored).authToken === sent) listeners.forEach((listener) => listener());
     }
     return response;
   };
