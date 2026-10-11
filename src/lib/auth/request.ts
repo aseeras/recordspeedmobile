@@ -39,9 +39,29 @@ export async function signIn({
       },
     }),
   });
-  const resBody = await response.json();
+  return signInResult(response, await response.json());
+}
+
+// What the API answers when the password was right but the account (attorneys) also needs the code from
+// an authenticator app. The first time it also carries what's needed to set the app up.
+export interface TwoFactorChallenge {
+  ticket: string;
+  setup: boolean;
+  secret?: string;
+  uri?: string;
+}
+
+export type SignInResult =
+  | { token: string; account: Account; recoveryCodes?: string[] }
+  | { twoFactor: TwoFactorChallenge };
+
+function signInResult(response: Response, resBody: any): SignInResult {
+  if (resBody.two_factor) {
+    const { ticket, setup, secret, uri } = resBody.two_factor;
+    return { twoFactor: { ticket, setup, secret, uri } };
+  }
   if (resBody.error) throw new Error(resBody.error);
-  if (resBody.status.code !== 200) throw new Error(resBody.status.message);
+  if (resBody.status?.code !== 200) throw new Error(resBody.status?.message ?? "Sign-in failed");
 
   // Use the standard Headers API: Expo's fetch has no `headers.map` (the old
   // whatwg-fetch internal), which left every session without a token.
@@ -50,17 +70,26 @@ export async function signIn({
     throw new Error("Signed in, but the server did not return a session token.");
   }
 
-  return {
-    token,
-    account: resBody.data.account,
-    statusCode: resBody.status.code,
-    statusMessage: resBody.status.message,
-  } as {
-    token: string;
-    account?: Account;
-    statusCode: number;
-    statusMessage: string;
-  };
+  return { token, account: resBody.data.account, recoveryCodes: resBody.recovery_codes };
+}
+
+// Step two: the 6-digit code from the authenticator app, or a recovery code.
+export async function verifyTwoFactor(ticket: string, code: string) {
+  const response = await fetch(`${API_BASE_URL}/accounts/two_factor`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ticket, code }),
+  });
+  return signInResult(response, await response.json().catch(() => ({})));
+}
+
+// Ends the session on the API, so the token can't be used again. Signing out still works offline.
+export async function signOutOfApi(authToken?: string) {
+  if (!authToken) return;
+  await fetch(`${API_BASE_URL}/accounts/sign_out`, {
+    method: "DELETE",
+    headers: { Authorization: authToken },
+  }).catch(() => undefined);
 }
 export interface SignUpParams {
   personalIdentifier: string;

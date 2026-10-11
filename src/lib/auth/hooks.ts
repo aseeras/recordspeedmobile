@@ -9,6 +9,7 @@ import * as Google from "expo-auth-session/providers/google";
 import { useEffect } from "react";
 import Toast from "react-native-toast-message";
 import { ACCOUNT_KEYS, APP_KEYS } from "../storageKeychain";
+import { startActivity } from "./session";
 import {
   Account,
   AccountCredentials,
@@ -16,9 +17,21 @@ import {
   Attorney,
   Patient,
 } from "../types";
-import { signIn, SignInParams, signUp, SignUpParams } from "./request";
+import {
+  signIn,
+  SignInParams,
+  SignInResult,
+  signOutOfApi,
+  signUp,
+  SignUpParams,
+  TwoFactorChallenge,
+  verifyTwoFactor,
+} from "./request";
 
 export const ACCOUNT_TOKEN_KEY = "@account:token";
+// In-memory only: the pending two-step sign-in, and recovery codes to show once.
+export const TWO_FACTOR_KEY = ["auth", "twoFactor"];
+export const RECOVERY_CODES_KEY = ["auth", "recoveryCodes"];
 export const ACCOUNT_DATA_KEY = "@account:data";
 
 export const useGoogleAuth = function ({
@@ -117,7 +130,12 @@ export function useStoreAccount() {
 export function useAccountSignOut() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => {
+    // endSession: also end it on the API (not needed when the API already ended it).
+    mutationFn: async (options?: { endSession?: boolean }) => {
+      if (options?.endSession ?? true) {
+        const stored = await AsyncStorage.getItem(ACCOUNT_KEYS.credentials);
+        await signOutOfApi(stored ? JSON.parse(stored).authToken : undefined);
+      }
       return AsyncStorage.multiRemove(
         Object.values(ACCOUNT_KEYS)
           .map((key) => (typeof key === "object" ? Object.values(key) : key))
@@ -160,22 +178,34 @@ export const useStoreSkipOnboarding = function () {
   });
 };
 
-export function useSignIn() {
+// Stores a completed sign-in. When the account needs two-step sign-in, keeps the challenge for the
+// two_factor screen instead and returns null.
+function useCompleteSignIn() {
+  const queryClient = useQueryClient();
   const { mutateAsync: storeCredentials } = useStoreCredentials();
   const { mutateAsync: storeAccount } = useStoreAccount();
+  return async (result: SignInResult) => {
+    if ("twoFactor" in result) {
+      queryClient.setQueryData<TwoFactorChallenge>(TWO_FACTOR_KEY, result.twoFactor);
+      return null;
+    }
+    await startActivity();
+    await storeCredentials({
+      authToken: result.token,
+      type: result.account.type.toLocaleLowerCase() as AccountType,
+    });
+    await storeAccount({ account: result.account });
+    queryClient.removeQueries({ queryKey: TWO_FACTOR_KEY });
+    if (result.recoveryCodes) queryClient.setQueryData(RECOVERY_CODES_KEY, result.recoveryCodes);
+    return result.account;
+  };
+}
+
+export function useSignIn() {
+  const completeSignIn = useCompleteSignIn();
   return useMutation({
     mutationFn: async function (payload: SignInParams) {
-      const result = await signIn(payload);
-
-      await storeCredentials({
-        authToken: result.token,
-        type: result.account.type.toLocaleLowerCase() as AccountType,
-      });
-
-      await storeAccount({
-        account: result.account,
-      });
-      return result.account;
+      return completeSignIn(await signIn(payload));
     },
     onError(error) {
       Toast.show({
@@ -186,20 +216,47 @@ export function useSignIn() {
   });
 }
 
+export function useTwoFactorChallenge() {
+  return useQuery<TwoFactorChallenge | null>({
+    queryKey: TWO_FACTOR_KEY,
+    queryFn: () => null,
+    staleTime: Infinity,
+  });
+}
+
+export function useRecoveryCodes() {
+  return useQuery<string[] | null>({
+    queryKey: RECOVERY_CODES_KEY,
+    queryFn: () => null,
+    staleTime: Infinity,
+  });
+}
+
+export function useTwoFactorSignIn() {
+  const completeSignIn = useCompleteSignIn();
+  return useMutation({
+    mutationFn: async function ({ ticket, code }: { ticket: string; code: string }) {
+      const account = await completeSignIn(await verifyTwoFactor(ticket, code));
+      if (!account) throw new Error("Please sign in again.");
+      return account;
+    },
+  });
+}
+
 export function useSignUp({ accountType }: { accountType: AccountType }) {
   const signInMutation = useSignIn();
   return useMutation({
     mutationFn: async function (payload: SignUpParams) {
-      let account = await signUp(payload);
-      account = await signInMutation.mutateAsync({
-        email: account.email,
+      const created = await signUp(payload);
+      // null: the account continues with two-step sign-in (attorneys).
+      return signInMutation.mutateAsync({
+        email: created.email,
         password: payload.password,
-        firstName: account.firstName,
-        lastName: account.lastName,
-        personalIdentifier: account.email,
+        firstName: created.firstName,
+        lastName: created.lastName,
+        personalIdentifier: created.email,
         registrationMethod: "internal",
       });
-      return account;
     },
   });
 }

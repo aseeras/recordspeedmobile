@@ -6,7 +6,7 @@ import ToastPlaceholder, { Toast } from "@/components/Toast";
 import { useSignIn } from "@/lib/auth/hooks";
 import { SignInParams } from "@/lib/auth/request";
 import { useForm } from "@tanstack/react-form";
-import { Stack, useRouter } from "expo-router";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -17,9 +17,21 @@ import {
 import { z } from "zod";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
+const SIGNED_OUT_NOTICES: Record<string, string> = {
+  idle: "You were signed out because you hadn't used the app for a while. Please sign in again.",
+  ended: "Your session has ended. Please sign in again.",
+};
+
 function Title() {
+  const { signedOut } = useLocalSearchParams<{ signedOut?: string }>();
+  const notice = signedOut && SIGNED_OUT_NOTICES[signedOut];
   return (
     <>
+      {notice && (
+        <Text accessibilityRole="alert" className="mb-4 text-base text-gray-700">
+          {notice}
+        </Text>
+      )}
       <View>
         <Text className="text-3xl font-bold text-ink">Hi there,</Text>
         <Text className="text-3xl font-bold text-ink">let's sign in!</Text>
@@ -37,6 +49,7 @@ function SocialLogins() {
 
   async function handleSignIn(params: SignInParams) {
     const patient = await signInMutation.mutateAsync(params);
+    if (!patient) return router.push("/two_factor");
     router.dismissAll();
     setTimeout(() => {
       router.push("/home");
@@ -96,6 +109,7 @@ function SignInForm() {
         firstName: "",
         lastName: "",
       });
+      if (!patient) return router.push("/two_factor");
       router.dismissAll();
       setTimeout(() => {
         router.push("/home");
