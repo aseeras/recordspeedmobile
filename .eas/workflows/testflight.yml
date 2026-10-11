@@ -1,0 +1,24 @@
+name: Build and send to TestFlight
+
+# Runs on Expo's servers (the GitHub repository is linked to the project on expo.dev). Pushing a commit to the
+# release/testflight branch builds the iOS app with the production profile (build number goes up automatically)
+# and submits it to App Store Connect, where it appears in TestFlight once Apple has processed it.
+on:
+  push:
+    branches: ['release/testflight']
+
+jobs:
+  build_ios:
+    name: Build iOS (production)
+    type: build
+    params:
+      platform: ios
+      profile: production
+
+  submit_ios:
+    name: Send to TestFlight
+    type: submit
+    needs: [build_ios]
+    params:
+      build_id: ${{ needs.build_ios.outputs.build_id }}
+      profile: production
