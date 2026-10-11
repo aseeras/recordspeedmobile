@@ -1,5 +1,8 @@
 import "../global.css";
 import ToastPlaceholder from "@/components/Toast";
+import SessionGuard from "@/components/SessionGuard";
+import { markActivity } from "@/lib/auth/session";
+import { View } from "react-native";
 import { StripeProvider, useStripe } from "@stripe/stripe-react-native";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import * as Linking from "expo-linking";
@@ -40,6 +43,15 @@ export default function AppLayout() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
+        <SessionGuard />
+        {/* Any touch counts as activity for automatic sign-out (observed, never captured). */}
+        <View
+          style={{ flex: 1 }}
+          onStartShouldSetResponderCapture={() => {
+            markActivity();
+            return false;
+          }}
+        >
         <StripeProvider
           publishableKey={process.env.EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY}
           merchantIdentifier="record-speed-mobile"
@@ -63,6 +75,8 @@ export default function AppLayout() {
             <Stack.Screen name="zero_state" options={{ animation: "fade" }} />
             <Stack.Screen name="sign_in" options={{ presentation: "modal" }} />
             <Stack.Screen name="sign_up" options={{ presentation: "modal" }} />
+            <Stack.Screen name="two_factor" options={{ presentation: "modal" }} />
+            <Stack.Screen name="recovery_codes" options={{ presentation: "modal", gestureEnabled: false }} />
             <Stack.Screen name="assistant" options={{ presentation: "modal" }} />
             <Stack.Screen
               name="share_modal/[medicalRecordRequestId]"
@@ -78,6 +92,7 @@ export default function AppLayout() {
             />
           </Stack>
         </StripeProvider>
+        </View>
       </QueryClientProvider>
       <ToastPlaceholder topOffset={80} />
     </>

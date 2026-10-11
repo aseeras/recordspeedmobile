@@ -94,6 +94,8 @@ function SignUpForm({ accountType }: { accountType: AccountType }) {
           registrationMethod: "internal",
           type: accountType,
         });
+        // Attorneys continue with setting up two-step sign-in.
+        if (!account) return router.push("/two_factor");
         router.dismissAll();
         setTimeout(() => {
           router.push("/home");
