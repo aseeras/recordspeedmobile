@@ -1,0 +1,18 @@
+name: Publish iOS update
+
+# Runs on Expo's servers (the GitHub repository is linked to the project on expo.dev). Pushing a commit to the
+# release/ios-update branch publishes that commit's JavaScript to installed iOS apps on the production channel,
+# like `npx eas-cli update --channel production --platform ios`. Only builds with the same runtime fingerprint
+# receive it; native changes still need a store build.
+on:
+  push:
+    branches: ['release/ios-update']
+
+jobs:
+  publish:
+    name: Publish to production (iOS)
+    type: update
+    environment: production
+    params:
+      channel: production
+      platform: ios

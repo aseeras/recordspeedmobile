@@ -33,5 +33,6 @@ JavaScript-only changes (screens, text, logic) reach installed apps in about a m
 
 - From GitHub: **Actions > Publish app update > Run workflow**, describe the change, choose `production` (TestFlight and App Store builds) or `preview`. Needs the `EXPO_TOKEN` repository secret (expo.dev > Account settings > Access tokens).
 - From a terminal: `npx eas-cli update --channel production --environment production --platform ios --message "What changed"`
+- From Expo (no token needed, the GitHub repository is linked on expo.dev): push the commit to the `release/ios-update` branch, e.g. `git push origin HEAD:release/ios-update`. The [Publish iOS update](.eas/workflows/publish-ios-update.yml) EAS workflow publishes it to `production`; follow it on expo.dev under the project's **Workflows**.
 
 Native changes (new native libraries, permissions, native settings in `app.config.js`) still need a store build (`npx eas-cli build --platform ios --profile production --auto-submit`). The runtime version is a fingerprint of the native code, so an update is only offered to builds it's compatible with.
