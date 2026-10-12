@@ -22,6 +22,7 @@ const SCREENS: Record<string, Record<string, string>> = {
     contacts: "/home/patient/contacts",
     profile: "/home/patient/profile",
     delete_account: "/home/patient/deleteAccount",
+    access_log: "/home/patient/accessLog",
   },
   attorney: {
     shared_with_me: "/home/attorney",

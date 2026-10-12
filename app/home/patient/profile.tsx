@@ -11,6 +11,11 @@ import MedicalInstitutionSearch from "@/components/MedicalInstitutionSearch";
 import RadioButton from "@/components/RadioButton";
 import { useCurrentAccount } from "@/lib/auth/hooks";
 import { useMedicalInstitution } from "@/lib/medicalInstitutions/hooks";
+import {
+  PUBLIC_PROFILE_CONSENT_POINTS,
+  PUBLIC_PROFILE_CONSENT_TITLE,
+  PUBLIC_PROFILE_CONSENT_VERSION,
+} from "@/lib/patient/consent";
 import { useUpdatePatient } from "@/lib/patient/hooks";
 import { Patient } from "@/lib/types";
 import ClipboardIcon from "@/utils/svg/Clipboard";
@@ -19,7 +24,14 @@ import { format, parse } from "date-fns";
 import * as Clipboard from "expo-clipboard";
 import { Image } from "expo-image";
 import { useRef, useState } from "react";
-import { Pressable, ScrollView, Switch, Text, View } from "react-native";
+import {
+  Modal,
+  Pressable,
+  ScrollView,
+  Switch,
+  Text,
+  View,
+} from "react-native";
 import Toast from "react-native-toast-message";
 import { z } from "zod";
 import ProfileAttorneys from "../../../assets/ProfileAttorneys.png";
@@ -453,9 +465,74 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
   );
 }
 
+// What the patient agrees to before their card is shown to attorneys (recorded with its version).
+function PublicProfileConsent({
+  visible,
+  onAgree,
+  onCancel,
+}: {
+  visible: boolean;
+  onAgree: () => void;
+  onCancel: () => void;
+}) {
+  return (
+    <Modal
+      visible={visible}
+      animationType="slide"
+      transparent
+      onRequestClose={onCancel}
+    >
+      <View className="flex-1 justify-end bg-black/40">
+        <View className="bg-white rounded-t-2xl px-6 pt-6 pb-10 max-h-[85%]">
+          <ScrollView>
+            <Text className="text-lg font-bold text-gray-900 pb-4">
+              {PUBLIC_PROFILE_CONSENT_TITLE}
+            </Text>
+            {PUBLIC_PROFILE_CONSENT_POINTS.map((point) => (
+              <View key={point} className="flex-row pb-3">
+                <Text className="text-base text-gray-700 pr-2">•</Text>
+                <Text className="text-base text-gray-700 flex-1">{point}</Text>
+              </View>
+            ))}
+          </ScrollView>
+          <View className="h-12 mt-4">
+            <Button text="I agree, show my card" onPress={onAgree} />
+          </View>
+          <View className="h-12 mt-3">
+            <Button buttonStyle="secondary" text="Not now" onPress={onCancel} />
+          </View>
+        </View>
+      </View>
+    </Modal>
+  );
+}
+
 function PublicToAttorneysSection() {
   const { data: patient, refetch } = useCurrentAccount<Patient>();
   const { mutate: updatePatient } = useUpdatePatient();
+  const [askingConsent, setAskingConsent] = useState(false);
+  const listed = !!patient.publicProfileListed;
+
+  function setPublic(isPublic: boolean) {
+    updatePatient(
+      isPublic
+        ? { isPublic, publicProfileConsent: PUBLIC_PROFILE_CONSENT_VERSION }
+        : { isPublic },
+      {
+        onSuccess: () => {
+          refetch();
+          Toast.show({
+            type: "success",
+            text1: isPublic
+              ? "Your card is now visible to attorneys."
+              : "Your card is no longer visible to attorneys.",
+          });
+        },
+        onError: (error) =>
+          Toast.show({ type: "error", text1: error.message }),
+      }
+    );
+  }
 
   const [isEditing, setIsEditing] = useState(false);
   const form = useForm({
@@ -573,30 +650,50 @@ function PublicToAttorneysSection() {
         </>
       )}
 
-      <View className="pb-6">
-        <Text className="text-base text-blue-600 underline">
-          Turning this toggle on you agree to our Terms & Conditions here.
-        </Text>
-      </View>
+      {patient.isPublic && !patient.publicProfileListed && (
+        <View className="p-4 mb-4 bg-yellow-50 border border-yellow-300 rounded-lg">
+          <Text className="text-base text-gray-800">
+            Your card is hidden from attorneys until you agree to how it's
+            shown. Turn the switch on to read and agree.
+          </Text>
+        </View>
+      )}
 
-      <View className="p-4 bg-gray-100 rounded-lg flex flex-row justify-between">
+      <View className="p-4 bg-gray-100 rounded-lg flex flex-row justify-between items-center">
         <Text className="text-base font-semibold text-gray-700">
-          My card is {patient.isPublic ? "" : "not "}public
+          My card is {listed ? "" : "not "}public
         </Text>
 
         <Switch
-          value={patient.isPublic}
-          onValueChange={async (value) => {
-            await updatePatient({
-              isPublic: value,
-            });
-            refetch();
+          accessibilityLabel="Show my card to attorneys"
+          value={listed}
+          onValueChange={(value) => {
+            if (value) {
+              setAskingConsent(true);
+            } else {
+              setPublic(false);
+            }
           }}
           trackColor={{
             true: "#4A68DC", // primary-green
           }}
         />
       </View>
+      {listed && patient.publicProfileConsentedAt && (
+        <Text className="text-sm text-gray-500 pt-2">
+          You agreed on{" "}
+          {format(new Date(patient.publicProfileConsentedAt), "MMMM d, yyyy")}.
+        </Text>
+      )}
+
+      <PublicProfileConsent
+        visible={askingConsent}
+        onAgree={() => {
+          setAskingConsent(false);
+          setPublic(true);
+        }}
+        onCancel={() => setAskingConsent(false)}
+      />
     </View>
   );
 }
@@ -762,8 +859,8 @@ function ProfileFooter() {
           the list.
         </Text>
         <Text className="text-gray-800 font-normal text-base pb-3">
-          By switching the toggle in the card bellow on, you agree to our{" "}
-          <Text className="text-blue-600 underline">Terms & Conditions</Text>.
+          Before your card is shown, we'll tell you exactly what attorneys can
+          see and ask you to agree.
         </Text>
         <Text className="text-gray-800 font-bold text-base pb-3">
           Go ahead, give it a try!

@@ -12,7 +12,13 @@ import {
 } from "../auth/hooks";
 import { ACCOUNT_KEYS } from "../storageKeychain";
 import { Account, Patient } from "../types";
-import { fetchPublicPatients, patchPatient, PatientToPatch } from "./request";
+import {
+  AccessLogEntry,
+  fetchAccessLog,
+  fetchPublicPatients,
+  patchPatient,
+  PatientToPatch,
+} from "./request";
 
 export function usePublicPatients(): UseQueryResult<Patient[] | null, Error> {
   const { data: credentials } = useAccountCredentials();
@@ -25,6 +31,16 @@ export function usePublicPatients(): UseQueryResult<Patient[] | null, Error> {
         credentials,
       });
     },
+  });
+}
+
+export function useAccessLog(): UseQueryResult<AccessLogEntry[], Error> {
+  const { data: credentials } = useAccountCredentials();
+
+  return useQuery({
+    queryKey: [ACCOUNT_KEYS.patients.accessLog],
+    enabled: !!credentials?.authToken && credentials?.type == "patient",
+    queryFn: () => fetchAccessLog({ authToken: credentials.authToken }),
   });
 }
 

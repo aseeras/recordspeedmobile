@@ -12,6 +12,7 @@ export const ACCOUNT_KEYS = {
   },
   patients: {
     public: "@account:patients:public",
+    accessLog: "@account:patients:accessLog",
   },
   contacts: "@account:contacts",
 };

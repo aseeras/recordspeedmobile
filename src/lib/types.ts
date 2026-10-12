@@ -39,6 +39,9 @@ export interface Account {
   ssnSerialNumber?: string;
   medicalInstitutionId?: number;
   isPublic: boolean;
+  // Attorneys can see the card: public, and agreed to the current consent text.
+  publicProfileListed?: boolean;
+  publicProfileConsentedAt?: string | null;
   caseDescription?: string;
   barState?: string;
   barStateNumber?: string;
@@ -67,6 +70,8 @@ export type Attorney = Partial<
     | "ssnSerialNumber"
     | "medicalInstitutionId"
     | "isPublic"
+    | "publicProfileListed"
+    | "publicProfileConsentedAt"
     | "caseDescription"
   >
 > & {
