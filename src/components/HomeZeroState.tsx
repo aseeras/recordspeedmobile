@@ -4,28 +4,27 @@ import { Image } from "expo-image";
 import { Text, View } from "react-native";
 import DocumentSecondary from "../../assets/DocumentSecondary.png";
 
+// Centered in the space above the Ask and + buttons (pb-32 keeps it clear of them).
 export default function HomeZeroState() {
   const { data: patient } = useCurrentAccount<Patient>();
   return (
-    <>
-      <View className="w-24 h-24 mr-6 mt-52">
+    <View className="flex-1 w-full items-center justify-center px-10 pb-32">
+      <View className="w-24 h-24 rounded-full bg-indigo-50 items-center justify-center">
         <Image
-          style={{
-            width: "100%",
-            height: "100%",
-          }}
+          style={{ width: 52, height: 52, marginRight: 8 }}
           source={DocumentSecondary}
-          contentFit="cover"
+          contentFit="contain"
         />
       </View>
-      <Text className="text-gray-700 text-center text-2xl w-80 pt-6 font-semibold leading-9">
+      <Text className="text-gray-900 text-center text-2xl font-bold pt-6">
         Welcome, {patient ? patient.fullName : "Patient"}
       </Text>
-
-      <Text className="text-gray-700 text-center text-lg w-72 font-medium">
-        You have no Medical Requests yet, click on the{" "}
-        <Text className="font-bold">plus</Text> button to start.
+      <Text className="text-gray-500 text-center text-base leading-6 pt-2">
+        You don't have any medical requests yet.
       </Text>
-    </>
+      <Text className="text-gray-500 text-center text-base leading-6 pt-4">
+        Tap the <Text className="font-bold text-primary-green">+</Text> button below to start your first one.
+      </Text>
+    </View>
   );
 }
