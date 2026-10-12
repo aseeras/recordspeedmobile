@@ -27,10 +27,11 @@ function useLatestUpdate() {
     if (__DEV__ || !Updates.isEnabled) return;
     (async () => {
       try {
+        // Download only: the update starts the next time the app opens. Restarting straight away threw away
+        // whatever the person was doing, such as a sign-in in progress or a profile save.
         const { isAvailable } = await Updates.checkForUpdateAsync();
         if (!isAvailable) return;
         await Updates.fetchUpdateAsync();
-        await Updates.reloadAsync();
       } catch {
         // Offline or the update server is unreachable: keep running the current version.
       }

@@ -48,7 +48,7 @@ export function useUpdatePatient() {
   const queryClient = useQueryClient();
   const { data: credentials } = useAccountCredentials();
   const { data: account } = useCurrentAccount<Patient>();
-  const { mutate: storeAccount } = useStoreAccount();
+  const { mutateAsync: storeAccount } = useStoreAccount();
   return useMutation({
     mutationFn: async function (patient: PatientToPatch) {
       const patchedPatient = await patchPatient({
