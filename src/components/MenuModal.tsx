@@ -56,6 +56,13 @@ const PATIENT_MENU_ITEMS: MenuItem[] = [
     },
   },
   {
+    title: "Who has seen my records",
+    icon: () => <People />,
+    onPress: () => {
+      router.replace("/home/patient/accessLog");
+    },
+  },
+  {
     title: "Ask RecordSpeed AI",
     icon: () => <People />,
     onPress: () => {

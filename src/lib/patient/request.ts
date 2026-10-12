@@ -12,7 +12,10 @@ export type PatientToPatch = Partial<
     Patient,
     "id" | "personalIdentifier" | "fullName" | "registrationMethod" | "username"
   >
->;
+> & {
+  // The consent text version the patient agreed to when turning their card public.
+  publicProfileConsent?: string;
+};
 
 export async function patchPatient({
   patient,
@@ -40,6 +43,7 @@ export async function patchPatient({
         date_of_birth: patient.dateOfBirth,
         push_token: patient.pushToken,
         is_public: patient.isPublic,
+        public_profile_consent: patient.publicProfileConsent,
         case_description: patient.caseDescription,
         medical_institution_id: patient.medicalInstitutionId,
         ...(socialSecurityNumber
@@ -49,8 +53,38 @@ export async function patchPatient({
     }),
   });
 
-  const resBody = (await response.json()) as ApiResource<Patient>;
-  return resBody.data.attributes;
+  const resBody = await response.json();
+  if (!response.ok || !resBody.data) {
+    throw new Error(
+      resBody.error?.message ?? "Something went wrong updating your profile."
+    );
+  }
+  return (resBody as ApiResource<Patient>).data.attributes;
+}
+
+export type AccessLogEntry = {
+  id: number;
+  action: string;
+  description: string;
+  at: string;
+  count: number;
+  success: boolean;
+  recordsRequestId: number | null;
+  document: string | null;
+  who: { name: string; role: string | null; organization: string | null };
+};
+
+// Who has seen my records: what other accounts did with the patient's information.
+export async function fetchAccessLog({
+  authToken,
+}: {
+  authToken: string;
+}): Promise<AccessLogEntry[]> {
+  const response = await fetch(`${API_BASE_URL}/api/v1/patients/access_log`, {
+    headers: { "Content-Type": "application/json", Authorization: authToken },
+  });
+  if (!response.ok) throw new Error("Couldn't load who has seen your records.");
+  return ((await response.json()) as { data: AccessLogEntry[] }).data;
 }
 
 export async function fetchPublicPatients({
