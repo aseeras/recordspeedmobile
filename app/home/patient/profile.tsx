@@ -24,17 +24,18 @@ import { format, parse } from "date-fns";
 import * as Clipboard from "expo-clipboard";
 import { Image } from "expo-image";
 import { useRef, useState } from "react";
-import {
-  Modal,
-  Pressable,
-  ScrollView,
-  Switch,
-  Text,
-  View,
-} from "react-native";
+import { Modal, Pressable, ScrollView, Switch, Text, View } from "react-native";
 import Toast from "react-native-toast-message";
 import { z } from "zod";
 import ProfileAttorneys from "../../../assets/ProfileAttorneys.png";
+
+// Social Security number and date of birth can be left blank (records offices ask for them when needed), but
+// whatever is entered must be valid.
+const blankOr = <T extends z.ZodTypeAny>(schema: T) =>
+  z.union([z.literal(""), z.null(), z.undefined(), schema]);
+
+const filled = (parts: (string | null | undefined)[]) =>
+  parts.filter((part) => !!part).length;
 
 function EditProfile({ onFinish }: { onFinish: () => void }) {
   const { data: patient, refetch } = useCurrentAccount<Patient>();
@@ -69,7 +70,18 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
         medicalInstitutionId,
       },
     }) => {
-      const dateOfBirth = `${dobYear}-${dobMonth}-${dobDay}`;
+      const ssnParts = filled([ssnAreaNumber, ssnGroupNumber, ssnSerialNumber]);
+      const dobParts = filled([dobDay, dobMonth, dobYear]);
+      if (ssnParts % 3 || dobParts % 3) {
+        Toast.show({
+          type: "error",
+          text1:
+            ssnParts % 3
+              ? "Enter your whole Social Security Number, or leave it blank."
+              : "Enter your whole date of birth, or leave it blank.",
+        });
+        return;
+      }
 
       updatePatient(
         {
@@ -77,10 +89,12 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
           middleName,
           lastName,
           suffix,
-          ssnAreaNumber,
-          ssnGroupNumber,
-          ssnSerialNumber,
-          dateOfBirth,
+          ...(ssnParts
+            ? { ssnAreaNumber, ssnGroupNumber, ssnSerialNumber }
+            : {}),
+          ...(dobParts
+            ? { dateOfBirth: `${dobYear}-${dobMonth}-${dobDay}` }
+            : {}),
           medicalInstitutionId,
         },
         {
@@ -113,7 +127,10 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
 
   return (
     <>
-      <ScrollView>
+      <ScrollView
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={{ paddingBottom: 120 }}
+      >
         <View style={{ gap: 16 }}>
           <form.Field
             name="firstName"
@@ -217,20 +234,24 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
           />
 
           <FieldWrapper>
-            <Label required>Social Security Number</Label>
+            <Label>Social Security Number</Label>
             <View style={{ gap: 8 }} className="flex-row items-center">
               <View>
                 <form.Field
                   validators={{
-                    onSubmit: z
-                      .string()
-                      .length(3, { message: "Area number is invalid" })
-                      .refine(
-                        (value) => {
-                          return !["000", "666", "900", "990"].includes(value);
-                        },
-                        { message: "Area number is invalid" }
-                      ),
+                    onSubmit: blankOr(
+                      z
+                        .string()
+                        .length(3, { message: "Area number is invalid" })
+                        .refine(
+                          (value) => {
+                            return !["000", "666", "900", "990"].includes(
+                              value
+                            );
+                          },
+                          { message: "Area number is invalid" }
+                        )
+                    ),
                   }}
                   name="ssnAreaNumber"
                   children={(field) => (
@@ -258,15 +279,17 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
                 <form.Field
                   name="ssnGroupNumber"
                   validators={{
-                    onSubmit: z
-                      .string()
-                      .length(2, { message: "Group number is invalid" })
-                      .refine(
-                        (value) => {
-                          return !["00"].includes(value);
-                        },
-                        { message: "Group number is invalid" }
-                      ),
+                    onSubmit: blankOr(
+                      z
+                        .string()
+                        .length(2, { message: "Group number is invalid" })
+                        .refine(
+                          (value) => {
+                            return !["00"].includes(value);
+                          },
+                          { message: "Group number is invalid" }
+                        )
+                    ),
                   }}
                   children={(field) => (
                     <TextInput
@@ -294,15 +317,17 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
                 <form.Field
                   name="ssnSerialNumber"
                   validators={{
-                    onSubmit: z
-                      .string()
-                      .length(4, { message: "Serial number is invalid" })
-                      .refine(
-                        (value) => {
-                          return !["0000"].includes(value);
-                        },
-                        { message: "Serial number is invalid" }
-                      ),
+                    onSubmit: blankOr(
+                      z
+                        .string()
+                        .length(4, { message: "Serial number is invalid" })
+                        .refine(
+                          (value) => {
+                            return !["0000"].includes(value);
+                          },
+                          { message: "Serial number is invalid" }
+                        )
+                    ),
                   }}
                   children={(field) => (
                     <TextInput
@@ -328,20 +353,22 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
           </FieldWrapper>
 
           <FieldWrapper>
-            <Label required>Date of Birth</Label>
+            <Label>Date of Birth</Label>
             <View style={{ gap: 8 }} className="flex-row items-center">
               <form.Field
                 name="dobMonth"
                 validators={{
-                  onSubmit: z
-                    .string()
-                    .transform(Number)
-                    .refine(
-                      (value) => {
-                        return value >= 1 && value <= 12;
-                      },
-                      { message: "Month is invalid" }
-                    ),
+                  onSubmit: blankOr(
+                    z
+                      .string()
+                      .transform(Number)
+                      .refine(
+                        (value) => {
+                          return value >= 1 && value <= 12;
+                        },
+                        { message: "Month is invalid" }
+                      )
+                  ),
                 }}
                 children={(field) => (
                   <TextInput
@@ -366,15 +393,17 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
               <form.Field
                 name="dobDay"
                 validators={{
-                  onSubmit: z
-                    .string()
-                    .transform(Number)
-                    .refine(
-                      (value) => {
-                        return value >= 1 && value <= 31;
-                      },
-                      { message: "Day is invalid" }
-                    ),
+                  onSubmit: blankOr(
+                    z
+                      .string()
+                      .transform(Number)
+                      .refine(
+                        (value) => {
+                          return value >= 1 && value <= 31;
+                        },
+                        { message: "Day is invalid" }
+                      )
+                  ),
                 }}
                 children={(field) => (
                   <TextInput
@@ -401,10 +430,12 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
               <form.Field
                 name="dobYear"
                 validators={{
-                  onSubmit: z
-                    .string()
-                    .length(4, { message: "Year is invalid" })
-                    .transform(Number),
+                  onSubmit: blankOr(
+                    z
+                      .string()
+                      .length(4, { message: "Year is invalid" })
+                      .transform(Number)
+                  ),
                 }}
                 children={(field) => (
                   <TextInput
@@ -427,40 +458,39 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
             />
           </FieldWrapper>
         </View>
-      </ScrollView>
-
-      <View className="fixed -bottom-8 bg-white-500">
-        <View
-          style={{ gap: 16 }}
-          className="flex flex-row justify-between w-full"
-        >
-          <Button
-            buttonStyle="secondary"
-            text="Cancel"
-            onPress={() => {
-              onFinish();
-            }}
-          />
-          <form.Subscribe
-            selector={(state) => [state.canSubmit, state.isSubmitting]}
-            children={([canSubmit, isSubmitting]) => (
-              <>
-                <Button
-                  text="Save"
-                  disabled={!canSubmit || isSubmitting}
-                  buttonStyle={
-                    !canSubmit || isSubmitting ? "disabled" : "primary"
-                  }
-                  onPress={() => {
-                    // Trigger form submit
-                    form.handleSubmit();
-                  }}
-                />
-              </>
-            )}
-          />
+        <View className="pt-8">
+          <View
+            style={{ gap: 16 }}
+            className="flex flex-row justify-between w-full"
+          >
+            <Button
+              buttonStyle="secondary"
+              text="Cancel"
+              onPress={() => {
+                onFinish();
+              }}
+            />
+            <form.Subscribe
+              selector={(state) => [state.canSubmit, state.isSubmitting]}
+              children={([canSubmit, isSubmitting]) => (
+                <>
+                  <Button
+                    text="Save"
+                    disabled={!canSubmit || isSubmitting}
+                    buttonStyle={
+                      !canSubmit || isSubmitting ? "disabled" : "primary"
+                    }
+                    onPress={() => {
+                      // Trigger form submit
+                      form.handleSubmit();
+                    }}
+                  />
+                </>
+              )}
+            />
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 }
@@ -528,8 +558,7 @@ function PublicToAttorneysSection() {
               : "Your card is no longer visible to attorneys.",
           });
         },
-        onError: (error) =>
-          Toast.show({ type: "error", text1: error.message }),
+        onError: (error) => Toast.show({ type: "error", text1: error.message }),
       }
     );
   }
