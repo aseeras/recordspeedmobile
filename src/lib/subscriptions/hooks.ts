@@ -2,8 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { ApiResource, Subscription, SubscriptionIntent } from "../types";
 import { useAccountCredentials } from "../auth/hooks";
 import { Details } from "@stripe/stripe-react-native/lib/typescript/src/types/components/CardFieldInput";
-
-const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL;
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
 
 export function useSubscriptionIntentMutation(
   userType: "attorneys" | "patients"

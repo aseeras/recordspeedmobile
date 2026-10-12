@@ -17,6 +17,7 @@ import { format, parse } from "date-fns";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
 
 export default function Document() {
   const router = useRouter();
@@ -91,7 +92,7 @@ export default function Document() {
   useEffect(() => {
     if (documentPurchase) {
       router.push(
-        `view_pdf?uri=${process.env.EXPO_PUBLIC_API_BASE_URL}${documentPurchase.document.url}`
+        `view_pdf?uri=${API_BASE_URL}${documentPurchase.document.url}`
       );
     }
   }, [documentPurchase]);
@@ -186,7 +187,7 @@ export default function Document() {
                 await openPaymentSheet();
                 const { data: purchase } = await fetchDocumentPurchase();
                 router.replace(
-                  `view_pdf?uri=${process.env.EXPO_PUBLIC_API_BASE_URL}${purchase.document.url}`
+                  `view_pdf?uri=${API_BASE_URL}${purchase.document.url}`
                 );
               } catch (error) {
                 console.error(error);
