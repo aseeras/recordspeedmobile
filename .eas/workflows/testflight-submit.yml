@@ -1,0 +1,27 @@
+name: Send the latest build to TestFlight
+
+# Runs on Expo's servers. Pushing any commit to the release/testflight-submit branch sends the newest finished
+# production iOS build to App Store Connect without building again: a few minutes instead of half an hour.
+# Use it to re-send a build, or after changing upload settings (eas.json "submit"). New code still needs
+# release/testflight, which builds first. If a production build is still running, this waits for it.
+on:
+  push:
+    branches: ['release/testflight-submit']
+
+jobs:
+  get_build:
+    name: Find the latest production iOS build
+    type: get-build
+    params:
+      platform: ios
+      profile: production
+      distribution: store
+      wait_for_in_progress: true
+
+  submit_ios:
+    name: Send to TestFlight
+    type: submit
+    needs: [get_build]
+    params:
+      build_id: ${{ needs.get_build.outputs.build_id }}
+      profile: production
