@@ -9,7 +9,7 @@ export default function AssistantButton() {
       accessibilityRole="button"
       accessibilityLabel="Ask the RecordSpeed assistant"
       onPress={() => router.push({ pathname: "/assistant", params: { from: pathname } })}
-      className="absolute left-5 bottom-36 h-14 px-5 rounded-full bg-indigo-600 flex-row items-center shadow-lg"
+      className="absolute left-5 bottom-9 h-14 px-5 rounded-full bg-indigo-600 flex-row items-center shadow-lg"
       style={{ elevation: 6 }}
     >
       <Text className="text-white text-base font-semibold">💬 Ask</Text>
