@@ -20,7 +20,7 @@ export default function HomePatientIndex() {
           My Medical Requests
         </Text>
       </View>
-      <View className="relative flex items-center bg-white w-full h-full mt-4 pt-2 rounded-2xl">
+      <View className="relative flex-1 items-center bg-white w-full mt-4 pt-2 rounded-2xl">
         <MyChartBanner />
         <MedicalRequestList
           medicalRecordRequests={medicalRecordRequests}
@@ -30,7 +30,7 @@ export default function HomePatientIndex() {
         />
 
         <Pressable
-          className="absolute flex justify-center items-center w-16 h-16 bg-primary-green rounded-full bottom-40 right-8"
+          className="absolute flex justify-center items-center w-16 h-16 bg-primary-green rounded-full bottom-8 right-8"
           onPress={() => {
             router.push("/home/patient/submitMedicalRecordRequest");
           }}

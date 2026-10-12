@@ -21,16 +21,18 @@ export default function MedicalRequestList({
 }) {
   return (
     <>
-      <View className="items-center bg-white h-full w-full ">
+      <View className="flex-1 items-center bg-white w-full">
         {medicalRecordRequests?.length > 0 ? (
           <>
             <RefreshHint />
-            <View className="pt-6 px-8 pb-28 w-full">
+            <View className="flex-1 pt-6 px-8 w-full">
               <FlatList
                 data={medicalRecordRequests}
                 keyExtractor={(item) => item.id.toString()}
                 ItemSeparatorComponent={() => <View className="h-1" />}
                 showsVerticalScrollIndicator={false}
+                // Room under the last card so it can scroll clear of the Ask and + buttons.
+                contentContainerStyle={{ paddingBottom: 112 }}
                 renderItem={({ item, index }) => (
                   // Cards cascade in; cap the delay so long lists stay snappy.
                   <Animated.View
