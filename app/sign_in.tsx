@@ -28,7 +28,10 @@ function Title() {
   return (
     <>
       {notice && (
-        <Text accessibilityRole="alert" className="mb-4 text-base text-gray-700">
+        <Text
+          accessibilityRole="alert"
+          className="mb-4 text-base text-gray-700"
+        >
           {notice}
         </Text>
       )}
@@ -101,11 +104,13 @@ function SignInForm() {
       confirm_password: "",
     },
     async onSubmit(props) {
+      // The keyboard's email suggestion adds a trailing space, which the server would treat as a different address.
+      const email = props.value.email.trim();
       const patient = await signInMutation.mutateAsync({
-        email: props.value.email,
+        email,
         password: props.value.password,
         registrationMethod: "internal",
-        personalIdentifier: props.value.email,
+        personalIdentifier: email,
         firstName: "",
         lastName: "",
       });
@@ -124,7 +129,7 @@ function SignInForm() {
     <View style={{ gap: 8 }}>
       <form.Field
         name="email"
-        validators={{ onSubmit: z.string().email() }}
+        validators={{ onSubmit: z.string().trim().email() }}
         children={(field) => (
           <FieldWrapper>
             <Label field={field}>Email</Label>
@@ -171,7 +176,7 @@ function SignInForm() {
 export default function SignIn() {
   return (
     <View className="flex h-full bg-white px-8 pb-6">
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps="handled">
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
         >

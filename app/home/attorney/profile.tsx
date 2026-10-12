@@ -87,7 +87,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
 
   return (
     <>
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps="handled">
         <View style={{ gap: 16 }}>
           <form.Field
             name="firstName"

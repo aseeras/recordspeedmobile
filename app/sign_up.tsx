@@ -86,11 +86,11 @@ function SignUpForm({ accountType }: { accountType: AccountType }) {
     async onSubmit(props) {
       try {
         const account = await signUpMutation.mutateAsync({
-          email: props.value.email,
+          email: props.value.email.trim(),
           firstName: props.value.firstName,
           lastName: props.value.lastName,
           password: props.value.password,
-          personalIdentifier: props.value.email,
+          personalIdentifier: props.value.email.trim(),
           registrationMethod: "internal",
           type: accountType,
         });
@@ -145,7 +145,7 @@ function SignUpForm({ accountType }: { accountType: AccountType }) {
 
         <form.Field
           name="email"
-          validators={{ onSubmit: z.string().email() }}
+          validators={{ onSubmit: z.string().trim().email() }}
           children={(field) => (
             <FieldWrapper>
               <Label field={field} />
@@ -373,7 +373,10 @@ export default function SignUp() {
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "position" : "height"}
       >
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+        >
           {currentStep === 0 && (
             <UserSelectionStep onSelection={handleUserTypeSelection} />
           )}
