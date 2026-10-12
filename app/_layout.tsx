@@ -77,7 +77,12 @@ export default function AppLayout() {
             <Stack.Screen name="sign_up" options={{ presentation: "modal" }} />
             <Stack.Screen name="two_factor" options={{ presentation: "modal" }} />
             <Stack.Screen name="recovery_codes" options={{ presentation: "modal", gestureEnabled: false }} />
-            <Stack.Screen name="assistant" options={{ presentation: "modal" }} />
+            {/* Full screen with no native header: as an iOS sheet with the header, the bottom of the screen
+                (the question box) ended up below the screen's edge. */}
+            <Stack.Screen
+              name="assistant"
+              options={{ presentation: "fullScreenModal", headerShown: false, animation: "slide_from_bottom" }}
+            />
             <Stack.Screen
               name="share_modal/[medicalRecordRequestId]"
               options={{

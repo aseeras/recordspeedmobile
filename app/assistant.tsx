@@ -10,6 +10,7 @@ import {
   View,
 } from "react-native";
 import { Href, router, useLocalSearchParams } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAccountCredentials } from "@/lib/auth/hooks";
 import { askAssistant, AssistantMessage, AssistantSuggestion } from "@/lib/assistant/request";
 
@@ -49,11 +50,11 @@ export default function AssistantScreen() {
   const [draft, setDraft] = useState("");
   const [busy, setBusy] = useState(false);
   const [keyboardHeight, setKeyboardHeight] = useState(0);
+  const insets = useSafeAreaInsets();
   const scroll = useRef<ScrollView>(null);
 
-  // This screen is an iOS sheet, which KeyboardAvoidingView measures from the sheet's top rather than the
-  // screen's, so it left the question box under the keyboard. The sheet's bottom is the screen's bottom,
-  // so lifting the content by the keyboard's height keeps the box just above it. Android resizes on its own.
+  // The screen fills the whole display, so lifting the content by the keyboard's height keeps the question
+  // box just above the keyboard. Android resizes the window on its own.
   useEffect(() => {
     if (Platform.OS !== "ios") return;
     const show = Keyboard.addListener("keyboardWillShow", (e) => setKeyboardHeight(e.endCoordinates.height));
@@ -99,8 +100,11 @@ export default function AssistantScreen() {
   }
 
   return (
-    <View className="flex-1 bg-white" style={{ paddingBottom: keyboardHeight }}>
-      <View className="flex-row items-center px-5 pt-5 pb-3 border-b border-gray-200">
+    <View
+      className="flex-1 bg-white"
+      style={{ paddingTop: insets.top, paddingBottom: keyboardHeight > 0 ? keyboardHeight : insets.bottom }}
+    >
+      <View className="flex-row items-center px-5 pt-3 pb-3 border-b border-gray-200">
         <View className="flex-1">
           <Text className="text-lg font-semibold text-gray-900">RecordSpeed assistant</Text>
           <Text className="text-xs text-gray-500">AI · can look up your account, read-only</Text>
@@ -161,7 +165,10 @@ export default function AssistantScreen() {
         )}
       </ScrollView>
 
-      <View className="flex-row items-end px-3 pt-2 pb-8 border-t border-gray-200" style={{ gap: 8 }}>
+      <Text className="text-[11px] text-gray-400 px-4 pt-2 border-t border-gray-200">
+        AI can make mistakes. It can't make changes to your account.
+      </Text>
+      <View className="flex-row items-end px-3 pt-2 pb-3" style={{ gap: 8 }}>
         {/* Plain styles, not classes, so the typed text always has a visible color and size. It grows to
             about five lines so a long question stays readable; Return still sends. */}
         <TextInput
@@ -200,7 +207,6 @@ export default function AssistantScreen() {
           <Text className="text-white font-semibold">Send</Text>
         </Pressable>
       </View>
-      <Text className="text-[11px] text-gray-400 px-4 pb-4 -mt-6">AI can make mistakes. It can't make changes to your account.</Text>
     </View>
   );
 }
