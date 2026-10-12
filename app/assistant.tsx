@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
-  KeyboardAvoidingView,
+  Keyboard,
   Platform,
   Pressable,
   ScrollView,
@@ -48,11 +48,25 @@ export default function AssistantScreen() {
   const [entries, setEntries] = useState<Entry[]>([]);
   const [draft, setDraft] = useState("");
   const [busy, setBusy] = useState(false);
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
   const scroll = useRef<ScrollView>(null);
+
+  // This screen is an iOS sheet, which KeyboardAvoidingView measures from the sheet's top rather than the
+  // screen's, so it left the question box under the keyboard. The sheet's bottom is the screen's bottom,
+  // so lifting the content by the keyboard's height keeps the box just above it. Android resizes on its own.
+  useEffect(() => {
+    if (Platform.OS !== "ios") return;
+    const show = Keyboard.addListener("keyboardWillShow", (e) => setKeyboardHeight(e.endCoordinates.height));
+    const hide = Keyboard.addListener("keyboardWillHide", () => setKeyboardHeight(0));
+    return () => {
+      show.remove();
+      hide.remove();
+    };
+  }, []);
 
   useEffect(() => {
     setTimeout(() => scroll.current?.scrollToEnd({ animated: true }), 50);
-  }, [entries, busy]);
+  }, [entries, busy, keyboardHeight]);
 
   async function ask(text: string) {
     const question = text.trim();
@@ -85,7 +99,7 @@ export default function AssistantScreen() {
   }
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} className="flex-1 bg-white">
+    <View className="flex-1 bg-white" style={{ paddingBottom: keyboardHeight }}>
       <View className="flex-row items-center px-5 pt-5 pb-3 border-b border-gray-200">
         <View className="flex-1">
           <Text className="text-lg font-semibold text-gray-900">RecordSpeed assistant</Text>
@@ -156,7 +170,7 @@ export default function AssistantScreen() {
           maxLength={1000}
           returnKeyType="send"
           onSubmitEditing={() => ask(draft)}
-          className="flex-1 border border-gray-300 rounded-xl px-3 h-12 text-base text-gray-900"
+          className="flex-1 border border-gray-300 rounded-xl px-3 h-12 text-[16px] text-gray-900"
         />
         <Pressable
           accessibilityRole="button"
@@ -168,6 +182,6 @@ export default function AssistantScreen() {
         </Pressable>
       </View>
       <Text className="text-[11px] text-gray-400 px-4 pb-4 -mt-6">AI can make mistakes. It can't make changes to your account.</Text>
-    </KeyboardAvoidingView>
+    </View>
   );
 }
