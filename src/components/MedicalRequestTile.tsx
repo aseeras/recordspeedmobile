@@ -9,8 +9,7 @@ import { Link, router, useRouter } from "expo-router";
 import { MedicalRecordRequest, MedicalRecordRequestStatus } from "@/lib/types";
 import { useCurrentAccount } from "@/lib/auth/hooks";
 import ConnectMyChartButton from "@/components/ConnectMyChartButton";
-
-const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL;
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
 
 export default function MedicalRequestTile({
   medicalRecordRequest,
@@ -107,7 +106,7 @@ export default function MedicalRequestTile({
                     onPress={() => {
                       if (document.purchased) {
                         router.push(
-                          `/view_pdf?uri=${process.env.EXPO_PUBLIC_API_BASE_URL}${document.url}`
+                          `/view_pdf?uri=${API_BASE_URL}${document.url}`
                         );
                       } else {
                         router.push(

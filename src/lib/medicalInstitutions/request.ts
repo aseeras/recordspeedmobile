@@ -1,11 +1,10 @@
 import Toast from "react-native-toast-message";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
 
 export type MedicalInstitution = {
   id: number;
   name: string;
 };
-
-const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL;
 
 export async function fetchMedicalInstitutions(): Promise<
   MedicalInstitution[]

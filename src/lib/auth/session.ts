@@ -1,8 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ACCOUNT_KEYS } from "../storageKeychain";
 import { AccountType } from "../types";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
 
-const API_BASE_URL = String(process.env.EXPO_PUBLIC_API_BASE_URL);
 const LAST_ACTIVITY_KEY = "@app:lastActivity";
 const CREDENTIALS_KEY = ACCOUNT_KEYS.credentials;
 

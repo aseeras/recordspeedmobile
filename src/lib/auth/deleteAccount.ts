@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL;
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
 
 // Permanently deletes the signed-in account and everything in it.
 export async function deleteAccount({ authToken }: { authToken: string }): Promise<void> {
