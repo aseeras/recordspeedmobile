@@ -161,16 +161,35 @@ export default function AssistantScreen() {
         )}
       </ScrollView>
 
-      <View className="flex-row items-center px-3 pt-2 pb-8 border-t border-gray-200" style={{ gap: 8 }}>
+      <View className="flex-row items-end px-3 pt-2 pb-8 border-t border-gray-200" style={{ gap: 8 }}>
+        {/* Plain styles, not classes, so the typed text always has a visible color and size. It grows to
+            about five lines so a long question stays readable; Return still sends. */}
         <TextInput
           value={draft}
           onChangeText={setDraft}
           placeholder="Ask a question…"
+          placeholderTextColor="#9CA3AF"
           accessibilityLabel="Your question"
           maxLength={1000}
+          multiline
+          submitBehavior="submit"
           returnKeyType="send"
           onSubmitEditing={() => ask(draft)}
-          className="flex-1 border border-gray-300 rounded-xl px-3 h-12 text-[16px] text-gray-900"
+          textAlignVertical="top"
+          style={{
+            flex: 1,
+            minHeight: 48,
+            maxHeight: 128,
+            paddingHorizontal: 12,
+            paddingTop: 13,
+            paddingBottom: 13,
+            fontSize: 16,
+            color: "#111827",
+            backgroundColor: "#FFFFFF",
+            borderWidth: 1,
+            borderColor: "#D1D5DB",
+            borderRadius: 12,
+          }}
         />
         <Pressable
           accessibilityRole="button"
