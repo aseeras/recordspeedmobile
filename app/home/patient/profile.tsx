@@ -84,10 +84,10 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
           medicalInstitutionId,
         },
         {
-          onError: function () {
+          onError: function (error) {
             Toast.show({
               type: "error",
-              text1: `Something went wrong updating your information.`,
+              text1: error.message || "Something went wrong updating your information.",
             });
           },
           onSuccess: async function () {
@@ -539,17 +539,26 @@ function PublicToAttorneysSection() {
     defaultValues: {
       caseDescription: patient.caseDescription,
     },
+    // Wait for the server before saying it's saved, and keep the editor open if it wasn't.
     onSubmit: ({ value: { caseDescription } }) => {
-      updatePatient({
-        caseDescription,
-      });
-      refetch();
-
-      Toast.show({
-        type: "success",
-        text1: "Your case description has been updated successfully.",
-      });
-      setIsEditing(false);
+      updatePatient(
+        { caseDescription },
+        {
+          onSuccess: async () => {
+            await refetch();
+            Toast.show({
+              type: "success",
+              text1: "Your case description has been updated successfully.",
+            });
+            setIsEditing(false);
+          },
+          onError: (error) =>
+            Toast.show({
+              type: "error",
+              text1: error.message || "Something went wrong updating your case description.",
+            }),
+        }
+      );
     },
   });
 

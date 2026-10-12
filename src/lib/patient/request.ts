@@ -52,7 +52,8 @@ export async function patchPatient({
     }),
   });
 
-  const resBody = await response.json();
+  // Not every error response is JSON (a refused sign-in is plain text).
+  const resBody = await response.json().catch(() => ({}));
   if (!response.ok || !resBody.data) {
     throw new Error(
       resBody.error?.message ?? "Something went wrong updating your profile."
