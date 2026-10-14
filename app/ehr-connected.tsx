@@ -1,6 +1,7 @@
 import { Redirect, useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
 import Toast from "react-native-toast-message";
+import { t } from "@/lib/i18n";
 
 // MyChart's return link normally lands back in the browser sheet that opened it. If the system opens the app with
 // it instead, say what happened and go home, where the request list refreshes.
@@ -9,9 +10,9 @@ export default function EhrConnected() {
 
   useEffect(() => {
     if (status === "connected") {
-      Toast.show({ type: "success", text1: "MyChart connected", text2: "Your records will appear shortly." });
+      Toast.show({ type: "success", text1: t("MyChart connected"), text2: t("Your records will appear shortly.") });
     } else {
-      Toast.show({ type: "error", text1: "MyChart didn't connect", text2: "Please try again." });
+      Toast.show({ type: "error", text1: t("MyChart didn't connect"), text2: t("Please try again.") });
     }
   }, [status]);
 

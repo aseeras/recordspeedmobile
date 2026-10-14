@@ -19,6 +19,8 @@ import OnboardingStepOneImg from "assets/OnboardingStepOne.png";
 import OnboardingStepTwoImg from "assets/OnboardingStepTwo.png";
 import OnboardingStepThreeImg from "assets/OnboardingStepThree.png";
 import { useNavigationOptions } from "@/lib/navigation/hooks";
+import { t } from "@/lib/i18n";
+import LanguageSwitch from "@/components/LanguageSwitch";
 
 const OnboardingStep = ({
   source,
@@ -148,8 +150,8 @@ export default function Onboarding({ onFinish = () => {} }) {
           <OnboardingStep
             source={OnboardingStepOneImg}
             imageContainerClassName="w-64 h-64 mb-6"
-            titleText="Request your medical records"
-            bodyText="Pick your hospital or clinic and send a records request in minutes. No phone calls, forms or fax machines."
+            titleText={t("Request your medical records")}
+            bodyText={t("Pick your hospital or clinic and send a records request in minutes. No phone calls, forms or fax machines.")}
           />
         );
       case 2: // Step Two
@@ -157,8 +159,8 @@ export default function Onboarding({ onFinish = () => {} }) {
           <OnboardingStep
             source={OnboardingStepTwoImg}
             imageContainerClassName="w-56 h-56 mb-12"
-            titleText="Track every request"
-            bodyText="See the status of each request at a glance and get notified as soon as your records are ready."
+            titleText={t("Track every request")}
+            bodyText={t("See the status of each request at a glance and get notified as soon as your records are ready.")}
           />
         );
       case 3: // Step Three
@@ -166,8 +168,8 @@ export default function Onboarding({ onFinish = () => {} }) {
           <OnboardingStep
             source={OnboardingStepThreeImg}
             imageContainerClassName="w-56 h-56 mb-12"
-            titleText="Share them securely"
-            bodyText="Send your records to your attorney or anyone you trust, right from the app. You stay in control of who sees them."
+            titleText={t("Share them securely")}
+            bodyText={t("Send your records to your attorney or anyone you trust, right from the app. You stay in control of who sees them.")}
           />
         );
     }
@@ -181,14 +183,15 @@ export default function Onboarding({ onFinish = () => {} }) {
         pointerEvents="none"
       />
       {/* Let people who already know the app get straight to signing in. */}
-      <View className="flex-row justify-end px-6 pt-2">
+      <View className="flex-row justify-between items-center px-6 pt-2">
+        <LanguageSwitch />
         <Pressable
           hitSlop={12}
           accessibilityRole="button"
           onPress={() => onFinish()}
           className="px-3 py-1.5 rounded-full bg-white/80"
         >
-          <Text className="text-sm font-semibold text-brand-700">Skip</Text>
+          <Text className="text-sm font-semibold text-brand-700">{t("Skip")}</Text>
         </Pressable>
       </View>
       <ScrollView>
@@ -215,14 +218,14 @@ export default function Onboarding({ onFinish = () => {} }) {
             <>
               <Button
                 buttonStyle="secondary"
-                text="Back"
+                text={t("Back")}
                 onPress={() => previous()}
               />
               <View className="w-4" />
             </>
           )}
           <Button
-            text={step < 3 ? "Next" : "Get started"}
+            text={step < 3 ? t("Next") : t("Get started")}
             onPress={() =>
               next({
                 onFinalStep: onFinish,

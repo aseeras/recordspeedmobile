@@ -5,6 +5,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import * as Clipboard from "expo-clipboard";
 import { Redirect, Stack, useRouter } from "expo-router";
 import { ScrollView, Share, Text, View } from "react-native";
+import { t } from "@/lib/i18n";
 
 // Shown once, right after two-step sign-in is turned on.
 export default function RecoveryCodes() {
@@ -20,11 +21,8 @@ export default function RecoveryCodes() {
     <View className="flex h-full bg-white px-8 pb-6">
       <Stack.Screen options={{ headerStyle: { backgroundColor: "white" } }} />
       <ScrollView contentContainerStyle={{ gap: 16 }}>
-        <Text className="text-3xl font-bold text-ink">Two-step sign-in is on</Text>
-        <Text className="text-base text-gray-700">
-          Save these recovery codes somewhere safe, like a password manager. If you lose your phone, each code lets
-          you sign in once. They won't be shown again.
-        </Text>
+        <Text className="text-3xl font-bold text-ink">{t("Two-step sign-in is on")}</Text>
+        <Text className="text-base text-gray-700">{t("Save these recovery codes somewhere safe, like a password manager. If you lose your phone, each code lets you sign in once. They won't be shown again.")}</Text>
         <View testID="recovery-codes" style={{ gap: 6 }}>
           {codes.map((code) => (
             <Text key={code} selectable className="text-lg font-mono text-ink">
@@ -33,21 +31,21 @@ export default function RecoveryCodes() {
           ))}
         </View>
         <View className="h-12">
-          <Button secondary text="Save or share codes" onPress={() => Share.share({ message: text })} />
+          <Button secondary text={t("Save or share codes")} onPress={() => Share.share({ message: text })} />
         </View>
         <View className="h-12">
           <Button
             secondary
-            text="Copy codes"
+            text={t("Copy codes")}
             onPress={async () => {
               await Clipboard.setStringAsync(text);
-              Toast.show({ type: "success", text1: "Codes copied" });
+              Toast.show({ type: "success", text1: t("Codes copied") });
             }}
           />
         </View>
         <View className="h-12">
           <Button
-            text="I've saved them, continue"
+            text={t("I've saved them, continue")}
             onPress={() => {
               queryClient.removeQueries({ queryKey: RECOVERY_CODES_KEY });
               router.dismissAll();

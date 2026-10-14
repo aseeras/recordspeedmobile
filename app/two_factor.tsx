@@ -13,6 +13,7 @@ import {
   TextInput,
   View,
 } from "react-native";
+import { t } from "@/lib/i18n";
 
 // Groups the key in fours so it's easier to type into an app.
 const groupKey = (key = "") => key.replace(/(.{4})/g, "$1 ").trim();
@@ -34,8 +35,8 @@ export default function TwoFactor() {
     } catch {
       Toast.show({
         type: "error",
-        text1: "No authenticator app found",
-        text2: "Install one from the App Store, or copy the key into it.",
+        text1: t("No authenticator app found"),
+        text2: t("Install one from the App Store, or copy the key into it."),
       });
     }
   }
@@ -49,12 +50,12 @@ export default function TwoFactor() {
           router.push("/recovery_codes");
         } else {
           router.push("/home");
-          Toast.show({ type: "success", text1: `Welcome back ${account.fullName}` });
+          Toast.show({ type: "success", text1: t("Welcome back {name}", { name: account.fullName }) });
         }
       }, 0);
     } catch (error: any) {
       setCode("");
-      const message = error?.message ?? "That code isn't right.";
+      const message = error?.message ?? t("That code isn't right.");
       Toast.show({ type: "error", text1: message });
       if (/expired|sign in again/i.test(message)) router.replace("/sign_in");
     }
@@ -67,41 +68,33 @@ export default function TwoFactor() {
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ gap: 16 }}>
           {setup ? (
             <>
-              <Text className="text-3xl font-bold text-ink">Set up two-step sign-in</Text>
-              <Text className="text-base text-gray-700">
-                To protect your clients' records, signing in needs a code from an authenticator app as well as your
-                password.
-              </Text>
-              <Text className="text-base text-gray-700">
-                1. Install an authenticator app if you don't have one, such as Google Authenticator, Microsoft
-                Authenticator or 1Password.
-              </Text>
-              <Text className="text-base text-gray-700">2. Add RecordSpeed to it:</Text>
+              <Text className="text-3xl font-bold text-ink">{t("Set up two-step sign-in")}</Text>
+              <Text className="text-base text-gray-700">{t("To protect your clients' records, signing in needs a code from an authenticator app as well as your password.")}</Text>
+              <Text className="text-base text-gray-700">{t("1. Install an authenticator app if you don't have one, such as Google Authenticator, Microsoft Authenticator or 1Password.")}</Text>
+              <Text className="text-base text-gray-700">{t("2. Add RecordSpeed to it:")}</Text>
               <View className="h-12">
-                <Button text="Add to authenticator app" onPress={addToAuthenticator} />
+                <Button text={t("Add to authenticator app")} onPress={addToAuthenticator} />
               </View>
-              <Text className="text-sm text-gray-700">Or enter this key in the app:</Text>
+              <Text className="text-sm text-gray-700">{t("Or enter this key in the app:")}</Text>
               <Text selectable className="text-lg font-semibold text-ink" testID="two-factor-secret">
                 {groupKey(challenge.secret)}
               </Text>
               <View className="h-12">
                 <Button
                   secondary
-                  text="Copy key"
+                  text={t("Copy key")}
                   onPress={async () => {
                     await Clipboard.setStringAsync(challenge.secret ?? "");
-                    Toast.show({ type: "success", text1: "Key copied" });
+                    Toast.show({ type: "success", text1: t("Key copied") });
                   }}
                 />
               </View>
-              <Text className="text-base text-gray-700">3. Enter the 6-digit code the app shows for RecordSpeed:</Text>
+              <Text className="text-base text-gray-700">{t("3. Enter the 6-digit code the app shows for RecordSpeed:")}</Text>
             </>
           ) : (
             <>
-              <Text className="text-3xl font-bold text-ink">Enter your code</Text>
-              <Text className="text-base text-gray-700">
-                Open your authenticator app and enter the 6-digit code for RecordSpeed.
-              </Text>
+              <Text className="text-3xl font-bold text-ink">{t("Enter your code")}</Text>
+              <Text className="text-base text-gray-700">{t("Open your authenticator app and enter the 6-digit code for RecordSpeed.")}</Text>
             </>
           )}
 
@@ -127,10 +120,7 @@ export default function TwoFactor() {
             />
           </View>
           {!setup && (
-            <Text className="text-sm text-gray-700">
-              Lost your phone? Enter one of the recovery codes you saved when you set this up. If you don't have
-              them, email support@recordspeed.com.
-            </Text>
+            <Text className="text-sm text-gray-700">{t("Lost your phone? Enter one of the recovery codes you saved when you set this up. If you don't have them, email support@recordspeed.com.")}</Text>
           )}
         </KeyboardAvoidingView>
       </ScrollView>

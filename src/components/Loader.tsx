@@ -12,6 +12,7 @@ import Animated, {
 } from "react-native-reanimated";
 import RecordSpeedLogo from "../../assets/RecordSpeedLogo.png";
 import BrandGradient from "./BrandGradient";
+import { t } from "@/lib/i18n";
 
 export default function Loader() {
   const pulse = useSharedValue(1);
@@ -46,9 +47,7 @@ export default function Loader() {
           />
         </Animated.View>
         <Animated.View entering={FadeIn.delay(150).duration(500)}>
-          <Text className="text-white text-center text-2xl font-bold leading-6 -mt-12 ml-6">
-            RecordSpeed
-          </Text>
+          <Text className="text-white text-center text-2xl font-bold leading-6 -mt-12 ml-6">{t("RecordSpeed")}</Text>
         </Animated.View>
       </View>
     </>

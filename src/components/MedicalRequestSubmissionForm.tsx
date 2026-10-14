@@ -15,6 +15,7 @@ import DatePicker from "react-native-date-picker";
 import Toast from "react-native-toast-message";
 import { FieldInfo } from "./Field";
 import MedicalInstitutionSearch from "./MedicalInstitutionSearch";
+import { t } from "@/lib/i18n";
 
 export enum DatePickerType {
   from = "from",
@@ -79,7 +80,7 @@ export default function MedicalRequestSubmissionForm({
 
       Toast.show({
         type: "success",
-        text1: "Your Medical Record Request was submitted successfully.",
+        text1: t("Your Medical Record Request was submitted successfully."),
       });
 
       router.replace("/home");
@@ -104,8 +105,7 @@ export default function MedicalRequestSubmissionForm({
                 header={() => {
                   return (
                     <>
-                      <Text className="text-base text-gray-700 pb-2.5 font-medium">
-                        Medical Institution{" "}
+                      <Text className="text-base text-gray-700 pb-2.5 font-medium">{t("Medical Institution")}{" "}
                         <Text className="text-red-500">*</Text>
                       </Text>
                     </>
@@ -125,14 +125,13 @@ export default function MedicalRequestSubmissionForm({
                 }}
                 children={(field) => (
                   <>
-                    <Text className="text-base text-gray-700 pb-2.5 font-medium pt-4">
-                      First Name <Text className="text-red-500">*</Text>
+                    <Text className="text-base text-gray-700 pb-2.5 font-medium pt-4">{t("First Name")}{" "}<Text className="text-red-500">*</Text>
                     </Text>
                     <TextInput
                       value={field.state.value}
                       className="border rounded-md text-base border-gray-300 text-gray-400 pl-5 pr-4 py-3"
                       autoCapitalize="none"
-                      placeholder="First Name"
+                      placeholder={t("First Name")}
                       onChangeText={(text) => {
                         field.handleChange(text);
                       }}
@@ -145,14 +144,12 @@ export default function MedicalRequestSubmissionForm({
                 name="middleName"
                 children={(field) => (
                   <>
-                    <Text className="text-base text-gray-700 pb-2.5 font-medium pt-4">
-                      Middle Name
-                    </Text>
+                    <Text className="text-base text-gray-700 pb-2.5 font-medium pt-4">{t("Middle Name")}</Text>
                     <TextInput
                       value={field.state.value}
                       className="border rounded-md text-base border-gray-300 text-gray-400 pl-5 pr-4 py-3"
                       autoCapitalize="none"
-                      placeholder="Middle Name"
+                      placeholder={t("Middle Name")}
                       onChangeText={(text) => {
                         field.handleChange(text);
                       }}
@@ -170,14 +167,13 @@ export default function MedicalRequestSubmissionForm({
                 }}
                 children={(field) => (
                   <>
-                    <Text className="text-base text-gray-700 pb-2.5 font-medium pt-4">
-                      Last Name <Text className="text-red-500">*</Text>
+                    <Text className="text-base text-gray-700 pb-2.5 font-medium pt-4">{t("Last Name")}{" "}<Text className="text-red-500">*</Text>
                     </Text>
                     <TextInput
                       value={field.state.value}
                       className="border rounded-md text-base border-gray-300 text-gray-400 pl-5 pr-4 py-3"
                       autoCapitalize="none"
-                      placeholder="Last Name"
+                      placeholder={t("Last Name")}
                       onChangeText={(text) => {
                         field.handleChange(text);
                       }}
@@ -190,14 +186,12 @@ export default function MedicalRequestSubmissionForm({
                 name="suffix"
                 children={(field) => (
                   <>
-                    <Text className="text-base text-gray-700 pb-2.5 font-medium pt-4">
-                      Suffix
-                    </Text>
+                    <Text className="text-base text-gray-700 pb-2.5 font-medium pt-4">{t("Suffix")}</Text>
                     <TextInput
                       value={field.state.value}
                       className="border rounded-md text-base border-gray-300 text-gray-400 pl-5 pr-4 py-3"
                       autoCapitalize="none"
-                      placeholder="Suffix"
+                      placeholder={t("Suffix")}
                       onChangeText={(text) => {
                         field.handleChange(text);
                       }}
@@ -208,13 +202,8 @@ export default function MedicalRequestSubmissionForm({
               />
 
               <View className="pt-4 pb-2">
-                <Text className="text-base text-gray-700 font-semibold">
-                  Period of Request
-                </Text>
-                <Text className="text-base text-gray-700">
-                  Select the historical time frame for which you would like to
-                  have access
-                </Text>
+                <Text className="text-base text-gray-700 font-semibold">{t("Period of Request")}</Text>
+                <Text className="text-base text-gray-700">{t("Select the historical time frame for which you would like to have access")}</Text>
               </View>
 
               <form.Field
@@ -226,15 +215,14 @@ export default function MedicalRequestSubmissionForm({
                 }}
                 children={(field) => (
                   <View className="relative">
-                    <Text className="text-base text-gray-700 pb-2.5 font-medium">
-                      From <Text className="text-red-500">*</Text>
+                    <Text className="text-base text-gray-700 pb-2.5 font-medium">{t("From")}{" "}<Text className="text-red-500">*</Text>
                     </Text>
                     <TextInput
                       value={field.state.value}
                       editable={false}
                       className="border rounded-md text-base border-gray-300 text-gray-400 pl-5 pr-4 py-3"
                       autoCapitalize="none"
-                      placeholder="Select Date"
+                      placeholder={t("Select Date")}
                       keyboardType="numeric"
                       onChangeText={(text) => {
                         field.handleChange(text);
@@ -297,15 +285,14 @@ export default function MedicalRequestSubmissionForm({
                 }}
                 children={(field) => (
                   <View className="relative">
-                    <Text className="text-base text-gray-700 pb-2.5 font-medium">
-                      To <Text className="text-red-500">*</Text>
+                    <Text className="text-base text-gray-700 pb-2.5 font-medium">{t("To")}{" "}<Text className="text-red-500">*</Text>
                     </Text>
                     <TextInput
                       value={field.state.value}
                       editable={false}
                       className="border rounded-md text-base border-gray-300 text-gray-400 pl-5 pr-4 py-3"
                       autoCapitalize="none"
-                      placeholder="Select Date"
+                      placeholder={t("Select Date")}
                       keyboardType="numeric"
                       onTouchEnd={() => {
                         setOpenedDatePicker(DatePickerType.to);
@@ -342,8 +329,7 @@ export default function MedicalRequestSubmissionForm({
               />
 
               <View className="relative mt-4">
-                <Text className="text-base text-gray-700 pb-2.5 font-medium">
-                  Social Security Number <Text className="text-red-500">*</Text>
+                <Text className="text-base text-gray-700 pb-2.5 font-medium">{t("Social Security Number")}{" "}<Text className="text-red-500">*</Text>
                 </Text>
                 <View className="flex-row items-center gap-4 pb-2">
                   <View>
@@ -447,8 +433,7 @@ export default function MedicalRequestSubmissionForm({
               </View>
 
               <View className="relative mt-4">
-                <Text className="text-base text-gray-700 pb-2.5 font-medium">
-                  Date of Birth <Text className="text-red-500">*</Text>
+                <Text className="text-base text-gray-700 pb-2.5 font-medium">{t("Date of Birth")}{" "}<Text className="text-red-500">*</Text>
                 </Text>
                 <View className="flex-row items-center gap-4 pb-2">
                   <View>
@@ -471,7 +456,7 @@ export default function MedicalRequestSubmissionForm({
                             value={field.state.value}
                             className="border rounded-md text-base w-16 border-gray-300 text-gray-400 pl-5 pr-4 py-3"
                             autoCapitalize="none"
-                            placeholder="MM"
+                            placeholder={t("MM")}
                             maxLength={2}
                             keyboardType="numeric"
                             onChangeText={(text) => {
@@ -510,7 +495,7 @@ export default function MedicalRequestSubmissionForm({
                             value={field.state.value}
                             className="border rounded-md text-base w-16 border-gray-300 text-gray-400 pl-5 pr-4 py-3"
                             autoCapitalize="none"
-                            placeholder="DD"
+                            placeholder={t("DD")}
                             maxLength={2}
                             keyboardType="numeric"
                             onChangeText={(text) => {
@@ -549,7 +534,7 @@ export default function MedicalRequestSubmissionForm({
                             value={field.state.value}
                             className="border rounded-md text-base w-20 border-gray-300 text-gray-400 pl-5 pr-4 py-3"
                             autoCapitalize="none"
-                            placeholder="YYYY"
+                            placeholder={t("YYYY")}
                             maxLength={4}
                             keyboardType="numeric"
                             onChangeText={(text) => {
@@ -563,9 +548,7 @@ export default function MedicalRequestSubmissionForm({
                 </View>
               </View>
 
-              <Text className="text-red-600 text-base font-normal pt-6">
-                * Mandatory
-              </Text>
+              <Text className="text-red-600 text-base font-normal pt-6">{t("* Mandatory")}</Text>
             </View>
           </ScrollView>
         </View>
@@ -573,7 +556,7 @@ export default function MedicalRequestSubmissionForm({
           <View className="flex flex-row justify-between w-full px-8 pb-8">
             <Button
               buttonStyle="secondary"
-              text="Cancel"
+              text={t("Cancel")}
               onPress={() => {
                 onCancel();
               }}
@@ -584,7 +567,7 @@ export default function MedicalRequestSubmissionForm({
               children={([canSubmit, isSubmitting]) => (
                 <>
                   <Button
-                    text="Send Request"
+                    text={t("Send Request")}
                     buttonStyle={
                       !canSubmit || isSubmitting || !selectedMedicalInstitution
                         ? "disabled"

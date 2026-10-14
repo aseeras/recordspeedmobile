@@ -18,6 +18,7 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import { dateLocale, t } from "@/lib/i18n";
 
 export default function Document() {
   const router = useRouter();
@@ -61,20 +62,20 @@ export default function Document() {
         case PaymentSheetError.Failed:
           Toast.show({
             type: "error",
-            text1: "Payment sheet failed",
+            text1: t("Payment sheet failed"),
           });
           break;
         case PaymentSheetError.Timeout:
           Toast.show({
             type: "error",
-            text1: "Payment sheet unknown",
+            text1: t("Payment sheet unknown"),
           });
           break;
       }
     } else {
       Toast.show({
         type: "success",
-        text1: "Your order is confirmed!",
+        text1: t("Your order is confirmed!"),
       });
     }
   }
@@ -107,31 +108,26 @@ export default function Document() {
     <Container>
       <ScrollView>
         <View style={{ gap: 24 }} className="px-8 pb-8 pt-4 mt-4">
-          <Title>Unlock Read Feature for:</Title>
+          <Title>{t("Unlock Read Feature for:")}</Title>
           <View className="bg-pastel-blue-008 rounded-[4px] px-6 py-3">
             {medicalRecordRequest && (
               <Text className="text-brand-blue">
-                {account.firstName} Records from{" "}
-                {format(
-                  parse(medicalRecordRequest.from, "yyyy-MM-dd", new Date()),
-                  "MMMM dd, yyyy"
-                )}{" "}
-                to{" "}
-                {format(
-                  parse(medicalRecordRequest.to, "yyyy-MM-dd", new Date()),
-                  "MMMM dd, yyyy"
-                )}
+                {t("{name}'s records from {from} to {to}", {
+                  name: account.firstName,
+                  from: format(parse(medicalRecordRequest.from, "yyyy-MM-dd", new Date()), "MMMM dd, yyyy", { locale: dateLocale() }),
+                  to: format(parse(medicalRecordRequest.to, "yyyy-MM-dd", new Date()), "MMMM dd, yyyy", { locale: dateLocale() }),
+                })}
               </Text>
             )}
           </View>
-          <Title>Details</Title>
+          <Title>{t("Details")}</Title>
           <View style={{ gap: 8 }}>
             <View style={{ gap: 16 }} className="flex-row">
               <View className="pt-[0.5]">
                 <Check />
               </View>
               <View style={{ gap: 8 }}>
-                <SubTitle>Certified By</SubTitle>
+                <SubTitle>{t("Certified By")}</SubTitle>
                 <RegularText>
                   {
                     medicalInstitutions?.data.find(
@@ -145,18 +141,18 @@ export default function Document() {
           </View>
           <View className="h-1 border-t border-dark-7 w-full my-8"></View>
           <View style={{ gap: 32 }}>
-            <Title>Summary</Title>
+            <Title>{t("Summary")}</Title>
             <View style={{ gap: 8 }}>
               <View className="flex-row justify-between">
-                <RegularText>Cost per page:</RegularText>
+                <RegularText>{t("Cost per page:")}</RegularText>
                 <RegularText>{formatter.format(2)}</RegularText>
               </View>
               <View className="flex-row justify-between">
-                <RegularText>Document Pages:</RegularText>
+                <RegularText>{t("Document Pages:")}</RegularText>
                 <RegularText>{intent?.pageCount}</RegularText>
               </View>
               <View className="flex-row justify-between">
-                <TotalText>Total</TotalText>
+                <TotalText>{t("Total")}</TotalText>
                 <TotalText>
                   {intent &&
                     formatter.format(
@@ -172,12 +168,12 @@ export default function Document() {
           className="flex-row bg-white pb-20 h-10 z-50 px-8"
         >
           <Button
-            text="Cancel"
+            text={t("Cancel")}
             buttonStyle="secondary"
             onPress={() => router.back()}
           />
           <Button
-            text="Confirm"
+            text={t("Confirm")}
             buttonStyle="primary"
             disabled={!intent}
             onPress={async function () {

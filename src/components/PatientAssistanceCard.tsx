@@ -4,6 +4,7 @@ import { Patient } from "@/lib/types";
 import Button from "./Button";
 import Toast from "react-native-toast-message";
 import { useCreateContact } from "@/lib/contacts/hooks";
+import { t } from "@/lib/i18n";
 
 export default function PatientAssistanceCard({
   patient,
@@ -23,7 +24,7 @@ export default function PatientAssistanceCard({
 
         <View className="pb-6">
           <Pressable className="px-3 bg-indigo-100 py-1.5 flex self-start rounded-md">
-            <Text className="text-base">Looking for assistance</Text>
+            <Text className="text-base">{t("Looking for assistance")}</Text>
           </Pressable>
         </View>
 
@@ -35,7 +36,7 @@ export default function PatientAssistanceCard({
         </View>
 
         <Button
-          text="Get in touch"
+          text={t("Get in touch")}
           onPress={() => {
             createContact({
               patientId: patient.id,
@@ -43,13 +44,13 @@ export default function PatientAssistanceCard({
               .then(() =>
                 Toast.show({
                   type: "success",
-                  text1: `Your contact information was successfully sent to ${patient.username}.`,
+                  text1: t("Your contact information was sent to {name}.", { name: patient.username }),
                 })
               )
               .catch(() =>
                 Toast.show({
                   type: "error",
-                  text1: `Oops! We couldn't put you in contact whith ${patient.username}, please try again later. If the error persist please contact us at info@rec.speed.com`,
+                  text1: t("We couldn't send your contact information to {name}. Please try again later.", { name: patient.username }),
                 })
               );
           }}

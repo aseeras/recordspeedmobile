@@ -1,5 +1,6 @@
 import { ActivityIndicator, Pressable, Text, View } from "react-native";
 import { useConnectMyChart } from "@/lib/ehrConnections/hooks";
+import { t } from "@/lib/i18n";
 
 // Offered on a patient's pending request: fills it straight from their MyChart (Epic) account.
 export default function ConnectMyChartButton({ medicalRecordRequestId }: { medicalRecordRequestId: number }) {
@@ -20,9 +21,7 @@ export default function ConnectMyChartButton({ medicalRecordRequestId }: { medic
         </Text>
       </Pressable>
       {!busy && (
-        <Text className="text-sm text-gray-500 text-center pt-2">
-          Get these records now from your MyChart account
-        </Text>
+        <Text className="text-sm text-gray-500 text-center pt-2">{t("Get these records now from your MyChart account")}</Text>
       )}
     </View>
   );

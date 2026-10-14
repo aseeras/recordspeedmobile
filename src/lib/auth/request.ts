@@ -1,6 +1,7 @@
 import * as changeCase from "change-case";
 import { Account, AccountType } from "../types";
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import { t } from "@/lib/i18n";
 
 export interface SignInParams {
   personalIdentifier: string;
@@ -60,13 +61,13 @@ function signInResult(response: Response, resBody: any): SignInResult {
     return { twoFactor: { ticket, setup, secret, uri } };
   }
   if (resBody.error) throw new Error(resBody.error);
-  if (resBody.status?.code !== 200) throw new Error(resBody.status?.message ?? "Sign-in failed");
+  if (resBody.status?.code !== 200) throw new Error(resBody.status?.message ?? t("Sign-in failed"));
 
   // Use the standard Headers API: Expo's fetch has no `headers.map` (the old
   // whatwg-fetch internal), which left every session without a token.
   const token = response.headers.get("authorization");
   if (!token) {
-    throw new Error("Signed in, but the server did not return a session token.");
+    throw new Error(t("Signed in, but the server did not return a session token."));
   }
 
   return { token, account: resBody.data.account, recoveryCodes: resBody.recovery_codes };

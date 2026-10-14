@@ -7,6 +7,7 @@ import { View, Text, Pressable, ScrollView } from "react-native";
 import PatientAssistanceCard from "@/components/PatientAssistanceCard";
 import { usePublicPatients } from "@/lib/patient/hooks";
 import { useRequirePlan } from "@/lib/plans/hooks";
+import { t } from "@/lib/i18n";
 
 export default function HomeAttorneyProspects() {
   useRequirePlan("attorneys");
@@ -14,13 +15,11 @@ export default function HomeAttorneyProspects() {
   return (
     <>
       <View className="flex items-center mt-12">
-        <Text className="text-white font-semibold text-lg">My Profile</Text>
+        <Text className="text-white font-semibold text-lg">{t("My Profile")}</Text>
       </View>
       <View className="relative flex items-center bg-white w-full h-full mt-4 rounded-2xl py-10">
         <View className="flex flex-row justify-between w-full absolute bg-white rounded-t-lg pt-4 pb-2 z-10 px-6">
-          <Text className="text-lg text-gray-700 font-bold">
-            My Prospects List
-          </Text>
+          <Text className="text-lg text-gray-700 font-bold">{t("My Prospects List")}</Text>
           <Pressable
             className="flex flex-row items-center"
             onPress={() => {
@@ -32,7 +31,7 @@ export default function HomeAttorneyProspects() {
             <View className="mr-2 rotate-90">
               <ChevronDown />
             </View>
-            <Text className="text-base text-gray-700 font-semibold">Back</Text>
+            <Text className="text-base text-gray-700 font-semibold">{t("Back")}</Text>
           </Pressable>
         </View>
         <ScrollView className="w-full px-6">

@@ -26,6 +26,7 @@ import {
   View,
 } from "react-native";
 import { z } from "zod";
+import { t } from "@/lib/i18n";
 
 function SocialLogins({ accountType }: { accountType: AccountType }) {
   const router = useRouter();
@@ -38,7 +39,7 @@ function SocialLogins({ accountType }: { accountType: AccountType }) {
       router.push("/home");
       Toast.show({
         type: "success",
-        text1: `Welcome back ${account.fullName}`,
+        text1: t("Welcome back {name}", { name: account.fullName }),
       });
     }, 0);
   }
@@ -55,12 +56,10 @@ function LogInInvitation() {
   const router = useRouter();
   return (
     <View style={{ gap: 16 }}>
-      <Text className="text-lg text-center font-medium text-gray-700">
-        Already have an account?
-      </Text>
+      <Text className="text-lg text-center font-medium text-gray-700">{t("Already have an account?")}</Text>
       <Button
         secondary
-        text="Log In"
+        text={t("Log In")}
         onPress={() => {
           router.dismissAll();
           setTimeout(() => {
@@ -101,7 +100,7 @@ function SignUpForm({ accountType }: { accountType: AccountType }) {
           router.push("/home");
           Toast.show({
             type: "success",
-            text1: `Welcome ${account.fullName}`,
+            text1: t("Welcome {name}", { name: account.fullName }),
           });
         }, 0);
       } catch (error) {
@@ -118,11 +117,11 @@ function SignUpForm({ accountType }: { accountType: AccountType }) {
         <form.Field
           name="firstName"
           validators={{
-            onSubmit: z.string().min(1, { message: "First Name is required" }),
+            onSubmit: z.string().min(1, { message: t("First Name is required") }),
           }}
           children={(field) => (
             <FieldWrapper>
-              <Label>First Name</Label>
+              <Label>{t("First Name")}</Label>
               <TextInput field={field} />
               <FieldInfo field={field} />
             </FieldWrapper>
@@ -132,7 +131,7 @@ function SignUpForm({ accountType }: { accountType: AccountType }) {
         <form.Field
           name="lastName"
           validators={{
-            onSubmit: z.string().min(1, { message: "Last Name is required" }),
+            onSubmit: z.string().min(1, { message: t("Last Name is required") }),
           }}
           children={(field) => (
             <FieldWrapper>
@@ -159,7 +158,7 @@ function SignUpForm({ accountType }: { accountType: AccountType }) {
           name="password"
           validators={{
             onSubmit: z.string().min(6, {
-              message: "Password should have at least 6 characters",
+              message: t("Password should have at least 6 characters"),
             }),
           }}
           children={(field) => (
@@ -175,7 +174,7 @@ function SignUpForm({ accountType }: { accountType: AccountType }) {
           name="passwordConfirmation"
           validators={{
             onSubmit: z.string().min(6, {
-              message: "Password should have at least 6 characters",
+              message: t("Password should have at least 6 characters"),
             }),
             onChangeListenTo: ["password"],
             onChangeAsync({ value, fieldApi }) {
@@ -212,16 +211,16 @@ function PersonalUse({ onGoBack }: { onGoBack: () => void }) {
   return (
     <>
       <UserBadge color={UserBadgeColor.green} onTouchEnd={() => onGoBack()}>
-        <SubTitle>Personal Use</SubTitle>
+        <SubTitle>{t("Personal Use")}</SubTitle>
         <Pen />
       </UserBadge>
       <View>
-        <Title>Perfect,</Title>
-        <Title>Let's sign up!</Title>
+        <Title>{t("Perfect,")}</Title>
+        <Title>{t("Let's sign up!")}</Title>
       </View>
-      <Text className="text-center text-lg">You can use this</Text>
+      <Text className="text-center text-lg">{t("You can use this")}</Text>
       <SocialLogins accountType="patient" />
-      <Text className="text-center text-lg">Or create an account</Text>
+      <Text className="text-center text-lg">{t("Or create an account")}</Text>
       <SignUpForm accountType="patient" />
       <LogInInvitation />
     </>
@@ -232,12 +231,12 @@ function Attorney({ onGoBack }: { onGoBack: () => void }) {
   return (
     <>
       <UserBadge color={UserBadgeColor.orange} onTouchEnd={() => onGoBack()}>
-        <SubTitle>Attorney</SubTitle>
+        <SubTitle>{t("Attorney")}</SubTitle>
         <Pen />
       </UserBadge>
       <View>
-        <Title>Perfect,</Title>
-        <Title>Let's sign up!</Title>
+        <Title>{t("Perfect,")}</Title>
+        <Title>{t("Let's sign up!")}</Title>
       </View>
       <SocialLogins accountType="attorney" />
       <SignUpForm accountType="attorney" />
@@ -250,12 +249,12 @@ function Insurance({ onGoBack }: { onGoBack: () => void }) {
   return (
     <>
       <UserBadge color={UserBadgeColor.violet} onTouchEnd={() => onGoBack()}>
-        <SubTitle>Insurance Company</SubTitle>
+        <SubTitle>{t("Insurance Company")}</SubTitle>
         <Pen />
       </UserBadge>
       <View>
-        <Title>Perfect,</Title>
-        <Title>Let's sign up!</Title>
+        <Title>{t("Perfect,")}</Title>
+        <Title>{t("Let's sign up!")}</Title>
       </View>
       <SignUpForm accountType="insurance_company" />
       <LogInInvitation />
@@ -295,30 +294,30 @@ function UserSelectionStep({
   return (
     <View style={{ gap: 16 }}>
       <View>
-        <Title>How are you</Title>
-        <Title>planning to use</Title>
-        <Title>RecordSpeed?</Title>
+        <Title>{t("How are you")}</Title>
+        <Title>{t("planning to use")}</Title>
+        <Title>{t("RecordSpeed?")}</Title>
       </View>
       <View style={{ gap: 16 }}>
         <UserBadge
           color={UserBadgeColor.green}
           onTouchEnd={() => onSelection(UserType.personal)}
         >
-          <SubTitle>Personal Use</SubTitle>
+          <SubTitle>{t("Personal Use")}</SubTitle>
           <User color="black" />
         </UserBadge>
         <UserBadge
           color={UserBadgeColor.orange}
           onTouchEnd={() => onSelection(UserType.attorney)}
         >
-          <SubTitle>Attorney</SubTitle>
+          <SubTitle>{t("Attorney")}</SubTitle>
           <Suit />
         </UserBadge>
         {/* <UserBadge
           color={UserBadgeColor.violet}
           onTouchEnd={() => onSelection(UserType.insurance)}
         >
-          <SubTitle>Insurance Company</SubTitle>
+          <SubTitle>{t("Insurance Company")}</SubTitle>
           <Briefcase />
         </UserBadge> */}
       </View>

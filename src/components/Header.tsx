@@ -2,6 +2,7 @@ import { Text, View, Pressable } from "react-native";
 import { Image } from "expo-image";
 import Menu from "@/utils/svg/Menu";
 import RecordSpeedLogo from "../../assets/RecordSpeedLogo.png";
+import { t } from "@/lib/i18n";
 
 export default function Header({ onPressMenu }: { onPressMenu: () => void }) {
   return (
@@ -18,9 +19,7 @@ export default function Header({ onPressMenu }: { onPressMenu: () => void }) {
               contentFit="cover"
             />
           </View>
-          <Text className="text-white text-2xl font-bold leading-6 pl-1">
-            RecordSpeed
-          </Text>
+          <Text className="text-white text-2xl font-bold leading-6 pl-1">{t("RecordSpeed")}</Text>
         </View>
         <Pressable className="p-2 pr-0" onPress={onPressMenu}>
           <Menu />

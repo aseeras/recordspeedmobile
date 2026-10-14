@@ -5,6 +5,7 @@ import HomeZeroState from "@/components/HomeZeroState";
 import MyChartBanner from "@/components/MyChartBanner";
 import Plus from "@/utils/svg/Plus";
 import { useOwnedMedicalRecordRequests } from "@/lib/medicalRecordRequests/hooks";
+import { t } from "@/lib/i18n";
 
 export default function HomePatientIndex() {
   const {
@@ -16,9 +17,7 @@ export default function HomePatientIndex() {
   return (
     <>
       <View className="flex items-center mt-4">
-        <Text className="text-white font-semibold text-lg">
-          My Medical Requests
-        </Text>
+        <Text className="text-white font-semibold text-lg">{t("My Medical Requests")}</Text>
       </View>
       <View className="relative flex-1 items-center bg-white w-full mt-4 pt-2 rounded-2xl">
         <MyChartBanner />

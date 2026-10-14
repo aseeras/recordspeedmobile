@@ -16,6 +16,8 @@ import {
 } from "react-native";
 import { z } from "zod";
 import Animated, { FadeInDown } from "react-native-reanimated";
+import { t } from "@/lib/i18n";
+import LanguageSwitch from "@/components/LanguageSwitch";
 
 const SIGNED_OUT_NOTICES: Record<string, string> = {
   idle: "You were signed out because you hadn't used the app for a while. Please sign in again.",
@@ -27,21 +29,22 @@ function Title() {
   const notice = signedOut && SIGNED_OUT_NOTICES[signedOut];
   return (
     <>
+      <View className="items-end pt-2 pb-4">
+        <LanguageSwitch />
+      </View>
       {notice && (
         <Text
           accessibilityRole="alert"
           className="mb-4 text-base text-gray-700"
         >
-          {notice}
+          {t(notice)}
         </Text>
       )}
       <View>
-        <Text className="text-3xl font-bold text-ink">Hi there,</Text>
-        <Text className="text-3xl font-bold text-ink">let's sign in!</Text>
+        <Text className="text-3xl font-bold text-ink">{t("Hi there,")}</Text>
+        <Text className="text-3xl font-bold text-ink">{t("let's sign in!")}</Text>
       </View>
-      <Text className="pt-6 text-lg text-center font-medium text-gray-700">
-        You can use these
-      </Text>
+      <Text className="pt-6 text-lg text-center font-medium text-gray-700">{t("You can use these")}</Text>
     </>
   );
 }
@@ -58,7 +61,7 @@ function SocialLogins() {
       router.push("/home");
       Toast.show({
         type: "success",
-        text1: `Welcome back ${patient.fullName}`,
+        text1: t("Welcome back {name}", { name: patient.fullName }),
       });
     }, 0);
   }
@@ -75,12 +78,10 @@ function SignUpInvitation() {
   const router = useRouter();
   return (
     <View style={{ gap: 16 }}>
-      <Text className="text-lg text-center font-medium text-gray-700">
-        Don't have an account yet?
-      </Text>
+      <Text className="text-lg text-center font-medium text-gray-700">{t("Don't have an account yet?")}</Text>
       <Button
         secondary
-        text="Sign Up"
+        text={t("Sign Up")}
         onPress={() => {
           router.dismissAll();
           setTimeout(() => {
@@ -120,7 +121,7 @@ function SignInForm() {
         router.push("/home");
         Toast.show({
           type: "success",
-          text1: `Welcome back ${patient.fullName}`,
+          text1: t("Welcome back {name}", { name: patient.fullName }),
         });
       }, 0);
     },
@@ -132,7 +133,7 @@ function SignInForm() {
         validators={{ onSubmit: z.string().trim().email() }}
         children={(field) => (
           <FieldWrapper>
-            <Label field={field}>Email</Label>
+            <Label field={field}>{t("Email")}</Label>
             <TextInput field={field} />
             <FieldInfo field={field} />
           </FieldWrapper>
@@ -143,14 +144,12 @@ function SignInForm() {
         name="password"
         validators={{
           onSubmit: z.string().min(6, {
-            message: "Password should have at least 6 characters",
+            message: t("Password should have at least 6 characters"),
           }),
         }}
         children={(field) => (
           <FieldWrapper>
-            <Text className="text-base text-gray-700 pb-2.5 font-medium">
-              Password
-            </Text>
+            <Text className="text-base text-gray-700 pb-2.5 font-medium">{t("Password")}</Text>
             <TextInput field={field} secureTextEntry />
             <FieldInfo field={field} />
           </FieldWrapper>
@@ -187,9 +186,7 @@ export default function SignIn() {
             <SocialLogins />
           </Animated.View>
           <Animated.View entering={FadeInDown.delay(200).duration(450)}>
-            <Text className="pt-6 pb-6 text-lg text-center font-medium text-gray-700">
-              Or use your email and password
-            </Text>
+            <Text className="pt-6 pb-6 text-lg text-center font-medium text-gray-700">{t("Or use your email and password")}</Text>
             <SignInForm />
           </Animated.View>
           <Animated.View entering={FadeInDown.delay(300).duration(450)}>

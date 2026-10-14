@@ -25,6 +25,7 @@ import { PaymentSheetError, useStripe } from "@stripe/stripe-react-native";
 import { Link } from "expo-router";
 import React, { useState } from "react";
 import { ScrollView, Text, View } from "react-native";
+import { t } from "@/lib/i18n";
 
 function Container({ children }: { children: React.ReactNode }) {
   return <View className="bg-white rounded-t-2xl h-full">{children}</View>;
@@ -68,20 +69,20 @@ export default function Plan() {
         case PaymentSheetError.Failed:
           Toast.show({
             type: "error",
-            text1: "Payment sheet failed",
+            text1: t("Payment sheet failed"),
           });
           break;
         case PaymentSheetError.Timeout:
           Toast.show({
             type: "error",
-            text1: "Payment sheet unknown",
+            text1: t("Payment sheet unknown"),
           });
           break;
       }
     } else {
       Toast.show({
         type: "success",
-        text1: "Your order is confirmed!",
+        text1: t("Your order is confirmed!"),
       });
     }
   }
@@ -98,7 +99,7 @@ export default function Plan() {
       console.error(error);
       Toast.show({
         type: "error",
-        text1: `Error creating the subscription`,
+        text1: t("Error creating the subscription"),
       });
     } finally {
       setSheetLoading(false);
@@ -123,15 +124,13 @@ export default function Plan() {
             {currentPlan && (
               <>
                 <View className="justify-between flex-row items-center">
-                  <Text className="text-lg text-dark-4  font-bold">
-                    Edit My Plan
-                  </Text>
+                  <Text className="text-lg text-dark-4  font-bold">{t("Edit My Plan")}</Text>
                   <Link href="/home/attorney/profile">
                     <View className="flex-row items-center">
                       <View className="mr-2">
                         <ChevronLeft />
                       </View>
-                      <Text className="text-dark-4 font-semibold">Back</Text>
+                      <Text className="text-dark-4 font-semibold">{t("Back")}</Text>
                     </View>
                   </Link>
                 </View>
@@ -140,13 +139,13 @@ export default function Plan() {
 
             {!currentPlan && (
               <>
-                <Title>Select your plan</Title>
+                <Title>{t("Select your plan")}</Title>
                 <Tabs
                   selectedIndex={selectedIndex}
                   onChange={(index) => setSelectedIndex(index)}
                 >
-                  <Tab>Monthly</Tab>
-                  <Tab>Yeraly</Tab>
+                  <Tab>{t("Monthly")}</Tab>
+                  <Tab>{t("Yeraly")}</Tab>
                 </Tabs>
               </>
             )}
@@ -161,7 +160,7 @@ export default function Plan() {
                 </PlanTitle>
                 {currentPlan?.id === basic.id && (
                   <View className="absolute right-4 top-5 bg-brand-50 px-[14px] py-[5px] rounded-md">
-                    <Text className="text-primary-green ">Current Plan</Text>
+                    <Text className="text-primary-green ">{t("Current Plan")}</Text>
                   </View>
                 )}
 
@@ -185,7 +184,7 @@ export default function Plan() {
                               <View className="h-12 w-full">
                                 {currentPlan?.id === basic.id ? (
                                   <Button
-                                    text="Cancel Subscription"
+                                    text={t("Cancel Subscription")}
                                     buttonStyle="primary"
                                   />
                                 ) : (
@@ -231,13 +230,8 @@ export default function Plan() {
                 </View>
 
                 <View style={{ gap: 8 }} className="mb-8">
-                  <Text className="text-lg text-dark-3 leading-[26px] font-bold text-center">
-                    Prospects are waiting!
-                  </Text>
-                  <Text className="text-base text-dark-3">
-                    Record Speed brings clients in active search for leagal
-                    counselling right at your phone.
-                  </Text>
+                  <Text className="text-lg text-dark-3 leading-[26px] font-bold text-center">{t("Prospects are waiting!")}</Text>
+                  <Text className="text-base text-dark-3">{t("Record Speed brings clients in active search for leagal counselling right at your phone.")}</Text>
                 </View>
 
                 {pro.features
@@ -258,7 +252,7 @@ export default function Plan() {
                       </PlanFeatureDescription>
                     </PlanFeature>
                   ))}
-                <PlanDivider text="+ Everything in Basic" dividerStyle="blue" />
+                <PlanDivider text={t("+ Everything in Basic")} dividerStyle="blue" />
 
                 <JoinedList
                   prefix="pro"
@@ -287,7 +281,7 @@ export default function Plan() {
                               <View className="h-12 w-full">
                                 {currentPlan?.id === pro.id ? (
                                   <Button
-                                    text="Cancel Subscription"
+                                    text={t("Cancel Subscription")}
                                     buttonStyle="pro"
                                   />
                                 ) : (

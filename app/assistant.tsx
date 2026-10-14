@@ -13,6 +13,7 @@ import { Href, router, useLocalSearchParams } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAccountCredentials } from "@/lib/auth/hooks";
 import { askAssistant, AssistantMessage, AssistantSuggestion } from "@/lib/assistant/request";
+import { t } from "@/lib/i18n";
 
 // Screens the assistant may suggest, per account type, mapped to app routes.
 const SCREENS: Record<string, Record<string, string>> = {
@@ -106,10 +107,10 @@ export default function AssistantScreen() {
     >
       <View className="flex-row items-center px-5 pt-3 pb-3 border-b border-gray-200">
         <View className="flex-1">
-          <Text className="text-lg font-semibold text-gray-900">RecordSpeed assistant</Text>
-          <Text className="text-xs text-gray-500">AI · can look up your account, read-only</Text>
+          <Text className="text-lg font-semibold text-gray-900">{t("RecordSpeed assistant")}</Text>
+          <Text className="text-xs text-gray-500">{t("AI · can look up your account, read-only")}</Text>
         </View>
-        <Pressable accessibilityRole="button" accessibilityLabel="Close" onPress={() => router.dismiss()} className="w-10 h-10 items-center justify-center rounded-lg border border-gray-300">
+        <Pressable accessibilityRole="button" accessibilityLabel={t("Close")} onPress={() => router.dismiss()} className="w-10 h-10 items-center justify-center rounded-lg border border-gray-300">
           <Text className="text-base text-gray-700">✕</Text>
         </Pressable>
       </View>
@@ -118,9 +119,7 @@ export default function AssistantScreen() {
         {entries.length === 0 && (
           <>
             <View className="self-start max-w-[88%] rounded-2xl rounded-bl-sm bg-gray-100 px-3 py-2">
-              <Text className="text-base text-gray-900">
-                Hi! I can explain how RecordSpeed works and look things up in your account. What can I help with?
-              </Text>
+              <Text className="text-base text-gray-900">{t("Hi! I can explain how RecordSpeed works and look things up in your account. What can I help with?")}</Text>
             </View>
             <View className="flex-row flex-wrap" style={{ gap: 8 }}>
               {STARTERS[type].map((q) => (
@@ -160,23 +159,21 @@ export default function AssistantScreen() {
         {busy && (
           <View className="self-start flex-row items-center" style={{ gap: 6 }}>
             <ActivityIndicator size="small" color="#4F46E5" />
-            <Text className="text-sm text-gray-500">Thinking…</Text>
+            <Text className="text-sm text-gray-500">{t("Thinking…")}</Text>
           </View>
         )}
       </ScrollView>
 
-      <Text className="text-[11px] text-gray-400 px-4 pt-2 border-t border-gray-200">
-        AI can make mistakes. It can't make changes to your account.
-      </Text>
+      <Text className="text-[11px] text-gray-400 px-4 pt-2 border-t border-gray-200">{t("AI can make mistakes. It can't make changes to your account.")}</Text>
       <View className="flex-row items-end px-3 pt-2 pb-3" style={{ gap: 8 }}>
         {/* Plain styles, not classes, so the typed text always has a visible color and size. It grows to
             about five lines so a long question stays readable; Return still sends. */}
         <TextInput
           value={draft}
           onChangeText={setDraft}
-          placeholder="Ask a question…"
+          placeholder={t("Ask a question…")}
           placeholderTextColor="#9CA3AF"
-          accessibilityLabel="Your question"
+          accessibilityLabel={t("Your question")}
           maxLength={1000}
           multiline
           submitBehavior="submit"
@@ -204,7 +201,7 @@ export default function AssistantScreen() {
           onPress={() => ask(draft)}
           className={`h-12 px-4 rounded-xl bg-indigo-600 items-center justify-center ${busy || !draft.trim() ? "opacity-50" : ""}`}
         >
-          <Text className="text-white font-semibold">Send</Text>
+          <Text className="text-white font-semibold">{t("Send")}</Text>
         </Pressable>
       </View>
     </View>

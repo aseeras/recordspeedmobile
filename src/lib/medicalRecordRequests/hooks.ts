@@ -8,6 +8,7 @@ import Toast from "react-native-toast-message";
 import { MedicalRecordRequest } from "../types";
 import { useAccountCredentials } from "../auth/hooks";
 import { ACCOUNT_KEYS } from "../storageKeychain";
+import { t } from "@/lib/i18n";
 
 export function useOwnedMedicalRecordRequests() {
   const { data: credentials } = useAccountCredentials();
@@ -47,7 +48,7 @@ export function useCreateMedicalRecordRequest() {
     onError: (error) => {
       Toast.show({
         type: "error",
-        text1: `Something went wrong: ${error}`,
+        text1: t("Something went wrong: {error}", { error: String(error) }),
       });
     },
   });

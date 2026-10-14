@@ -9,6 +9,7 @@ import { useConnectMyChart } from "@/lib/ehrConnections/hooks";
 import { useMedicalInstitution } from "@/lib/medicalInstitutions/hooks";
 import { createMedicalRecordRequest } from "@/lib/medicalRecordRequests/request";
 import { Patient } from "@/lib/types";
+import { t } from "@/lib/i18n";
 
 const YEARS_OF_RECORDS = 10;
 
@@ -29,7 +30,7 @@ export default function HomePatientConnectMyChart() {
 
   async function start() {
     if (!institutionId) {
-      Toast.show({ type: "error", text1: "Choose your hospital or clinic first." });
+      Toast.show({ type: "error", text1: t("Choose your hospital or clinic first.") });
       return;
     }
     setCreating(true);
@@ -44,10 +45,10 @@ export default function HomePatientConnectMyChart() {
         },
       });
       const requestId = (created as any)?.data?.attributes?.id;
-      if (!requestId) throw new Error((created as any)?.error?.message ?? "The request couldn't be created.");
+      if (!requestId) throw new Error((created as any)?.error?.message ?? t("The request couldn't be created."));
       connect(requestId);
     } catch (error) {
-      Toast.show({ type: "error", text1: "Couldn't start MyChart", text2: `${error.message ?? error}` });
+      Toast.show({ type: "error", text1: t("Couldn't start MyChart"), text2: `${error.message ?? error}` });
     } finally {
       setCreating(false);
     }
@@ -56,22 +57,18 @@ export default function HomePatientConnectMyChart() {
   return (
     <>
       <View className="flex items-center mt-4">
-        <Text className="text-white font-semibold text-lg">Get records from MyChart</Text>
+        <Text className="text-white font-semibold text-lg">{t("Get records from MyChart")}</Text>
       </View>
 
       <View className="flex items-center bg-white w-full h-full mt-4 rounded-2xl">
         <ScrollView className="w-full" keyboardShouldPersistTaps="handled">
           <View className="w-full p-6">
-            <Text className="text-base text-gray-700 pb-6">
-              Sign in to your MyChart account and RecordSpeed brings in your notes, test results, medications,
-              allergies and immunizations from the last {YEARS_OF_RECORDS} years. Your MyChart password stays with
-              MyChart.
+            <Text className="text-base text-gray-700 pb-6">{t("Sign in to your MyChart account and RecordSpeed brings in your notes, test results, medications, allergies and immunizations from the last {years} years. Your MyChart password stays with MyChart.", { years: YEARS_OF_RECORDS })}
             </Text>
 
             <MedicalInstitutionSearch
               header={() => (
-                <Text className="text-base text-gray-700 pb-2.5 font-medium">
-                  Your hospital or clinic <Text className="text-red-500">*</Text>
+                <Text className="text-base text-gray-700 pb-2.5 font-medium">{t("Your hospital or clinic")}{" "}<Text className="text-red-500">*</Text>
                 </Text>
               )}
               onSelectMedicalInstitution={(institution) => setInstitutionId(institution.id)}
@@ -94,7 +91,7 @@ export default function HomePatientConnectMyChart() {
 
             {!busy && (
               <Pressable className="items-center pt-5" onPress={() => (router.canGoBack() ? router.back() : router.replace("/home"))}>
-                <Text className="text-indigo-700 text-base">Cancel</Text>
+                <Text className="text-indigo-700 text-base">{t("Cancel")}</Text>
               </Pressable>
             )}
           </View>

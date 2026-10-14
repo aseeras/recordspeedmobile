@@ -22,6 +22,7 @@ import { z } from "zod";
 import ProfileAttorneys from "../../../assets/ProfileAttorneys.png";
 import ClipboardIcon from "@/utils/svg/Clipboard";
 import { useCurrentPlan, useRequirePlan } from "@/lib/plans/hooks";
+import { t } from "@/lib/i18n";
 
 function EditProfile({ onFinish }: { onFinish: () => void }) {
   const queryClient = useQueryClient();
@@ -79,7 +80,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
 
       Toast.show({
         type: "success",
-        text1: "Your information has been updated successfully.",
+        text1: t("Your information has been updated successfully."),
       });
       onFinish();
     },
@@ -94,13 +95,11 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
             validators={{
               onSubmit: z
                 .string()
-                .min(1, { message: "First Name is required" }),
+                .min(1, { message: t("First Name is required") }),
             }}
             children={(field) => (
               <FieldWrapper>
-                <Label required field={field}>
-                  First Name
-                </Label>
+                <Label required field={field}>{t("First Name")}</Label>
                 <TextInput field={field} />
                 <FieldInfo field={field} />
               </FieldWrapper>
@@ -110,7 +109,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
             name="middleName"
             children={(field) => (
               <FieldWrapper>
-                <Label field={field}>Middle Name</Label>
+                <Label field={field}>{t("Middle Name")}</Label>
                 <TextInput field={field} />
                 <FieldInfo field={field} />
               </FieldWrapper>
@@ -119,13 +118,11 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
           <form.Field
             name="lastName"
             validators={{
-              onSubmit: z.string().min(1, { message: "Last Name is required" }),
+              onSubmit: z.string().min(1, { message: t("Last Name is required") }),
             }}
             children={(field) => (
               <FieldWrapper>
-                <Label required field={field}>
-                  Last Name
-                </Label>
+                <Label required field={field}>{t("Last Name")}</Label>
                 <TextInput field={field} />
                 <FieldInfo field={field} />
               </FieldWrapper>
@@ -135,7 +132,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
             name="suffix"
             children={(field) => (
               <FieldWrapper>
-                <Label>Suffix</Label>
+                <Label>{t("Suffix")}</Label>
 
                 <View className="flex flex-row w-full pb-2">
                   <View className="flex flex-row items-center pr-4">
@@ -143,28 +140,28 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
                       selected={field.state.value == ""}
                       onPress={() => field.handleChange("")}
                     />
-                    <Text className="pl-2">None</Text>
+                    <Text className="pl-2">{t("None")}</Text>
                   </View>
                   <View className="flex flex-row items-center pr-4">
                     <RadioButton
                       selected={field.state.value == "Second"}
                       onPress={() => field.handleChange("Second")}
                     />
-                    <Text className="pl-2">Second</Text>
+                    <Text className="pl-2">{t("Second")}</Text>
                   </View>
                   <View className="flex flex-row items-center pr-4">
                     <RadioButton
                       selected={field.state.value == "Third"}
                       onPress={() => field.handleChange("Third")}
                     />
-                    <Text className="pl-2">Third</Text>
+                    <Text className="pl-2">{t("Third")}</Text>
                   </View>
                   <View className="flex flex-row items-center pr-4">
                     <RadioButton
                       selected={field.state.value == "Fourth"}
                       onPress={() => field.handleChange("Fourth")}
                     />
-                    <Text className="pl-2">Fourth</Text>
+                    <Text className="pl-2">{t("Fourth")}</Text>
                   </View>
                 </View>
               </FieldWrapper>
@@ -172,8 +169,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
           />
 
           <View className="border border-gray-400 rounded-lg p-4 my-4 z-10">
-            <Text className="text-base text-gray-700 pb-2.5 font-medium pt-2">
-              State Bar Number <Text className="text-red-500">*</Text>
+            <Text className="text-base text-gray-700 pb-2.5 font-medium pt-2">{t("State Bar Number")}{" "}<Text className="text-red-500">*</Text>
             </Text>
             <form.Field
               name="barState"
@@ -185,7 +181,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
               children={(field) => (
                 <DropdownInput
                   initialValue={attorney?.barState}
-                  placeholder="Select a state"
+                  placeholder={t("Select a state")}
                   options={Object.entries(US_STATES).map(([key, value]) => ({
                     key,
                     value,
@@ -207,13 +203,13 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
               validators={{
                 onSubmit: z
                   .string()
-                  .min(1, { message: "A state bar number is required" })
+                  .min(1, { message: t("A state bar number is required") })
                   .refine(
                     (value) => {
                       if (!stateBarValidation) return true;
                       return !stateBarValidation.rule.test(value);
                     },
-                    { message: stateBarValidation?.message }
+                    { message: t(stateBarValidation?.message ?? "") }
                   ),
               }}
               children={(field) => (
@@ -229,14 +225,12 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
             name="phone"
             validators={{
               onSubmit: z.string().min(1, {
-                message: "A professional service phone is required",
+                message: t("A professional service phone is required"),
               }),
             }}
             children={(field) => (
               <FieldWrapper>
-                <Label required field={field}>
-                  Professional Service Phone
-                </Label>
+                <Label required field={field}>{t("Professional Service Phone")}</Label>
                 <TextInput field={field} />
                 <FieldInfo field={field} />
               </FieldWrapper>
@@ -248,9 +242,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
             validators={{ onSubmit: z.string().email() }}
             children={(field) => (
               <FieldWrapper>
-                <Label required field={field}>
-                  Professional Service Email
-                </Label>
+                <Label required field={field}>{t("Professional Service Email")}</Label>
                 <TextInput field={field} />
                 <FieldInfo field={field} />
               </FieldWrapper>
@@ -262,7 +254,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
             validators={{ onSubmit: z.nullable(z.string().url()) }}
             children={(field) => (
               <FieldWrapper>
-                <Label field={field}>Website</Label>
+                <Label field={field}>{t("Website")}</Label>
                 <TextInput field={field} />
                 <FieldInfo field={field} />
               </FieldWrapper>
@@ -278,7 +270,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
         >
           <Button
             buttonStyle="secondary"
-            text="Cancel"
+            text={t("Cancel")}
             onPress={() => {
               onFinish();
             }}
@@ -287,7 +279,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
             selector={(state) => [state.canSubmit, state.isSubmitting]}
             children={([canSubmit, isSubmitting]) => (
               <Button
-                text="Save"
+                text={t("Save")}
                 buttonStyle={
                   !canSubmit || isSubmitting ? "disabled" : "primary"
                 }
@@ -310,23 +302,19 @@ function ProfileCard({ onPressEditInfo }: { onPressEditInfo: () => void }) {
 
   return (
     <View className="w-full border border-gray-400 rounded-lg p-4">
-      <Text className="text-gray-700 font-bold text-lg pb-4">
-        Personal Information
-      </Text>
+      <Text className="text-gray-700 font-bold text-lg pb-4">{t("Personal Information")}</Text>
 
       <View className="pb-4">
-        <Text className="text-gray-700 font-semibold text-base">Full Name</Text>
+        <Text className="text-gray-700 font-semibold text-base">{t("Full Name")}</Text>
         <Text className="text-gray-700 font-normal text-base">
           {attorney?.fullName || (
-            <Text className="text-gray-500 italic">Pending</Text>
+            <Text className="text-gray-500 italic">{t("Pending")}</Text>
           )}
         </Text>
       </View>
 
       <View className="pb-4">
-        <Text className="text-gray-700 font-semibold text-base">
-          Record Speed Handle
-        </Text>
+        <Text className="text-gray-700 font-semibold text-base">{t("Record Speed Handle")}</Text>
         <View className="flex flex-row justify-between items-center">
           <Text className="text-gray-700 font-normal text-base">
             {attorney?.username}
@@ -338,7 +326,7 @@ function ProfileCard({ onPressEditInfo }: { onPressEditInfo: () => void }) {
               Clipboard.setStringAsync(attorney?.username).then(() => {
                 Toast.show({
                   type: "info",
-                  text1: "Copied Record Speed Handle to the clipboard!",
+                  text1: t("Copied Record Speed Handle to the clipboard!"),
                 });
               });
             }}
@@ -349,43 +337,37 @@ function ProfileCard({ onPressEditInfo }: { onPressEditInfo: () => void }) {
       </View>
 
       <View className="pb-4">
-        <Text className="text-gray-700 font-semibold text-base">
-          State Bar Number
-        </Text>
+        <Text className="text-gray-700 font-semibold text-base">{t("State Bar Number")}</Text>
         <Text className="text-gray-700 font-normal text-base">
           {attorney?.barStateNumber || (
-            <Text className="text-gray-500 italic">Pending</Text>
+            <Text className="text-gray-500 italic">{t("Pending")}</Text>
           )}
         </Text>
       </View>
 
       <View className="pb-4">
-        <Text className="text-gray-700 font-semibold text-base">
-          Professional Service Phone
-        </Text>
+        <Text className="text-gray-700 font-semibold text-base">{t("Professional Service Phone")}</Text>
         <Text className="text-gray-700 font-normal text-base">
           {attorney?.phone || (
-            <Text className="text-gray-500 italic">Pending</Text>
+            <Text className="text-gray-500 italic">{t("Pending")}</Text>
           )}
         </Text>
       </View>
 
       <View className="pb-4">
-        <Text className="text-gray-700 font-semibold text-base">
-          Professional Service Email
-        </Text>
+        <Text className="text-gray-700 font-semibold text-base">{t("Professional Service Email")}</Text>
         <Text className="text-gray-700 font-normal text-base">
           {attorney?.professionalEmail || (
-            <Text className="text-gray-500 italic">Pending</Text>
+            <Text className="text-gray-500 italic">{t("Pending")}</Text>
           )}
         </Text>
       </View>
 
       <View className="pb-4">
-        <Text className="text-gray-700 font-semibold text-base">Website</Text>
+        <Text className="text-gray-700 font-semibold text-base">{t("Website")}</Text>
         <Text className="text-gray-700 font-normal text-base">
           {attorney?.website || (
-            <Text className="text-gray-500 italic">Pending</Text>
+            <Text className="text-gray-500 italic">{t("Pending")}</Text>
           )}
         </Text>
       </View>
@@ -393,7 +375,7 @@ function ProfileCard({ onPressEditInfo }: { onPressEditInfo: () => void }) {
       <View className="h-14 mb-4">
         <Button
           buttonStyle="secondary"
-          text="Edit Profile Info"
+          text={t("Edit Profile Info")}
           onPress={onPressEditInfo}
         />
       </View>
@@ -401,7 +383,7 @@ function ProfileCard({ onPressEditInfo }: { onPressEditInfo: () => void }) {
         <View className="h-14">
           <Button
             buttonStyle="secondary"
-            text={`Edit My Plan (${currentPlan.name})`}
+            text={t("Edit My Plan ({plan})", { plan: currentPlan.name })}
             onPress={() => router.push("/home/attorney/plan")}
           />
         </View>
@@ -444,22 +426,12 @@ function ProfileFooter() {
           </Text>
         </View>
       </View>
-      <Text className="text-gray-800 font-bold text-lg pb-4">
-        Prospect
-        {attorney?.publicPatientsCount && attorney.publicPatientsCount > 1
-          ? "s are "
-          : " is "}
-        waiting!
+      <Text className="text-gray-800 font-bold text-lg pb-4">{attorney?.publicPatientsCount && attorney.publicPatientsCount > 1 ? t("Prospects are waiting!") : t("A prospect is waiting!")}
       </Text>
-      <Text className="text-gray-800 font-normal text-lg pb-4 text-center w-64">
-        Be the first to assist them with professional advice!
-      </Text>
+      <Text className="text-gray-800 font-normal text-lg pb-4 text-center w-64">{t("Be the first to assist them with professional advice!")}</Text>
       <View className="pb-4">
-        <Text className="text-gray-800 font-normal text-base pb-3">
-          Record Speed brings clients in{" "}
-          <Text className="font-bold">active search</Text> for leagal
-          counselling right at your phone.
-        </Text>
+        <Text className="text-gray-800 font-normal text-base pb-3">{t("Record Speed brings clients in")}{" "}
+          <Text className="font-bold">{t("active search")}</Text>{" "}{t("for leagal counselling right at your phone.")}</Text>
       </View>
 
       <View className="w-full h-14 relative">

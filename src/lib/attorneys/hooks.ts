@@ -9,6 +9,7 @@ import {
 import { ACCOUNT_KEYS } from "../storageKeychain";
 import { AttorneyToPatch, patchAttorney } from "./request";
 import { Account, Attorney } from "../types";
+import { t } from "@/lib/i18n";
 
 export function useUpdateAttorney(queryClient: QueryClient) {
   const { data: credentials } = useAccountCredentials();
@@ -33,7 +34,7 @@ export function useUpdateAttorney(queryClient: QueryClient) {
     onError: (error) =>
       Toast.show({
         type: "error",
-        text1: `Something went wrong updating the attorney.`,
+        text1: t("Something went wrong updating your profile."),
       }),
   });
 }

@@ -6,6 +6,7 @@ import { Text, View } from "react-native";
 import DocumentSecondary from "../../../assets/DocumentSecondary.png";
 import { Image } from "expo-image";
 import { Link } from "expo-router";
+import { t } from "@/lib/i18n";
 
 export default function HomeAttorneyIndex() {
   const { data: currentPlan } = useCurrentPlan("attorneys");
@@ -28,15 +29,10 @@ export default function HomeAttorneyIndex() {
             contentFit="cover"
           />
         </View>
-        <Text className="text-gray-700 text-center text-2xl w-80 pt-6 font-semibold leading-9">
-          Subscribe!
-        </Text>
+        <Text className="text-gray-700 text-center text-2xl w-80 pt-6 font-semibold leading-9">{t("Subscribe!")}</Text>
 
         <Text className="text-gray-700 text-center text-lg w-72 font-medium">
-          <Link href="/home/attorney/plan" className="text-blue">
-            Subscribe
-          </Link>{" "}
-          to access this feature.
+          <Link href="/home/attorney/plan" className="text-blue">{t("Subscribe")}</Link>{" "}{t("to access this feature.")}
         </Text>
       </View>
     );

@@ -7,6 +7,7 @@ import { useAccountCredentials } from "../auth/hooks";
 import { ACCOUNT_KEYS } from "../storageKeychain";
 import { MedicalRecordRequest, MedicalRecordRequestStatus } from "../types";
 import { fetchEhrConnection, startEhrConnection } from "./request";
+import { t } from "@/lib/i18n";
 
 // Where the API sends the browser once MyChart is done (see the backend's EPIC_APP_RETURN_URL).
 export const EHR_RETURN_URL = "record-speed-mobile://ehr-connected";
@@ -37,17 +38,17 @@ export function useConnectMyChart(medicalRecordRequestId?: number) {
         await sleep(POLL_INTERVAL_MS);
         await queryClient.refetchQueries({ queryKey: [ACCOUNT_KEYS.medicalRecordRequests.owned] });
         if (isFulfilled(queryClient.getQueryData([ACCOUNT_KEYS.medicalRecordRequests.owned]))) {
-          Toast.show({ type: "success", text1: "Your MyChart records are here" });
+          Toast.show({ type: "success", text1: t("Your MyChart records are here") });
           setImported(true);
           return;
         }
         const connection = await fetchEhrConnection({ authToken: credentials.authToken, id: connectionId });
         if (connection?.lastError) {
-          Toast.show({ type: "error", text1: "Couldn't import from MyChart", text2: connection.lastError });
+          Toast.show({ type: "error", text1: t("Couldn't import from MyChart"), text2: connection.lastError });
           return;
         }
       }
-      Toast.show({ type: "info", text1: "Still importing from MyChart", text2: "Pull down to refresh in a minute." });
+      Toast.show({ type: "info", text1: t("Still importing from MyChart"), text2: t("Pull down to refresh in a minute.") });
     } finally {
       setImporting(false);
     }
@@ -68,16 +69,16 @@ export function useConnectMyChart(medicalRecordRequestId?: number) {
     },
     onSuccess: ({ status, connectionId }) => {
       if (status === "connected") {
-        Toast.show({ type: "success", text1: "MyChart connected", text2: "Importing your records…" });
+        Toast.show({ type: "success", text1: t("MyChart connected"), text2: t("Importing your records…") });
         waitForImport(connectionId);
       } else if (status === "expired") {
-        Toast.show({ type: "error", text1: "That took too long", text2: "Please connect MyChart again." });
+        Toast.show({ type: "error", text1: t("That took too long"), text2: t("Please connect MyChart again.") });
       } else if (status !== "cancelled") {
-        Toast.show({ type: "error", text1: "MyChart didn't connect", text2: "Please try again." });
+        Toast.show({ type: "error", text1: t("MyChart didn't connect"), text2: t("Please try again.") });
       }
     },
     onError: (error) => {
-      Toast.show({ type: "error", text1: "Couldn't open MyChart", text2: `${error.message ?? error}` });
+      Toast.show({ type: "error", text1: t("Couldn't open MyChart"), text2: `${error.message ?? error}` });
     },
   });
 

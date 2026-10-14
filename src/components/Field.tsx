@@ -10,6 +10,7 @@ import {
   ViewProps,
 } from "react-native";
 import * as changeCase from "change-case";
+import { t } from "@/lib/i18n";
 
 export function Label({
   field,
@@ -30,7 +31,7 @@ function touchedErrors(meta: any): string[] {
   if (!meta?.isTouched) return [];
   return (meta.errors ?? [])
     .flat()
-    .map((error: any) => (typeof error === "string" ? error : error?.message))
+    .map((error: any) => t(typeof error === "string" ? error : error?.message ?? ""))
     .filter(Boolean);
 }
 

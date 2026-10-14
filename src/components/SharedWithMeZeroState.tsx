@@ -1,6 +1,7 @@
 import { View, Text } from "react-native";
 import { Image } from "expo-image";
 import DocumentSecondary from "../../assets/DocumentSecondary.png";
+import { t } from "@/lib/i18n";
 
 // Centered in the space above the Ask button (pb-32 keeps it clear of it).
 export default function SharedWithMeZeroState() {
@@ -13,12 +14,8 @@ export default function SharedWithMeZeroState() {
           contentFit="contain"
         />
       </View>
-      <Text className="text-gray-900 text-center text-2xl font-bold pt-6">
-        Nothing yet!
-      </Text>
-      <Text className="text-gray-500 text-center text-base leading-6 pt-2">
-        Pull down the screen to refresh your shared medical requests.
-      </Text>
+      <Text className="text-gray-900 text-center text-2xl font-bold pt-6">{t("Nothing yet!")}</Text>
+      <Text className="text-gray-500 text-center text-base leading-6 pt-2">{t("Pull down the screen to refresh your shared medical requests.")}</Text>
     </View>
   );
 }
