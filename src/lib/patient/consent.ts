@@ -1,6 +1,7 @@
 // The agreement a patient gives before their card appears in the attorneys' Prospects list. The server
 // records the version with the agreement; changing this text means bumping the version here and in
-// Patient::PUBLIC_PROFILE_CONSENT_VERSION on the server, and everyone listed is asked again.
+// Patient::PUBLIC_PROFILE_CONSENT_VERSION on the server, and everyone listed is asked again. The Spanish in
+// src/lib/i18n/es.ts is the same agreement; change both together.
 export const PUBLIC_PROFILE_CONSENT_VERSION = "2026-10";
 
 export const PUBLIC_PROFILE_CONSENT_TITLE = "Show my card to attorneys?";

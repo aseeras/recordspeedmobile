@@ -27,6 +27,7 @@ import {
   TwoFactorChallenge,
   verifyTwoFactor,
 } from "./request";
+import { t } from "@/lib/i18n";
 
 export const ACCOUNT_TOKEN_KEY = "@account:token";
 // In-memory only: the pending two-step sign-in, and recovery codes to show once.
@@ -237,7 +238,7 @@ export function useTwoFactorSignIn() {
   return useMutation({
     mutationFn: async function ({ ticket, code }: { ticket: string; code: string }) {
       const account = await completeSignIn(await verifyTwoFactor(ticket, code));
-      if (!account) throw new Error("Please sign in again.");
+      if (!account) throw new Error(t("Please sign in again."));
       return account;
     },
   });

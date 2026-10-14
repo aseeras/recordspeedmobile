@@ -9,6 +9,7 @@ import { useAccountCredentials } from "../auth/hooks";
 import { patchPatient } from "../patient/request";
 import { AccountType } from "../types";
 import { patchAttorney } from "../attorneys/request";
+import { t } from "@/lib/i18n";
 
 export function usePushToken() {
   return useQuery({
@@ -36,15 +37,13 @@ async function registerForPushNotificationsAsync() {
       finalStatus = status;
     }
     if (finalStatus !== "granted") {
-      throw new Error(
-        "Permission not granted to get push token for push notification!"
-      );
+      throw new Error(t("Permission not granted to get push token for push notification!"));
     }
     const projectId =
       Constants?.expoConfig?.extra?.eas?.projectId ??
       Constants?.easConfig?.projectId;
     if (!projectId) {
-      throw new Error("Project ID not found");
+      throw new Error(t("Project ID not found"));
     }
 
     const pushTokenString = (
@@ -54,7 +53,7 @@ async function registerForPushNotificationsAsync() {
     ).data;
     return pushTokenString;
   } else {
-    throw new Error("Must use physical device for push notifications");
+    throw new Error(t("Must use physical device for push notifications"));
   }
 }
 

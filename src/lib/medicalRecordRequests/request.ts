@@ -6,6 +6,7 @@ import {
   MedicalRecordRequest,
 } from "../types";
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import { t } from "@/lib/i18n";
 
 export async function fetchOwnedMedicalRecordRequests({
   credentials,
@@ -126,7 +127,7 @@ export async function shareMedicalRecordRequest({
     router.back();
     Toast.show({
       type: "error",
-      text1: `Something went wrong: ${error}`,
+      text1: t("Something went wrong: {error}", { error: String(error) }),
     });
   }
 }

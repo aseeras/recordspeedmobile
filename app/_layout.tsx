@@ -9,7 +9,8 @@ import * as Linking from "expo-linking";
 import * as Notifications from "expo-notifications";
 import * as Updates from "expo-updates";
 import { Stack } from "expo-router";
-import { useCallback, useEffect } from "react";
+import { Fragment, useCallback, useEffect } from "react";
+import { useLanguage } from "@/lib/i18n";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -39,6 +40,12 @@ function useLatestUpdate() {
   }, []);
 }
 
+// Every screen reads its text with t(); redrawing the tree from here shows the new language everywhere.
+function LanguageRoot({ children }: { children: React.ReactNode }) {
+  const language = useLanguage();
+  return <Fragment key={language}>{children}</Fragment>;
+}
+
 export default function AppLayout() {
   useLatestUpdate();
   return (
@@ -58,6 +65,7 @@ export default function AppLayout() {
           merchantIdentifier="record-speed-mobile"
           urlScheme="record-speed-mobile"
         >
+          <LanguageRoot>
           <Stack
             screenOptions={{
               headerTitle: "",
@@ -97,6 +105,7 @@ export default function AppLayout() {
               }}
             />
           </Stack>
+          </LanguageRoot>
         </StripeProvider>
         </View>
       </QueryClientProvider>

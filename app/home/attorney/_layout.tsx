@@ -1,5 +1,6 @@
 import { Stack } from "expo-router";
 import { Text, View } from "react-native";
+import { t } from "@/lib/i18n";
 
 export default function Layout() {
   return (
@@ -19,13 +20,13 @@ export default function Layout() {
         },
       }}
     >
-      <Stack.Screen name="plan" options={{ title: "My Profile" }} />
-      <Stack.Screen name="profile" options={{ title: "My Profile" }} />
+      <Stack.Screen name="plan" options={{ title: t("My Profile") }} />
+      <Stack.Screen name="profile" options={{ title: t("My Profile") }} />
       <Stack.Screen name="prospects" />
-      <Stack.Screen name="index" options={{ title: "Shared with me" }} />
+      <Stack.Screen name="index" options={{ title: t("Shared with me") }} />
       <Stack.Screen
         name="[medicalRecordRequestId]/[documentId]"
-        options={{ title: "Checkout" }}
+        options={{ title: t("Checkout") }}
       />
     </Stack>
   );

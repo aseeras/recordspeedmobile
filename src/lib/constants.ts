@@ -130,27 +130,27 @@ export const STATE_BAR_VALIDATION_RULES: BarValidationRules = {
   },
   NH: {
     rule: /^\d{5}$/,
-    message: "New bar number must haveHampshire: exactly 5 digits.",
+    message: "New Hampshire bar number must have exactly 5 digits.",
   },
   NJ: {
     rule: /^\d{6}$/,
-    message: "New bar number must haveJersey: exactly 6 digits.",
+    message: "New Jersey bar number must have exactly 6 digits.",
   },
   NM: {
     rule: /^\d{4,5}$/,
-    message: "New bar number must haveMexico: 4 or 5 digits.",
+    message: "New Mexico bar number must have 4 or 5 digits.",
   },
   NY: {
     rule: /^\d{7}$/,
-    message: "New bar number must haveYork: exactly 7 digits.",
+    message: "New York bar number must have exactly 7 digits.",
   },
   NC: {
     rule: /^\d{5,6}$/,
-    message: "North bar number must haveCarolina: 5 or 6 digits.",
+    message: "North Carolina bar number must have 5 or 6 digits.",
   },
   ND: {
     rule: /^\d{5}$/,
-    message: "North bar number must haveDakota: exactly 5 digits.",
+    message: "North Dakota bar number must have exactly 5 digits.",
   },
   OH: {
     rule: /^\d{6}$/,
@@ -170,15 +170,15 @@ export const STATE_BAR_VALIDATION_RULES: BarValidationRules = {
   },
   RI: {
     rule: /^\d{5,6}$/,
-    message: "Rhode bar number must haveIsland: 5 or 6 digits.",
+    message: "Rhode Island bar number must have 5 or 6 digits.",
   },
   SC: {
     rule: /^\d{5,6}$/,
-    message: "South bar number must haveCarolina: 5 or 6 digits.",
+    message: "South Carolina bar number must have 5 or 6 digits.",
   },
   SD: {
     rule: /^\d{5}$/,
-    message: "South bar number must haveDakota: exactly 5 digits.",
+    message: "South Dakota bar number must have exactly 5 digits.",
   },
   TN: {
     rule: /^\d{5}$/,
@@ -206,7 +206,7 @@ export const STATE_BAR_VALIDATION_RULES: BarValidationRules = {
   },
   WV: {
     rule: /^\d{4,5}$/,
-    message: "West bar number must haveVirginia: 4 or 5 digits.",
+    message: "West Virginia bar number must have 4 or 5 digits.",
   },
   WI: {
     rule: /^\d{6}$/,

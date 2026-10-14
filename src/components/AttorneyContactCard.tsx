@@ -5,6 +5,7 @@ import Phone from "@/utils/svg/Phone";
 import Envelope from "@/utils/svg/Envelope";
 import Laptop from "@/utils/svg/Laptop";
 import { useCurrentAccount } from "@/lib/auth/hooks";
+import { t } from "@/lib/i18n";
 
 export default function AttorneyContactCard({ contact }: { contact: Contact }) {
   const { data: patient } = useCurrentAccount<Patient>();
@@ -18,16 +19,13 @@ export default function AttorneyContactCard({ contact }: { contact: Contact }) {
             <Text className="text-lg font-bold text-gray-700 leading-6">
               {contact.attorney.fullName}
             </Text>
-            <Text className="text-sm font-medium text-gray-700 leading-4">
-              SBN: {contact.attorney.barStateNumber}
+            <Text className="text-sm font-medium text-gray-700 leading-4">{t("SBN:")}{" "}{contact.attorney.barStateNumber}
             </Text>
           </View>
         </View>
 
         <View className="pb-4">
-          <Text className="text-base font-semibold text-gray-700">
-            Hello {patient.username},{"\n"}
-            Please find my contact information here.
+          <Text className="text-base font-semibold text-gray-700">{t("Hello {name},", { name: patient.username })}{"\n"}{t("Please find my contact information here.")}
           </Text>
         </View>
 

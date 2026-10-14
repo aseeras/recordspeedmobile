@@ -14,6 +14,7 @@ import { useAccountCredentials } from "@/lib/auth/hooks";
 import { shareMedicalRecordRequest } from "@/lib/medicalRecordRequests/request";
 import { FieldInfo, FieldWrapper } from "@/components/Field";
 import { useSharedWithMeMedicalRecordRequests } from "@/lib/medicalRecordRequests/hooks";
+import { t } from "@/lib/i18n";
 
 export default function ShareMedicalRecordModal() {
   const { refetch } = useSharedWithMeMedicalRecordRequests();
@@ -59,9 +60,7 @@ export default function ShareMedicalRecordModal() {
         {/* Native modals have dark backgrounds on iOS. Set the status bar to light content and add a fallback for other platforms with auto. */}
         <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
 
-        <Text className="font-semibold text-2xl w-full text-gray-700 text-center">
-          Share Your Medical Records
-        </Text>
+        <Text className="font-semibold text-2xl w-full text-gray-700 text-center">{t("Share Your Medical Records")}</Text>
 
         <form.Field
           name="username"
@@ -76,7 +75,7 @@ export default function ShareMedicalRecordModal() {
                 value={field.state.value}
                 className="border rounded-md text-base border-gray-300 text-gray-400 pl-5 pr-4 py-3"
                 autoCapitalize="none"
-                placeholder="Record Speed Handle"
+                placeholder={t("Record Speed Handle")}
                 onChangeText={(text) => {
                   field.handleChange(text);
                 }}
@@ -105,7 +104,7 @@ export default function ShareMedicalRecordModal() {
               <View className="mt-1 w-full h-12">
                 <Button
                   buttonStyle="secondary"
-                  text="Cancel"
+                  text={t("Cancel")}
                   onPress={() => {
                     if (router.canGoBack()) {
                       router.back();

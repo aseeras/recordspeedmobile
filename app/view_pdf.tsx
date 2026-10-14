@@ -6,6 +6,7 @@ import { router, useLocalSearchParams } from "expo-router";
 import * as Sharing from "expo-sharing";
 import { Pressable, Text, View } from "react-native";
 import Pdf from "react-native-pdf";
+import { t } from "@/lib/i18n";
 
 export function GoBack() {
   return (
@@ -32,7 +33,7 @@ export function PrintButton({ uri }: { uri: string }) {
           });
         }}
       >
-        <Text className={`text-white text-base font-medium`}>Print</Text>
+        <Text className={`text-white text-base font-medium`}>{t("Print")}</Text>
       </Pressable>
     </View>
   );
@@ -47,7 +48,7 @@ export function ShareButton({ uri }: { uri: string }) {
         }}
         className={`flex-row items-center justify-center rounded-md border border-white w-full h-8`}
       >
-        <Text className={`text-white text-base font-medium`}>Share</Text>
+        <Text className={`text-white text-base font-medium`}>{t("Share")}</Text>
       </Pressable>
     </View>
   );

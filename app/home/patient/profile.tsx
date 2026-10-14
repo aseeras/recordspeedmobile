@@ -28,6 +28,7 @@ import { Modal, Pressable, ScrollView, Switch, Text, View } from "react-native";
 import Toast from "react-native-toast-message";
 import { z } from "zod";
 import ProfileAttorneys from "../../../assets/ProfileAttorneys.png";
+import { dateLocale, t } from "@/lib/i18n";
 
 // Social Security number and date of birth can be left blank (records offices ask for them when needed), but
 // whatever is entered must be valid.
@@ -107,7 +108,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
           onSuccess: async function () {
             Toast.show({
               type: "success",
-              text1: "Your information has been updated successfully.",
+              text1: t("Your information has been updated successfully."),
             });
             await refetch();
             onFinish();
@@ -137,7 +138,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
             validators={{
               onSubmit: z
                 .string()
-                .min(1, { message: "First Name is required" }),
+                .min(1, { message: t("First Name is required") }),
             }}
             children={(field) => (
               <FieldWrapper>
@@ -160,7 +161,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
           <form.Field
             name="lastName"
             validators={{
-              onSubmit: z.string().min(1, { message: "Last Name is required" }),
+              onSubmit: z.string().min(1, { message: t("Last Name is required") }),
             }}
             children={(field) => (
               <FieldWrapper>
@@ -174,7 +175,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
             name="suffix"
             children={(field) => (
               <FieldWrapper>
-                <Label>Suffix</Label>
+                <Label>{t("Suffix")}</Label>
 
                 <View className="flex flex-row w-full pb-2">
                   <View className="flex flex-row items-center pr-4">
@@ -182,28 +183,28 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
                       selected={field.state.value == ""}
                       onPress={() => field.handleChange("")}
                     />
-                    <Text className="pl-2">None</Text>
+                    <Text className="pl-2">{t("None")}</Text>
                   </View>
                   <View className="flex flex-row items-center pr-4">
                     <RadioButton
                       selected={field.state.value == "Second"}
                       onPress={() => field.handleChange("Second")}
                     />
-                    <Text className="pl-2">Second</Text>
+                    <Text className="pl-2">{t("Second")}</Text>
                   </View>
                   <View className="flex flex-row items-center pr-4">
                     <RadioButton
                       selected={field.state.value == "Third"}
                       onPress={() => field.handleChange("Third")}
                     />
-                    <Text className="pl-2">Third</Text>
+                    <Text className="pl-2">{t("Third")}</Text>
                   </View>
                   <View className="flex flex-row items-center pr-4">
                     <RadioButton
                       selected={field.state.value == "Fourth"}
                       onPress={() => field.handleChange("Fourth")}
                     />
-                    <Text className="pl-2">Fourth</Text>
+                    <Text className="pl-2">{t("Fourth")}</Text>
                   </View>
                 </View>
               </FieldWrapper>
@@ -217,12 +218,8 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
                 header={() => {
                   return (
                     <>
-                      <Text className="text-base text-gray-700 font-medium pt-4">
-                        Medical institution
-                      </Text>
-                      <Text className="text-base text-gray-700 pb-2.5">
-                        Where do you receive medical care?
-                      </Text>
+                      <Text className="text-base text-gray-700 font-medium pt-4">{t("Medical institution")}</Text>
+                      <Text className="text-base text-gray-700 pb-2.5">{t("Where do you receive medical care?")}</Text>
                     </>
                   );
                 }}
@@ -234,7 +231,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
           />
 
           <FieldWrapper>
-            <Label>Social Security Number</Label>
+            <Label>{t("Social Security Number")}</Label>
             <View style={{ gap: 8 }} className="flex-row items-center">
               <View>
                 <form.Field
@@ -242,14 +239,14 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
                     onSubmit: blankOr(
                       z
                         .string()
-                        .length(3, { message: "Area number is invalid" })
+                        .length(3, { message: t("Area number is invalid") })
                         .refine(
                           (value) => {
                             return !["000", "666", "900", "990"].includes(
                               value
                             );
                           },
-                          { message: "Area number is invalid" }
+                          { message: t("Area number is invalid") }
                         )
                     ),
                   }}
@@ -282,12 +279,12 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
                     onSubmit: blankOr(
                       z
                         .string()
-                        .length(2, { message: "Group number is invalid" })
+                        .length(2, { message: t("Group number is invalid") })
                         .refine(
                           (value) => {
                             return !["00"].includes(value);
                           },
-                          { message: "Group number is invalid" }
+                          { message: t("Group number is invalid") }
                         )
                     ),
                   }}
@@ -320,12 +317,12 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
                     onSubmit: blankOr(
                       z
                         .string()
-                        .length(4, { message: "Serial number is invalid" })
+                        .length(4, { message: t("Serial number is invalid") })
                         .refine(
                           (value) => {
                             return !["0000"].includes(value);
                           },
-                          { message: "Serial number is invalid" }
+                          { message: t("Serial number is invalid") }
                         )
                     ),
                   }}
@@ -353,7 +350,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
           </FieldWrapper>
 
           <FieldWrapper>
-            <Label>Date of Birth</Label>
+            <Label>{t("Date of Birth")}</Label>
             <View style={{ gap: 8 }} className="flex-row items-center">
               <form.Field
                 name="dobMonth"
@@ -366,7 +363,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
                         (value) => {
                           return value >= 1 && value <= 12;
                         },
-                        { message: "Month is invalid" }
+                        { message: t("Month is invalid") }
                       )
                   ),
                 }}
@@ -374,7 +371,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
                   <TextInput
                     style={{ width: 62 }}
                     field={field}
-                    placeholder="MM"
+                    placeholder={t("MM")}
                     maxLength={2}
                     keyboardType="numeric"
                     onChangeText={(text) => {
@@ -401,7 +398,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
                         (value) => {
                           return value >= 1 && value <= 31;
                         },
-                        { message: "Day is invalid" }
+                        { message: t("Day is invalid") }
                       )
                   ),
                 }}
@@ -411,7 +408,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
                     field={field}
                     ref={dobDayRef}
                     value={field.state.value}
-                    placeholder="DD"
+                    placeholder={t("DD")}
                     maxLength={2}
                     keyboardType="numeric"
                     onChangeText={(text) => {
@@ -433,7 +430,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
                   onSubmit: blankOr(
                     z
                       .string()
-                      .length(4, { message: "Year is invalid" })
+                      .length(4, { message: t("Year is invalid") })
                       .transform(Number)
                   ),
                 }}
@@ -442,7 +439,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
                     style={{ width: 82 }}
                     field={field}
                     ref={dobYearRef}
-                    placeholder="YYYY"
+                    placeholder={t("YYYY")}
                     maxLength={4}
                     keyboardType="numeric"
                   />
@@ -465,7 +462,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
           >
             <Button
               buttonStyle="secondary"
-              text="Cancel"
+              text={t("Cancel")}
               onPress={() => {
                 onFinish();
               }}
@@ -475,7 +472,7 @@ function EditProfile({ onFinish }: { onFinish: () => void }) {
               children={([canSubmit, isSubmitting]) => (
                 <>
                   <Button
-                    text="Save"
+                    text={t("Save")}
                     disabled={!canSubmit || isSubmitting}
                     buttonStyle={
                       !canSubmit || isSubmitting ? "disabled" : "primary"
@@ -516,20 +513,20 @@ function PublicProfileConsent({
         <View className="bg-white rounded-t-2xl px-6 pt-6 pb-10 max-h-[85%]">
           <ScrollView>
             <Text className="text-lg font-bold text-gray-900 pb-4">
-              {PUBLIC_PROFILE_CONSENT_TITLE}
+              {t(PUBLIC_PROFILE_CONSENT_TITLE)}
             </Text>
             {PUBLIC_PROFILE_CONSENT_POINTS.map((point) => (
               <View key={point} className="flex-row pb-3">
                 <Text className="text-base text-gray-700 pr-2">•</Text>
-                <Text className="text-base text-gray-700 flex-1">{point}</Text>
+                <Text className="text-base text-gray-700 flex-1">{t(point)}</Text>
               </View>
             ))}
           </ScrollView>
           <View className="h-12 mt-4">
-            <Button text="I agree, show my card" onPress={onAgree} />
+            <Button text={t("I agree, show my card")} onPress={onAgree} />
           </View>
           <View className="h-12 mt-3">
-            <Button buttonStyle="secondary" text="Not now" onPress={onCancel} />
+            <Button buttonStyle="secondary" text={t("Not now")} onPress={onCancel} />
           </View>
         </View>
       </View>
@@ -577,7 +574,7 @@ function PublicToAttorneysSection() {
             await refetch();
             Toast.show({
               type: "success",
-              text1: "Your case description has been updated successfully.",
+              text1: t("Your case description has been updated successfully."),
             });
             setIsEditing(false);
           },
@@ -600,12 +597,12 @@ function PublicToAttorneysSection() {
 
       <View className="pb-6">
         <Pressable className="px-3 bg-indigo-100 py-1.5 flex self-start rounded-md">
-          <Text className="text-base">Looking for assistance</Text>
+          <Text className="text-base">{t("Looking for assistance")}</Text>
         </Pressable>
       </View>
 
       <View className="pb-2">
-        <Text className="text-base">A short description of your case</Text>
+        <Text className="text-base">{t("A short description of your case")}</Text>
       </View>
 
       {isEditing ? (
@@ -624,7 +621,7 @@ function PublicToAttorneysSection() {
                   value={field.state.value}
                   multiline
                   maxLength={200}
-                  placeholder="Add a brief description of your case to help professionals better understand your situation."
+                  placeholder={t("Add a brief description of your case to help professionals better understand your situation.")}
                 />
                 <View className="w-full flex items-end">
                   <Text className="text-gray-500">
@@ -642,7 +639,7 @@ function PublicToAttorneysSection() {
                 <View className="flex-1 h-12">
                   <Button
                     buttonStyle="secondary"
-                    text="Cancel"
+                    text={t("Cancel")}
                     onPress={() => {
                       setIsEditing(false);
                     }}
@@ -676,7 +673,7 @@ function PublicToAttorneysSection() {
           <View className="h-14 mb-6">
             <Button
               buttonStyle="secondary"
-              text="Edit Description"
+              text={t("Edit Description")}
               textStyle={{
                 color: "#4A68DC", // primary-green
               }}
@@ -690,20 +687,16 @@ function PublicToAttorneysSection() {
 
       {patient.isPublic && !patient.publicProfileListed && (
         <View className="p-4 mb-4 bg-yellow-50 border border-yellow-300 rounded-lg">
-          <Text className="text-base text-gray-800">
-            Your card is hidden from attorneys until you agree to how it's
-            shown. Turn the switch on to read and agree.
-          </Text>
+          <Text className="text-base text-gray-800">{t("Your card is hidden from attorneys until you agree to how it's shown. Turn the switch on to read and agree.")}</Text>
         </View>
       )}
 
       <View className="p-4 bg-gray-100 rounded-lg flex flex-row justify-between items-center">
-        <Text className="text-base font-semibold text-gray-700">
-          My card is {listed ? "" : "not "}public
+        <Text className="text-base font-semibold text-gray-700">{listed ? t("My card is public") : t("My card is not public")}
         </Text>
 
         <Switch
-          accessibilityLabel="Show my card to attorneys"
+          accessibilityLabel={t("Show my card to attorneys")}
           value={listed}
           onValueChange={(value) => {
             if (value) {
@@ -718,9 +711,7 @@ function PublicToAttorneysSection() {
         />
       </View>
       {listed && patient.publicProfileConsentedAt && (
-        <Text className="text-sm text-gray-500 pt-2">
-          You agreed on{" "}
-          {format(new Date(patient.publicProfileConsentedAt), "MMMM d, yyyy")}.
+        <Text className="text-sm text-gray-500 pt-2">{t("You agreed on {date}.", { date: format(new Date(patient.publicProfileConsentedAt), "MMMM d, yyyy", { locale: dateLocale() }) })}
         </Text>
       )}
 
@@ -747,23 +738,19 @@ function ProfileCard({ onPressEditInfo }: { onPressEditInfo: () => void }) {
 
   return (
     <View className="w-full border border-gray-400 rounded-lg p-4">
-      <Text className="text-gray-700 font-bold text-lg pb-4">
-        Personal Information
-      </Text>
+      <Text className="text-gray-700 font-bold text-lg pb-4">{t("Personal Information")}</Text>
 
       <View className="pb-4">
-        <Text className="text-gray-700 font-semibold text-base">Full Name</Text>
+        <Text className="text-gray-700 font-semibold text-base">{t("Full Name")}</Text>
         <Text className="text-gray-700 font-normal text-base">
           {patient.fullName || (
-            <Text className="text-gray-500 italic">Pending</Text>
+            <Text className="text-gray-500 italic">{t("Pending")}</Text>
           )}
         </Text>
       </View>
 
       <View className="pb-4">
-        <Text className="text-gray-700 font-semibold text-base">
-          Record Speed Handle
-        </Text>
+        <Text className="text-gray-700 font-semibold text-base">{t("Record Speed Handle")}</Text>
         <View className="flex flex-row justify-between items-center">
           <Text className="text-gray-700 font-normal text-base">
             {patient.username}
@@ -775,7 +762,7 @@ function ProfileCard({ onPressEditInfo }: { onPressEditInfo: () => void }) {
               Clipboard.setStringAsync(patient.username).then(() => {
                 Toast.show({
                   type: "info",
-                  text1: "Copied Record Speed Handle to the clipboard!",
+                  text1: t("Copied Record Speed Handle to the clipboard!"),
                 });
               });
             }}
@@ -786,33 +773,29 @@ function ProfileCard({ onPressEditInfo }: { onPressEditInfo: () => void }) {
       </View>
 
       <View className="pb-4">
-        <Text className="text-gray-700 font-semibold text-base">
-          My Medical Institution
-        </Text>
+        <Text className="text-gray-700 font-semibold text-base">{t("My Medical Institution")}</Text>
         <Text className="text-gray-700 font-normal text-base">
           {medicalInstitution ? (
             medicalInstitution.name
           ) : (
-            <Text className="text-gray-500 italic">Pending</Text>
+            <Text className="text-gray-500 italic">{t("Pending")}</Text>
           )}
         </Text>
       </View>
 
       <View className="pb-4">
-        <Text className="text-gray-700 font-semibold text-base">
-          Social Security Number
-        </Text>
+        <Text className="text-gray-700 font-semibold text-base">{t("Social Security Number")}</Text>
         <Text className="text-gray-700 font-normal text-base">
           {hasFullSocialSecurityNumber ? (
             socialSecurityNumber
           ) : (
-            <Text className="text-gray-500 italic">Pending</Text>
+            <Text className="text-gray-500 italic">{t("Pending")}</Text>
           )}
         </Text>
       </View>
 
       <View className="pb-4">
-        <Text className="text-gray-700 font-semibold text-base">DOB</Text>
+        <Text className="text-gray-700 font-semibold text-base">{t("DOB")}</Text>
         <Text className="text-gray-700 font-normal text-base">
           {patient.dateOfBirth ? (
             format(
@@ -820,7 +803,7 @@ function ProfileCard({ onPressEditInfo }: { onPressEditInfo: () => void }) {
               "MM / dd / yyyy"
             )
           ) : (
-            <Text className="text-gray-500 italic">Pending</Text>
+            <Text className="text-gray-500 italic">{t("Pending")}</Text>
           )}
         </Text>
       </View>
@@ -828,12 +811,12 @@ function ProfileCard({ onPressEditInfo }: { onPressEditInfo: () => void }) {
       <View className="h-14 mb-4">
         <Button
           buttonStyle="secondary"
-          text="Edit Profile Info"
+          text={t("Edit Profile Info")}
           onPress={onPressEditInfo}
         />
       </View>
       <View className="h-14">
-        <Button buttonStyle="secondary" text="Edit My Plan (Free)" />
+        <Button buttonStyle="secondary" text={t("Edit My Plan (Free)")} />
       </View>
     </View>
   );
@@ -862,56 +845,26 @@ function ProfileFooter() {
           </Text>
         </View>
       </View>
-      <Text className="text-gray-800 font-bold text-lg pb-4">
-        Attorney
-        {patient.attorneysCount && patient.attorneysCount > 1 ? "s" : ""} at
-        your disposal
+      <Text className="text-gray-800 font-bold text-lg pb-4">{patient.attorneysCount && patient.attorneysCount > 1 ? t("Attorneys at your disposal") : t("Attorney at your disposal")}
       </Text>
-      <Text className="text-gray-800 font-normal text-lg pb-4">
-        Record Speed will put you in contact with high-rated, licensed
-        profesionals <Text className="font-bold">for free, in no time.</Text>
+      <Text className="text-gray-800 font-normal text-lg pb-4">{t("Record Speed will put you in contact with high-rated, licensed profesionals")}{" "}<Text className="font-bold">{t("for free, in no time.")}</Text>
       </Text>
       <View className="pb-8">
-        <Text className="text-gray-800 font-normal text-base pb-3">
-          Here you'll be able to request attorneys to get in touch with you.
-        </Text>
-        <Text className="text-gray-800 font-normal text-base pb-3">
-          Just click on the toggle at the bottom of the screen to be added onto
-          an public “Looking for Assistance” list within the app.
-        </Text>
-        <Text className="text-gray-800 font-normal text-base pb-3">
-          A little card holding your Record Speed Handle and a button for
-          attorneys to reach out at you will be added to the list.
-        </Text>
-        <Text className="text-gray-800 font-normal text-base pb-3">
-          You can also add a short description about your case. This will help
-          attorneys better understand how they might assiste you.
-        </Text>
-        <Text className="text-gray-800 font-normal text-base pb-3">
-          Once you engage with an attorney, all fee arrangements are your
-          responsibility. Record Speed does not charge for any transactions
-          between you and the third party.
-        </Text>
-        <Text className="text-gray-800 font-normal text-base pb-3">
-          At anytime you wish, turning the toggle off will remove your card from
-          the list.
-        </Text>
-        <Text className="text-gray-800 font-normal text-base pb-3">
-          Before your card is shown, we'll tell you exactly what attorneys can
-          see and ask you to agree.
-        </Text>
-        <Text className="text-gray-800 font-bold text-base pb-3">
-          Go ahead, give it a try!
-        </Text>
+        <Text className="text-gray-800 font-normal text-base pb-3">{t("Here you'll be able to request attorneys to get in touch with you.")}</Text>
+        <Text className="text-gray-800 font-normal text-base pb-3">{t("Just click on the toggle at the bottom of the screen to be added onto an public “Looking for Assistance” list within the app.")}</Text>
+        <Text className="text-gray-800 font-normal text-base pb-3">{t("A little card holding your Record Speed Handle and a button for attorneys to reach out at you will be added to the list.")}</Text>
+        <Text className="text-gray-800 font-normal text-base pb-3">{t("You can also add a short description about your case. This will help attorneys better understand how they might assiste you.")}</Text>
+        <Text className="text-gray-800 font-normal text-base pb-3">{t("Once you engage with an attorney, all fee arrangements are your responsibility. Record Speed does not charge for any transactions between you and the third party.")}</Text>
+        <Text className="text-gray-800 font-normal text-base pb-3">{t("At anytime you wish, turning the toggle off will remove your card from the list.")}</Text>
+        <Text className="text-gray-800 font-normal text-base pb-3">{t("Before your card is shown, we'll tell you exactly what attorneys can see and ask you to agree.")}</Text>
+        <Text className="text-gray-800 font-bold text-base pb-3">{t("Go ahead, give it a try!")}</Text>
       </View>
 
       <PublicToAttorneysSection />
 
       <View className="w-full pt-8">
-        <Text className="text-gray-800 font-bold text-base">Need help?</Text>
-        <Text className="text-blue-600 font-normal text-base">
-          You can contact us at info@rec.speed.com
-        </Text>
+        <Text className="text-gray-800 font-bold text-base">{t("Need help?")}</Text>
+        <Text className="text-blue-600 font-normal text-base">{t("You can contact us at info@rec.speed.com")}</Text>
       </View>
     </View>
   );
@@ -922,7 +875,7 @@ export default function HomePatientProfile() {
   return (
     <>
       <View className="flex items-center">
-        <Text className="text-white font-semibold text-lg">My Profile</Text>
+        <Text className="text-white font-semibold text-lg">{t("My Profile")}</Text>
       </View>
       <View className="relative flex items-center bg-white w-full h-full mt-4 rounded-2xl pb-20">
         {isEditing ? (

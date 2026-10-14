@@ -2,6 +2,7 @@ import { ActivityIndicator, RefreshControl, ScrollView, Text, View } from "react
 import { format } from "date-fns";
 import { useAccessLog } from "@/lib/patient/hooks";
 import { AccessLogEntry } from "@/lib/patient/request";
+import { dateLocale, t } from "@/lib/i18n";
 
 function Entry({ entry }: { entry: AccessLogEntry }) {
   const { who } = entry;
@@ -14,7 +15,7 @@ function Entry({ entry }: { entry: AccessLogEntry }) {
           {who.name}
         </Text>
         <Text className="text-sm text-gray-500">
-          {format(new Date(entry.at), "MMM d, yyyy h:mm a")}
+          {format(new Date(entry.at), "MMM d, yyyy h:mm a", { locale: dateLocale() })}
         </Text>
       </View>
       {!!role && <Text className="text-sm text-gray-500 pt-0.5">{role}</Text>}
@@ -28,7 +29,7 @@ function Entry({ entry }: { entry: AccessLogEntry }) {
         <Text className="text-sm text-gray-500 pt-1">
           {[
             entry.document,
-            entry.recordsRequestId ? `Request #${entry.recordsRequestId}` : null,
+            entry.recordsRequestId ? t("Request #{id}", { id: entry.recordsRequestId }) : null,
           ]
             .filter(Boolean)
             .join(" · ")}
@@ -45,7 +46,7 @@ export default function HomePatientAccessLog() {
   return (
     <>
       <View className="flex items-center mt-4">
-        <Text className="text-white font-semibold text-lg">Who has seen my records</Text>
+        <Text className="text-white font-semibold text-lg">{t("Who has seen my records")}</Text>
       </View>
 
       <View className="flex items-center bg-white w-full h-full mt-4 rounded-2xl">
@@ -54,24 +55,15 @@ export default function HomePatientAccessLog() {
           refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} />}
         >
           <View className="w-full px-6 pt-6 pb-32">
-            <Text className="text-base text-gray-700 pb-2">
-              Everyone who opened, downloaded or worked on your records in the
-              past year, and everyone you shared them with.
-            </Text>
-            <Text className="text-sm text-gray-500 pb-2">
-              If something here looks wrong, contact us at contact@recordspeed.com.
-            </Text>
+            <Text className="text-base text-gray-700 pb-2">{t("Everyone who opened, downloaded or worked on your records in the past year, and everyone you shared them with.")}</Text>
+            <Text className="text-sm text-gray-500 pb-2">{t("If something here looks wrong, contact us at contact@recordspeed.com.")}</Text>
 
             {isLoading && <ActivityIndicator className="pt-8" />}
             {isError && (
-              <Text className="text-base text-red-700 pt-6">
-                We couldn't load this right now. Pull down to try again.
-              </Text>
+              <Text className="text-base text-red-700 pt-6">{t("We couldn't load this right now. Pull down to try again.")}</Text>
             )}
             {entries?.length === 0 && (
-              <Text className="text-base text-gray-500 pt-6">
-                Nobody else has seen your records yet.
-              </Text>
+              <Text className="text-base text-gray-500 pt-6">{t("Nobody else has seen your records yet.")}</Text>
             )}
             {entries?.map((entry) => <Entry key={entry.id} entry={entry} />)}
           </View>

@@ -1,3 +1,4 @@
+import { t } from "@/lib/i18n";
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
 
 export interface EhrConnection {
@@ -24,7 +25,7 @@ export async function startEhrConnection({
   });
   const resBody = await response.json().catch(() => null);
   if (!response.ok) {
-    throw new Error(resBody?.error?.message ?? "MyChart isn't available right now.");
+    throw new Error(resBody?.error?.message ?? t("MyChart isn't available right now."));
   }
   return resBody.data.attributes;
 }

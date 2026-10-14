@@ -5,6 +5,7 @@ import {
   Patient,
 } from "../types";
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import { t } from "@/lib/i18n";
 
 export type PatientToPatch = Partial<
   Omit<
@@ -56,7 +57,7 @@ export async function patchPatient({
   const resBody = await response.json().catch(() => ({}));
   if (!response.ok || !resBody.data) {
     throw new Error(
-      resBody.error?.message ?? "Something went wrong updating your profile."
+      resBody.error?.message ?? t("Something went wrong updating your profile.")
     );
   }
   return (resBody as ApiResource<Patient>).data.attributes;
@@ -83,7 +84,7 @@ export async function fetchAccessLog({
   const response = await fetch(`${API_BASE_URL}/api/v1/patients/access_log`, {
     headers: { "Content-Type": "application/json", Authorization: authToken },
   });
-  if (!response.ok) throw new Error("Couldn't load who has seen your records.");
+  if (!response.ok) throw new Error(t("Couldn't load who has seen your records."));
   return ((await response.json()) as { data: AccessLogEntry[] }).data;
 }
 

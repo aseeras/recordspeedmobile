@@ -10,6 +10,7 @@ import Search from "@/utils/svg/Search";
 import { debounce } from "lodash";
 import { ReactNode, useCallback, useState } from "react";
 import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
+import { t } from "@/lib/i18n";
 
 function MedicalInstitutionTile({
   medicalInstitution,
@@ -76,9 +77,7 @@ function SearchMedicalInstitutionModal({
               ))
             ) : (
               <View className="flex flex-row w-full justify-center items-center my-6">
-                <Text className="text-gray-500 text-base">
-                  No results found
-                </Text>
+                <Text className="text-gray-500 text-base">{t("No results found")}</Text>
               </View>
             )}
           </ScrollView>
@@ -124,7 +123,7 @@ export default function MedicalInstitutionSearch({
           value={query}
           className="border rounded-md text-base border-gray-300 text-gray-400 pl-5 pr-4 py-3"
           autoCapitalize="none"
-          placeholder="Search"
+          placeholder={t("Search")}
           onChangeText={(text) => {
             setShowSearchMedicalInstitutions(false);
             setQuery(text);

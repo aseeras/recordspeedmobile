@@ -9,6 +9,8 @@ import Button from "@/components/Button";
 import { AccountType } from "@/lib/types";
 import People from "@/utils/svg/People";
 import Close from "@/utils/svg/Close";
+import { t } from "@/lib/i18n";
+import LanguageSwitch from "@/components/LanguageSwitch";
 
 const PATIENT_MENU_ITEMS: MenuItem[] = [
   {
@@ -18,7 +20,7 @@ const PATIENT_MENU_ITEMS: MenuItem[] = [
     renderCustom: (onPress, onCloseMenu) => (
       <View className="w-full h-12 px-4 mt-4">
         <Button
-          text="New Medical Request"
+          text={t("New Medical Request")}
           onPress={() => {
             onCloseMenu();
             onPress();
@@ -77,6 +79,15 @@ const PATIENT_MENU_ITEMS: MenuItem[] = [
     },
   },
   {
+    onPress: () => {},
+    renderCustom: () => (
+      <View className="w-full flex-row items-center justify-between px-4 py-3">
+        <Text className="text-lg font-medium text-gray-900">{t("Language")}</Text>
+        <LanguageSwitch />
+      </View>
+    ),
+  },
+  {
     title: "Sign Out",
     icon: () => <SignOut />,
     onPress: () => {
@@ -117,6 +128,15 @@ const ATTORNEY_MENU_ITEMS: MenuItem[] = [
     },
   },
   {
+    onPress: () => {},
+    renderCustom: () => (
+      <View className="w-full flex-row items-center justify-between px-4 py-3">
+        <Text className="text-lg font-medium text-gray-900">{t("Language")}</Text>
+        <LanguageSwitch />
+      </View>
+    ),
+  },
+  {
     title: "Sign Out",
     icon: () => <SignOut />,
     onPress: () => {
@@ -154,7 +174,7 @@ function MenuOption({
         numberOfLines={1}
         className="inline-flex text-lg font-medium text-gray-900 pl-2"
       >
-        {title}
+        {t(title)}
       </Text>
     </Pressable>
   );

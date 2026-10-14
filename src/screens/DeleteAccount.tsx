@@ -4,6 +4,7 @@ import { useState } from "react";
 import Toast from "react-native-toast-message";
 import { useAccountCredentials, useAccountSignOut } from "@/lib/auth/hooks";
 import { deleteAccount } from "@/lib/auth/deleteAccount";
+import { t } from "@/lib/i18n";
 
 const CONFIRMATION = "DELETE";
 
@@ -22,9 +23,9 @@ export default function DeleteAccount({ whatIsDeleted }: { whatIsDeleted: string
       await deleteAccount({ authToken: credentials?.authToken });
       await signOut();
       router.replace("/zero_state");
-      Toast.show({ type: "success", text1: "Your account has been deleted." });
+      Toast.show({ type: "success", text1: t("Your account has been deleted.") });
     } catch (error) {
-      Toast.show({ type: "error", text1: "Account not deleted", text2: `${error.message ?? error}` });
+      Toast.show({ type: "error", text1: t("Account not deleted"), text2: `${error.message ?? error}` });
       setDeleting(false);
     }
   }
@@ -32,25 +33,21 @@ export default function DeleteAccount({ whatIsDeleted }: { whatIsDeleted: string
   return (
     <>
       <View className="flex items-center mt-4">
-        <Text className="text-white font-semibold text-lg">Delete Account</Text>
+        <Text className="text-white font-semibold text-lg">{t("Delete Account")}</Text>
       </View>
 
       <View className="flex items-center bg-white w-full h-full mt-4 rounded-2xl">
         <ScrollView className="w-full" keyboardShouldPersistTaps="handled">
           <View className="w-full p-6">
-            <Text className="text-lg font-semibold text-gray-900 pb-3">This can't be undone</Text>
-            <Text className="text-base text-gray-700 pb-3">
-              Deleting your account permanently removes {whatIsDeleted}. Any subscription is cancelled.
+            <Text className="text-lg font-semibold text-gray-900 pb-3">{t("This can't be undone")}</Text>
+            <Text className="text-base text-gray-700 pb-3">{t("Deleting your account permanently removes {what}. Any subscription is cancelled.", { what: t(whatIsDeleted) })}
             </Text>
-            <Text className="text-base text-gray-700 pb-6">
-              Copies that people have already downloaded aren't affected.
-            </Text>
+            <Text className="text-base text-gray-700 pb-6">{t("Copies that people have already downloaded aren't affected.")}</Text>
 
-            <Text className="text-base text-gray-700 pb-2.5 font-medium">
-              Type {CONFIRMATION} to confirm
+            <Text className="text-base text-gray-700 pb-2.5 font-medium">{t("Type {word} to confirm", { word: CONFIRMATION })}
             </Text>
             <TextInput
-              accessibilityLabel={`Type ${CONFIRMATION} to confirm`}
+              accessibilityLabel={t("Type {word} to confirm", { word: CONFIRMATION })}
               value={confirmation}
               onChangeText={setConfirmation}
               autoCapitalize="characters"
@@ -78,7 +75,7 @@ export default function DeleteAccount({ whatIsDeleted }: { whatIsDeleted: string
                 className="items-center pt-5"
                 onPress={() => (router.canGoBack() ? router.back() : router.replace("/home"))}
               >
-                <Text className="text-indigo-700 text-base">Cancel</Text>
+                <Text className="text-indigo-700 text-base">{t("Cancel")}</Text>
               </Pressable>
             )}
           </View>

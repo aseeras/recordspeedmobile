@@ -10,6 +10,7 @@ import { MedicalRecordRequest, MedicalRecordRequestStatus } from "@/lib/types";
 import { useCurrentAccount } from "@/lib/auth/hooks";
 import ConnectMyChartButton from "@/components/ConnectMyChartButton";
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import { dateLocale, t } from "@/lib/i18n";
 
 export default function MedicalRequestTile({
   medicalRecordRequest,
@@ -30,10 +31,10 @@ export default function MedicalRequestTile({
       <View className={`${isFulfilled ? "pb-2" : "pb-6"}`}>
         <Text className="text-base text-gray-700 font-semibold">
           {isFulfilled && fromMyChart ? (
-            "Imported from MyChart"
+            t("Imported from MyChart")
           ) : isFulfilled ? (
             <>
-              Certified By{" "}
+              {t("Certified By")}{" "}
               <View className="pl-1 pb-0.5">
                 <Check />
               </View>
@@ -52,8 +53,7 @@ export default function MedicalRequestTile({
 
         {medicalRecordRequest.sharingPatient && (
           <>
-            <Text className="text-base text-gray-700 font-semibold pt-2">
-              Shared By{" "}
+            <Text className="text-base text-gray-700 font-semibold pt-2">{t("Shared By")}{" "}
               <View className="pl-1 pb-0.5 pt-3">
                 <User color="blue" />
               </View>
@@ -71,7 +71,8 @@ export default function MedicalRequestTile({
                     "yyyy-MM-dd",
                     new Date()
                   ),
-                  "MMMM dd, yyyy"
+                  "MMMM dd, yyyy",
+                  { locale: dateLocale() }
                 )}
               </Text>
             </View>
@@ -88,7 +89,7 @@ export default function MedicalRequestTile({
           <Badge type={medicalRecordRequest.status.toString()} />
         </View>
         <Text className=" text-sm text-gray-700">
-          {format(createdAt, "MMMM dd, yyyy")}
+          {format(createdAt, "MMMM dd, yyyy", { locale: dateLocale() })}
         </Text>
       </View>
 
@@ -121,9 +122,7 @@ export default function MedicalRequestTile({
                         <Lock />
                       </View>
                     )}
-                    <Text className="text-indigo-700 text-base font-medium">
-                      Read
-                    </Text>
+                    <Text className="text-indigo-700 text-base font-medium">{t("Read")}</Text>
                   </Pressable>
                 </View>
               )}
@@ -145,9 +144,7 @@ export default function MedicalRequestTile({
               router.push(`/share_modal/${medicalRecordRequest.id}`);
             }}
           >
-            <Text className={`text-white text-base font-semibold`}>
-              Share
-            </Text>
+            <Text className={`text-white text-base font-semibold`}>{t("Share")}</Text>
           </Pressable>
         </View>
       )}

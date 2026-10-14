@@ -1,3 +1,4 @@
+import { t } from "@/lib/i18n";
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
 
 // Permanently deletes the signed-in account and everything in it.
@@ -8,6 +9,6 @@ export async function deleteAccount({ authToken }: { authToken: string }): Promi
   });
   if (!response.ok) {
     const resBody = await response.json().catch(() => null);
-    throw new Error(resBody?.error?.message ?? "Your account couldn't be deleted. Please try again.");
+    throw new Error(resBody?.error?.message ?? t("Your account couldn't be deleted. Please try again."));
   }
 }
