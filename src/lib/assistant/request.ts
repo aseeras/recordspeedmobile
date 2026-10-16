@@ -21,7 +21,7 @@ export async function askAssistant({
   authToken: string;
   messages: AssistantMessage[];
   screen?: string;
-}): Promise<{ message: string; suggestions: AssistantSuggestion[] }> {
+}): Promise<{ message: string; suggestions: AssistantSuggestion[]; speech?: string; speechWithheld?: string }> {
   const response = await fetch(`${API_BASE_URL}/api/v1/assistant_messages`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: authToken },
@@ -31,5 +31,6 @@ export async function askAssistant({
   if (!response.ok) {
     throw new Error(body?.error?.message ?? t("The assistant is unavailable right now."));
   }
-  return { message: body.message, suggestions: body.suggestions ?? [] };
+  // speech: a token to hear the reply (see voice.ts); speechWithheld: why not (it included account details).
+  return { message: body.message, suggestions: body.suggestions ?? [], speech: body.speech, speechWithheld: body.speech_withheld };
 }

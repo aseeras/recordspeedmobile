@@ -13,6 +13,7 @@ import { Href, router, useLocalSearchParams } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAccountCredentials } from "@/lib/auth/hooks";
 import { askAssistant, AssistantMessage, AssistantSuggestion } from "@/lib/assistant/request";
+import { useSpokenReplies } from "@/lib/assistant/voice";
 import { t } from "@/lib/i18n";
 
 // Screens the assistant may suggest, per account type, mapped to app routes.
@@ -40,7 +41,7 @@ const STARTERS: Record<string, string[]> = {
   attorney: ["What has been shared with me?", "What plan am I on?", "How do prospects work?"],
 };
 
-type Entry = AssistantMessage & { suggestions?: AssistantSuggestion[]; error?: boolean };
+type Entry = AssistantMessage & { suggestions?: AssistantSuggestion[]; error?: boolean; notSpoken?: boolean };
 
 // The RecordSpeed assistant: answers questions and looks up the user's own requests, shares and plan (read-only).
 export default function AssistantScreen() {
@@ -53,6 +54,7 @@ export default function AssistantScreen() {
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const insets = useSafeAreaInsets();
   const scroll = useRef<ScrollView>(null);
+  const spoken = useSpokenReplies();
 
   // The screen fills the whole display, so lifting the content by the keyboard's height keeps the question
   // box just above the keyboard. Android resizes the window on its own.
@@ -80,10 +82,14 @@ export default function AssistantScreen() {
     setEntries((prev) => [...prev, { role: "user", content: question }]);
     setDraft("");
     setBusy(true);
+    spoken.stop();
     try {
       const reply = await askAssistant({ authToken: credentials.authToken, messages: history, screen: from });
       const suggestions = reply.suggestions.filter((s) => SCREENS[type][s.target]);
-      setEntries((prev) => [...prev, { role: "assistant", content: reply.message, suggestions }]);
+      // Replies with account details are never sent to the voice service, so they stay text; say so.
+      const notSpoken = spoken.voice && reply.speechWithheld === "account_details";
+      setEntries((prev) => [...prev, { role: "assistant", content: reply.message, suggestions, notSpoken }]);
+      if (spoken.voice && reply.speech) spoken.speak(reply.speech);
     } catch (error) {
       setEntries((prev) => [
         ...prev.slice(0, -1),
@@ -96,6 +102,7 @@ export default function AssistantScreen() {
   }
 
   function open(target: string) {
+    spoken.stop();
     router.dismiss();
     router.replace(SCREENS[type][target] as Href);
   }
@@ -110,7 +117,16 @@ export default function AssistantScreen() {
           <Text className="text-lg font-semibold text-gray-900">{t("RecordSpeed assistant")}</Text>
           <Text className="text-xs text-gray-500">{t("AI · can look up your account, read-only")}</Text>
         </View>
-        <Pressable accessibilityRole="button" accessibilityLabel={t("Close")} onPress={() => router.dismiss()} className="w-10 h-10 items-center justify-center rounded-lg border border-gray-300">
+        <Pressable
+          role="switch"
+          aria-checked={spoken.voice}
+          aria-label={t("Read replies aloud")}
+          onPress={spoken.toggle}
+          className={`w-10 h-10 mr-2 items-center justify-center rounded-lg border ${spoken.voice ? "bg-indigo-600 border-indigo-600" : "border-gray-300"}`}
+        >
+          <Text className={`text-base ${spoken.voice ? "text-white" : "text-gray-500"}`}>{spoken.voice ? "🔊" : "🔇"}</Text>
+        </Pressable>
+        <Pressable accessibilityRole="button" accessibilityLabel={t("Close")} onPress={() => { spoken.stop(); router.dismiss(); }} className="w-10 h-10 items-center justify-center rounded-lg border border-gray-300">
           <Text className="text-base text-gray-700">✕</Text>
         </Pressable>
       </View>
@@ -145,6 +161,9 @@ export default function AssistantScreen() {
                 {e.content}
               </Text>
             </View>
+            {e.notSpoken && (
+              <Text className="mt-1 text-[11px] text-gray-500">{t("Not read aloud: it includes details from your account.")}</Text>
+            )}
             {!!e.suggestions?.length && (
               <View className="flex-row flex-wrap mt-2" style={{ gap: 8 }}>
                 {e.suggestions.map((s) => (
