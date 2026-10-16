@@ -1,0 +1,659 @@
+Timestamp               Ty Process[PID:TID]
+2026-10-16 01:12:15.788 Df RecordSpeed[72435:2c18f] [com.apple.xpc:connection] [0x109726b00] activating connection: mach=true listener=false peer=false name=com.apple.cfprefsd.daemon
+2026-10-16 01:12:15.791 Df RecordSpeed[72435:2c18f] [com.apple.UserNotifications:Connections] [com.recordspeed.app] Creating a user notification center
+2026-10-16 01:12:15.816 Df RecordSpeed[72435:2c18f] (libMobileGestalt.dylib) No persisted cache on this platform.
+2026-10-16 01:12:15.819 A  RecordSpeed[72435:2c1d6] (CoreFoundation) Loading Preferences From User Session CFPrefsD
+2026-10-16 01:12:15.819 Df RecordSpeed[72435:2c1d5] [com.apple.UIKit:BackgroundTask] Creating new assertion because there is no existing background assertion.
+2026-10-16 01:12:15.819 Df RecordSpeed[72435:2c1d5] [com.apple.UIKit:BackgroundTask] Creating new background assertion
+2026-10-16 01:12:15.820 Df RecordSpeed[72435:2c1d5] [com.apple.UIKit:BackgroundTask] Created new background assertion <BKSProcessAssertion: 0x10972ffd0>
+2026-10-16 01:12:15.820 Df RecordSpeed[72435:2c1d5] [com.apple.runningboard:connection] Initializing connection
+2026-10-16 01:12:15.820 Df RecordSpeed[72435:2c1d5] [com.apple.runningboard:process] Removing all cached process handles
+2026-10-16 01:12:15.820 Df RecordSpeed[72435:2c1d8] [com.apple.runningboard:connection] Sending handshake request attempt #1 to server
+2026-10-16 01:12:15.820 Df RecordSpeed[72435:2c1d5] [com.apple.runningboard:connection] Creating connection to com.apple.runningboard
+2026-10-16 01:12:15.820 Df RecordSpeed[72435:2c1d2] [com.apple.BoardServices:XPCErrors] [C:1] Alloc com.apple.frontboard.systemappservices
+2026-10-16 01:12:15.820 Df RecordSpeed[72435:2c1d5] [com.apple.xpc:connection] [0x10ae30000] activating connection: mach=true listener=false peer=false name=com.apple.runningboard
+2026-10-16 01:12:15.821 Df RecordSpeed[72435:2c1d2] [com.apple.xpc:connection] [0x10ae30280] activating connection: mach=false listener=false peer=false name=(anonymous)
+2026-10-16 01:12:15.822 Df RecordSpeed[72435:2c1d8] [com.apple.runningboard:connection] Handshake succeeded
+2026-10-16 01:12:15.824 A  RecordSpeed[72435:2c1d9] (RunningBoardServices) didChangeInheritances
+2026-10-16 01:12:15.835 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:Application] Deactivation reason added: 10; deactivation reasons: 0 -> 1024; animating application lifecycle event: 0
+2026-10-16 01:12:15.835 Df RecordSpeed[72435:2c1d8] [com.apple.runningboard:connection] Identity resolved as app<com.recordspeed.app((null))>
+2026-10-16 01:12:15.835 Df RecordSpeed[72435:2c18f] [com.apple.BoardServices:Injection] activating monitor for service com.apple.frontboard.open
+2026-10-16 01:12:15.836 Df RecordSpeed[72435:2c1d5] [com.apple.UIKit:BackgroundTask] Incrementing reference count for background assertion <BKSProcessAssertion: 0x10972ffd0>
+2026-10-16 01:12:15.837 Df RecordSpeed[72435:2c18f] [com.apple.BoardServices:Injection] activating monitor for service com.apple.frontboard.workspace-service
+2026-10-16 01:12:15.837 Df RecordSpeed[72435:2c1d5] [com.apple.UIKit:BackgroundTask] Created background task <_UIBackgroundTaskInfo: 0x10ad18d00>: taskID = 1, taskName = Launch Background Task for Coalescing, creationTime = 2468 (elapsed = 0).
+2026-10-16 01:12:15.838 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UIApplicationSceneKeyboardSettings on FBSSceneSettings
+2026-10-16 01:12:15.840 Df RecordSpeed[72435:2c18f] [com.apple.FrontBoard:Common] FBSWorkspace registering source: com.apple.frontboard.systemappservices
+2026-10-16 01:12:15.840 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneOcclusionSettings> on FBSSceneSettings
+2026-10-16 01:12:15.841 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneInterfaceProtectionSettings> on FBSSceneSettings
+2026-10-16 01:12:15.841 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneLayoutPreferencesHostSettingsExtension on FBSSceneSettings
+2026-10-16 01:12:15.841 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneSafeAreaSettingsExtension on FBSSceneSettings
+2026-10-16 01:12:15.841 Df RecordSpeed[72435:2c18f] [com.apple.FrontBoard:Common] FBSWorkspace connected to endpoint : <BSServiceConnectionEndpoint: 0x10ade0b60; target: com.apple.frontboard.systemappservices; service: com.apple.frontboard.workspace-service>
+2026-10-16 01:12:15.841 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneLayoutPreferenceClientSettingsExtension on FBSSceneClientSettings
+2026-10-16 01:12:15.841 Df RecordSpeed[72435:2c18f] [com.apple.FrontBoard:Common] <FBSWorkspaceScenesClient:0x10ad6cb40 com.apple.frontboard.systemappservices> attempting immediate handshake from activate
+2026-10-16 01:12:15.842 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UIHomeAffordanceHostSceneSettings> on FBSSceneSettings
+2026-10-16 01:12:15.842 Df RecordSpeed[72435:2c18f] [com.apple.FrontBoard:Common] <FBSWorkspaceScenesClient:0x10ad6cb40 com.apple.frontboard.systemappservices> sent handshake
+2026-10-16 01:12:15.842 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISystemShellSceneHostingEnvironmentSettings on FBSSceneSettings
+2026-10-16 01:12:15.842 Df RecordSpeed[72435:2c18f] [com.apple.runningboard:general] Added observer for process assertions expiration warning: <_RBSExpirationWarningClient: 0x10ade1220>
+2026-10-16 01:12:15.843 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneRenderingEnvironmentSettings on FBSSceneSettings
+2026-10-16 01:12:15.843 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneRenderingEnvironmentClientSettings> on FBSSceneClientSettings
+2026-10-16 01:12:15.843 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneTransitioningHostSettings> on FBSSceneSettings
+2026-10-16 01:12:15.843 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneFocusSystemSettings> on FBSSceneSettings
+2026-10-16 01:12:15.843 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneOrientationSettingsExtension on FBSSceneSettings
+2026-10-16 01:12:15.843 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneOrientationClientSettingsExtension on FBSSceneClientSettings
+2026-10-16 01:12:15.843 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneWindowingControlClientSettings on FBSSceneClientSettings
+2026-10-16 01:12:15.844 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneHostingContentSizePreferenceClientSettings> on FBSSceneClientSettings
+2026-10-16 01:12:15.844 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneHostingTraitCollectionPropagationSettings on FBSSceneSettings
+2026-10-16 01:12:15.844 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneHostingSheetPresentationSettings> on FBSSceneSettings
+2026-10-16 01:12:15.844 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneHostingSheetPresentationClientSettings> on FBSSceneClientSettings
+2026-10-16 01:12:15.844 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneHostingEventDeferringSettings> on FBSSceneSettings
+2026-10-16 01:12:15.845 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <UIKit__UITypedKeyValueSceneSettings> on FBSSceneSettings
+2026-10-16 01:12:15.845 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <UIKit__UITypedKeyValueSceneSettings> on FBSSceneClientSettings
+2026-10-16 01:12:15.845 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneHostingViewControllerPreferencePropagationClientSettings> on FBSSceneClientSettings
+2026-10-16 01:12:15.846 Df RecordSpeed[72435:2c1d5] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneZoomTransitionSettings> on FBSSceneSettings
+2026-10-16 01:12:15.846 Df RecordSpeed[72435:2c1d8] [com.apple.FrontBoard:SceneExtension] Realizing settings extension FBSSceneSettingsCore on FBSSceneSettings
+2026-10-16 01:12:15.848 Df RecordSpeed[72435:2c1d8] [com.apple.FrontBoard:SceneExtension] Realizing settings extension FBSSceneClientSettingsCore on FBSSceneClientSettings
+2026-10-16 01:12:15.852 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:UIScreen] Evaluated capturing state as 0 on <UIScreen: 0x10ae303c0> for initial
+2026-10-16 01:12:15.852 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:UIScreen] Evaluated capturing state as 0 on <UIScreen: 0x10ae303c0> for CADisplay KVO
+2026-10-16 01:12:15.853 Df RecordSpeed[72435:2c18f] [com.apple.Accessibility:AXSupportCommon] Read CategoryName: per-app = 1, category name = (null)
+2026-10-16 01:12:15.853 Df RecordSpeed[72435:2c18f] [com.apple.Accessibility:AXSupportCommon] Read CategoryName: per-app = 0, category name = (null)
+2026-10-16 01:12:15.862 Df RecordSpeed[72435:2c1d8] [com.apple.FrontBoard:SceneExtension] UIMutableApplicationSceneSettings setting counterpart class: UIApplicationSceneSettings
+2026-10-16 01:12:15.863 Df RecordSpeed[72435:2c1d8] [com.apple.FrontBoard:SceneExtension] UIMutableApplicationSceneClientSettings setting counterpart class: UIApplicationSceneClientSettings
+2026-10-16 01:12:15.863 Df RecordSpeed[72435:2c1d8] [com.apple.FrontBoard:SceneExtension] Realizing settings extension FBSSceneTransitionContextCore on FBSSceneTransitionContext
+2026-10-16 01:12:15.863 Df RecordSpeed[72435:2c18f] [com.apple.dt.xctest:Default] Registering for test daemon availability notify post.
+2026-10-16 01:12:15.864 Df RecordSpeed[72435:2c18f] [com.apple.dt.xctest:Default] notify_get_state check indicated test daemon not ready.
+2026-10-16 01:12:15.864 Df RecordSpeed[72435:2c18f] [com.apple.dt.xctest:Default] notify_get_state check indicated test daemon not ready.
+2026-10-16 01:12:15.864 Df RecordSpeed[72435:2c18f] [com.apple.dt.xctest:Default] notify_get_state check indicated test daemon not ready.
+2026-10-16 01:12:15.865 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:UpdateScheduler] Selected display: name=LCD (PurpleMain), id=1
+2026-10-16 01:12:15.866 Df RecordSpeed[72435:2c18f] [com.apple.app_launch_measurement:ApplicationLaunch] alm_acquire_pageins_recording_assertion: acquired pageins recording assertion!
+2026-10-16 01:12:15.868 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:BackgroundTask] Will add backgroundTask with taskName: Persistent SceneSession Map Update, expirationHandler: <__NSGlobalBlock__: 0x1e78c84e8>
+2026-10-16 01:12:15.868 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:BackgroundTask] Reusing background assertion <BKSProcessAssertion: 0x10972ffd0>
+2026-10-16 01:12:15.868 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:BackgroundTask] Incrementing reference count for background assertion <BKSProcessAssertion: 0x10972ffd0>
+2026-10-16 01:12:15.868 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:BackgroundTask] Created background task <_UIBackgroundTaskInfo: 0x10aeb02c0>: taskID = 2, taskName = Persistent SceneSession Map Update, creationTime = 2468 (elapsed = 0).
+2026-10-16 01:12:15.869 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:Application] Deactivation reason added: 5; deactivation reasons: 1024 -> 1056; animating application lifecycle event: 1
+2026-10-16 01:12:15.870 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x10972a880> (16A11AA5-2293-44E5-A148-B65E2FCDFE81)
+2026-10-16 01:12:15.870 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:InterfaceStyle] Should send trait collection or coordinate space update, interface style 1 -> 1, <UIWindowScene: 0x10972a880> (16A11AA5-2293-44E5-A148-B65E2FCDFE81)
+2026-10-16 01:12:15.871 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x10972a880> (16A11AA5-2293-44E5-A148-B65E2FCDFE81)
+2026-10-16 01:12:15.871 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:HomeAffordanceObservation] Initializing: <_UIHomeAffordanceSceneNotifier: 0x10aed4bd0>; with scene: <UIWindowScene: 0x10972a880>
+2026-10-16 01:12:15.872 Df RecordSpeed[72435:2c18f] [com.apple.BacklightServices:scenes] 0x10aedd320 setDelegate:<0x10aeddce0 _UIBacklightEnvironment> hasDelegate:YES for environment:sceneID:com.recordspeed.app-default
+2026-10-16 01:12:15.873 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x10972a880> (16A11AA5-2293-44E5-A148-B65E2FCDFE81)
+2026-10-16 01:12:15.873 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:EventDeferring] [0x10aed4d90] Initialized with scene: <UIWindowScene: 0x10972a880>; behavior: <_UIEventDeferringBehavior_iOS: 0x10ade2e80>; availableForProcess: 1, systemShellManagesKeyboardFocus: 1
+2026-10-16 01:12:15.873 Df RecordSpeed[72435:2c18f] [com.apple.BoardServices:XPCErrors] [C:2] Alloc com.apple.backboard.hid-services.xpc
+2026-10-16 01:12:15.873 Df RecordSpeed[72435:2c18f] [com.apple.xpc:connection] [0x10ae30c80] activating connection: mach=false listener=false peer=false name=(anonymous)
+2026-10-16 01:12:15.875 Df RecordSpeed[72435:2c1d9] [com.apple.BackBoard:EventDelivery] BKSHIDEventObserver - connection activation
+2026-10-16 01:12:15.875 Df RecordSpeed[72435:2c18f] [com.apple.BackBoard:EventDelivery] policyStatus:<BKSHIDEventDeliveryPolicyObserver: 0x10acd90e0; process scope; status: target> was:none
+2026-10-16 01:12:15.875 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:KeyWindow] Setting default evaluation strategy for UIUserInterfaceIdiomPhone to LastOneWins
+2026-10-16 01:12:15.875 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:KeyWindow] Scene target of keyboard event deferring environment did change: 1; scene: UIWindowScene: 0x10972a880; scene identity: com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.recordspeed.app-default
+2026-10-16 01:12:15.875 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:EventDeferring] [0x10aed4d90] Scene target of event deferring environments did update: scene: 0x10972a880; current systemShellManagesKeyboardFocus: 1; systemShellManagesKeyboardFocusForScene: 1; eligibleForRecordRemoval: 1;
+2026-10-16 01:12:15.875 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:KeyWindow] Scene became target of keyboard event deferring environment: UIWindowScene: 0x10972a880; scene identity: com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.recordspeed.app-default
+2026-10-16 01:12:15.875 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:KeyWindow] Stack[KeyWindow] 0x10aedc930: Taking no further action for migration from LastOneWins -> SystemShellManaged as there are no scenes
+2026-10-16 01:12:15.875 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:KeyWindow] Setting default evaluation strategy for UIUserInterfaceIdiomPhone to SystemShellManaged
+2026-10-16 01:12:15.875 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:KeyWindow] Key window needs update: 0; currentKeyWindowScene: 0x0; evaluatedKeyWindowScene: 0x10972a880; currentApplicationKeyWindow: 0x0; evaluatedApplicationKeyWindow: 0x0; reason: UIWindowScene: 0x10972a880: Window scene became target of keyboard environment
+2026-10-16 01:12:15.875 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x10972a880> (16A11AA5-2293-44E5-A148-B65E2FCDFE81)
+2026-10-16 01:12:15.875 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x10972a880> (16A11AA5-2293-44E5-A148-B65E2FCDFE81)
+2026-10-16 01:12:15.876 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x10972a880> (16A11AA5-2293-44E5-A148-B65E2FCDFE81)
+2026-10-16 01:12:15.877 F  RecordSpeed[72435:2c18f] [com.apple.runtime-issues:UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-10-16 01:12:15.877 A  RecordSpeed[72435:2c18f] (libsystem_trace.dylib) Activity for state dumps
+2026-10-16 01:12:15.877 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x10972a880> (16A11AA5-2293-44E5-A148-B65E2FCDFE81)
+2026-10-16 01:12:15.879 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:AppLifecycle] sceneOfRecord: sceneID: sceneID:com.recordspeed.app-default  persistentID: 16A11AA5-2293-44E5-A148-B65E2FCDFE81
+2026-10-16 01:12:15.880 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:Application] Ignoring already applied deactivation reason: 5; deactivation reasons: 1056
+2026-10-16 01:12:15.880 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:Application] Deactivation reason added: 11; deactivation reasons: 1056 -> 3104; animating application lifecycle event: 1
+2026-10-16 01:12:15.880 Df RecordSpeed[72435:2c18f] [com.apple.KeyboardArbiter:Client] startConnection
+2026-10-16 01:12:15.882 Df RecordSpeed[72435:2c18f] [com.apple.xpc:connection] [0x10ae31400] activating connection: mach=true listener=false peer=false name=com.apple.UIKit.KeyboardManagement.hosted
+2026-10-16 01:12:15.883 Df RecordSpeed[72435:2c18f] (UIKitCore) You've implemented -[<UIApplicationDelegate> application:performFetchWithCompletionHandler:], but you still need to add "fetch" to the list of your supported UIBackgroundModes in your Info.plist.
+2026-10-16 01:12:15.883 Df RecordSpeed[72435:2c18f] (UIKitCore) You've implemented -[<UIApplicationDelegate> application:didReceiveRemoteNotification:fetchCompletionHandler:], but you still need to add "remote-notification" to the list of your supported UIBackgroundModes in your Info.plist.
+2026-10-16 01:12:15.884 Df RecordSpeed[72435:2c18f] (React) _setUpFeatureFlags called with release level 2
+2026-10-16 01:12:15.977 Df RecordSpeed[72435:2c18f] (UIKitCore) Could not load the "SplashScreen" image referenced from a nib in the bundle with identifier "com.recordspeed.app"
+2026-10-16 01:12:15.986 Df RecordSpeed[72435:2c1d2] [com.apple.network:] networkd_settings_read_from_file_locked initialized networkd settings by reading plist directly
+2026-10-16 01:12:15.987 Df RecordSpeed[72435:2c1d2] [com.apple.network:] networkd_settings_read_from_file_locked initialized networkd settings by reading plist directly
+2026-10-16 01:12:15.993 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Task <6D162DB7-DEA3-45BA-A116-F96CD89EE60F>.<1> resuming, timeouts(60.0, 604800.0) qos(0x19) voucher(<OS_voucher: 0x10ae55040>) activity(00000000-0000-0000-0000-000000000000)
+2026-10-16 01:12:15.994 A  RecordSpeed[72435:2c1d5] (CoreFoundation) Loading Preferences From User Session CFPrefsD
+2026-10-16 01:12:16.010 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:Orientation] <UIWindowScene: 0x10972a880> (16A11AA5-2293-44E5-A148-B65E2FCDFE81) Scene updated orientation preferences: none -> ( Pu )
+2026-10-16 01:12:16.018 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Initializing NSHTTPCookieStorage singleton
+2026-10-16 01:12:16.019 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Initializing CFHTTPCookieStorage singleton
+2026-10-16 01:12:16.019 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Creating default cookie storage with process/bundle identifier
+2026-10-16 01:12:16.019 A  RecordSpeed[72435:2c1d5] (libsystem_containermanager.dylib) container_system_group_path_for_identifier
+2026-10-16 01:12:16.019 Df RecordSpeed[72435:2c1d5] [com.apple.containermanager:xpc] Requesting container lookup; class = 13, identifier = com.apple.nsurlsessiond, group_identifier = systemgroup.com.apple.nsurlstoragedresources, create = 1, temp = 0, euid = 501, uid = 501
+2026-10-16 01:12:16.020 A  RecordSpeed[72435:2c1d5] (libsystem_containermanager.dylib) container_query_t
+2026-10-16 01:12:16.020 Df RecordSpeed[72435:2c1d5] [com.apple.containermanager:xpc] Query; euid = 501, uid = 501, class = 13, identifier = [com.apple.nsurlsessiond](1), flags = 900000003
+2026-10-16 01:12:16.022 Df RecordSpeed[72435:2c1d5] [com.apple.containermanager:unspecified] _container_query_get_result_at_index: success
+2026-10-16 01:12:16.022 A  RecordSpeed[72435:2c1d5] (libsystem_containermanager.dylib) container_copy_object
+2026-10-16 01:12:16.022 Df RecordSpeed[72435:2c1d5] [com.apple.containermanager:unspecified] container_system_group_path_for_identifier: success
+2026-10-16 01:12:16.022 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Initializing AlternativeServices Storage singleton
+2026-10-16 01:12:16.023 Df RecordSpeed[72435:2c1d5] [com.apple.FileURL:default] kExcludedFromBackupXattrName set on path: /Users/runner/Library/Developer/CoreSimulator/Devices/66EA9878-1C45-4F8F-8922-E00C331155E8/data/Containers/Data/Application/30F60578-8D75-4B1D-9E37-3095F9E4CBC3/Library/HTTPStorages/com.recordspeed.app
+2026-10-16 01:12:16.025 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:KeyWindow] Key window API is scene-level: YES
+2026-10-16 01:12:16.025 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:KeyWindow] UIWindowScene: 0x10972a880: Window became key in scene: UIWindow: 0x10ae38000; contextId: 0x41CB67C1: reason: UIWindowScene: 0x10972a880: Window requested to become key in scene: 0x10ae38000
+2026-10-16 01:12:16.025 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:KeyWindow] Key window needs update: 1; currentKeyWindowScene: 0x0; evaluatedKeyWindowScene: 0x10972a880; currentApplicationKeyWindow: 0x0; evaluatedApplicationKeyWindow: 0x10ae38000; reason: UIWindowScene: 0x10972a880: Window requested to become key in scene: 0x10ae38000
+2026-10-16 01:12:16.025 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:KeyWindow] Window did become application key: UIWindow: 0x10ae38000; contextId: 0x41CB67C1; scene identity: com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.recordspeed.app-default
+2026-10-16 01:12:16.025 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:EventDeferring] [0x10aed4d90] Begin local event deferring requested for token: 0x10acd8e40; environments: 1; reason: UIWindowScene: 0x10972a880: Begin event deferring in keyboardFocus for window: 0x10ae38000
+2026-10-16 01:12:16.028 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:Application] Deactivation reason removed: 10; deactivation reasons: 3104 -> 2080; animating application lifecycle event: 1
+2026-10-16 01:12:16.028 Df RecordSpeed[72435:2c1da] [com.apple.BackBoard:EventDelivery] BKSHIDEventDeliveryManager - connection activation
+2026-10-16 01:12:16.029 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:Application] Deactivation reason added: 12; deactivation reasons: 2080 -> 6176; animating application lifecycle event: 1
+2026-10-16 01:12:16.029 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:Application] Deactivation reason removed: 11; deactivation reasons: 6176 -> 4128; animating application lifecycle event: 1
+2026-10-16 01:12:16.029 Df RecordSpeed[72435:2c18f] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneIntelligenceSupportSettings> on FBSSceneSettings
+2026-10-16 01:12:16.031 Df RecordSpeed[72435:2c1d6] [com.apple.BackBoard:EventDelivery] policyStatus:<BKSHIDEventDeliveryPolicyObserver: 0x10acd90e0; token: com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.recordspeed.app-default; status: ancestor> was:target
+2026-10-16 01:12:16.032 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x10972a880> (16A11AA5-2293-44E5-A148-B65E2FCDFE81)
+2026-10-16 01:12:16.032 Df RecordSpeed[72435:2c1da] [com.apple.UIIntelligenceSupport:xpc] establishing connection to agent
+2026-10-16 01:12:16.033 Df RecordSpeed[72435:2c1da] [com.apple.xpc:session] [0x10ae554a0] Session created.
+2026-10-16 01:12:16.034 Df RecordSpeed[72435:2c1da] [com.apple.xpc:session] [0x10ae554a0] Session created from connection [0x10afe0500]
+2026-10-16 01:12:16.035 Df RecordSpeed[72435:2c1da] [com.apple.xpc:connection] [0x10afe0500] activating connection: mach=true listener=false peer=false name=com.apple.uiintelligencesupport.agent
+2026-10-16 01:12:16.043 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Connection 0: creating secure tcp or quic connection
+2026-10-16 01:12:16.048 Df RecordSpeed[72435:2c1da] [com.apple.xpc:session] [0x10ae554a0] Session activated
+2026-10-16 01:12:16.052 Df RecordSpeed[72435:2c18f] [com.apple.xpc:connection] [0x10afe0140] activating connection: mach=true listener=false peer=false name=com.apple.lsd.mapdb
+2026-10-16 01:12:16.070 Df RecordSpeed[72435:2c18f] [com.apple.network:activity] Create activity from XPC object <nw_activity 50:1 [B5C2BBD9-59E3-45B8-81FE-606CA0948A68] (reporting strategy default)>
+2026-10-16 01:12:16.070 Df RecordSpeed[72435:2c18f] [com.apple.network:activity] Create activity from XPC object <nw_activity 50:2 [8B13E222-47E7-4DF9-B474-9D4834FF8821] (reporting strategy default)>
+2026-10-16 01:12:16.070 Df RecordSpeed[72435:2c18f] [com.apple.network:activity] Set activity <nw_activity 50:1 [B5C2BBD9-59E3-45B8-81FE-606CA0948A68] (reporting strategy default)> as the global parent
+2026-10-16 01:12:16.070 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:BackgroundTask] Ending background task with UIBackgroundTaskIdentifier: 1
+2026-10-16 01:12:16.070 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:BackgroundTask] Ending task with identifier 1 and description: <_UIBackgroundTaskInfo: 0x10ad18d00>: taskID = 1, taskName = Launch Background Task for Coalescing, creationTime = 2468 (elapsed = 1), _expireHandler: (null)
+2026-10-16 01:12:16.070 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:BackgroundTask] Decrementing reference count for assertion <BKSProcessAssertion: 0x10972ffd0> (used by background task with identifier 1: <_UIBackgroundTaskInfo: 0x10ad18d00>: taskID = 1, taskName = Launch Background Task for Coalescing, creationTime = 2468 (elapsed = 1))
+2026-10-16 01:12:16.070 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:EventBus] Event Timing Profile for Touch: not found, path="/System/Library/EventTimingProfiles/Sim.Touch.plist"
+2026-10-16 01:12:16.070 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:EventBus] Event Timing Profile for Pencil: not found, path="/System/Library/EventTimingProfiles/Sim.Pencil.plist"
+2026-10-16 01:12:16.070 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:UpdateScheduler] Target list changed: <CADisplay:LCD PurpleMain>
+2026-10-16 01:12:16.071 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:AppLifecycle] sceneOfRecord: sceneID: sceneID:com.recordspeed.app-default  persistentID: 16A11AA5-2293-44E5-A148-B65E2FCDFE81
+2026-10-16 01:12:16.072 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x10972a880> (16A11AA5-2293-44E5-A148-B65E2FCDFE81)
+2026-10-16 01:12:16.073 Sd RecordSpeed[72435:0] (21AB2359-DEEC-3444-94FE-B7257E43BE34) IOHIDManager State
+{
+    DispatchQueue = 0;
+    RunLoop = 1;
+    createOptions = 0;
+    isOpen = 0;
+    openOptions = 0;
+}
+2026-10-16 01:12:16.073 A  RecordSpeed[72435:2c1de] (RunningBoardServices) didChangeInheritances
+2026-10-16 01:12:16.084 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Connection 1: enabling TLS
+2026-10-16 01:12:16.084 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Connection 1: starting, TC(0x0)
+2026-10-16 01:12:16.085 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C1 C95CC86D-5F37-48C1-AB1F-13BE97E19E9B Hostname#8d505fbb:443 quic-connection, url: https://u.expo.dev/82f173e3-9aff-489c-bb33-a77f7ae4f036, definite, attribution: developer, context: com.apple.CFNetwork.NSURLSession.{C651EF5E-E4AE-4814-8EE3-DDE3977F2596}{(null)}{Y}{2}{0x0} (private), proc: D8EF5D7A-CBE6-3E90-9027-58B77ABBB098, delegated upid: 0] start
+2026-10-16 01:12:16.086 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C1 Hostname#8d505fbb:443 initial parent-flow ((null))] event: path:start @0.000s
+2026-10-16 01:12:16.137 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:EventDeferring] [0x10aed4d90] Scene target of event deferring environments did update: scene: 0x10972a880; current systemShellManagesKeyboardFocus: 1; systemShellManagesKeyboardFocusForScene: 1; eligibleForRecordRemoval: 1;
+2026-10-16 01:12:16.137 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:KeyWindow] Scene became target of keyboard event deferring environment: UIWindowScene: 0x10972a880; scene identity: com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.recordspeed.app-default
+2026-10-16 01:12:16.141 Df RecordSpeed[72435:2c18f] [com.apple.FrontBoard:SceneExtension] Realizing settings extension SBUISecureRenderingSettingsExtension on FBSSceneSettings
+2026-10-16 01:12:16.143 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x10972a880> (16A11AA5-2293-44E5-A148-B65E2FCDFE81)
+2026-10-16 01:12:16.145 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x10972a880> (16A11AA5-2293-44E5-A148-B65E2FCDFE81)
+2026-10-16 01:12:16.145 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:AppLifecycle] sceneOfRecord: sceneID: sceneID:com.recordspeed.app-default  persistentID: 16A11AA5-2293-44E5-A148-B65E2FCDFE81
+2026-10-16 01:12:16.146 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:Application] Deactivation reason removed: 12; deactivation reasons: 4128 -> 32; animating application lifecycle event: 1
+2026-10-16 01:12:16.146 Df RecordSpeed[72435:2c18f] [com.apple.KeyboardArbiter:Client] Send setDeactivating: N (-DeactivationReason:SuspendedEventsOnly)
+2026-10-16 01:12:16.146 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:Application] Deactivation reason removed: 5; deactivation reasons: 32 -> 0; animating application lifecycle event: 0
+2026-10-16 01:12:16.148 Df RecordSpeed[72435:2c18f] [com.apple.KeyboardArbiter:Client] startConnection
+2026-10-16 01:12:16.149 Df RecordSpeed[72435:2c18f] [com.apple.KeyboardArbiter:Client] handleKeyboardChange: set currentKeyboard:N (wasKeyboard:N)
+2026-10-16 01:12:16.157 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:KeyboardSceneDelegate] forceReloadInputViews
+2026-10-16 01:12:16.157 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:KeyboardSceneDelegate] Reloading input views for key-window scene responder: <(null): 0x0; > force:Y
+2026-10-16 01:12:16.161 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:KeyboardArbiterClientLog] isWritingToolsHandlingKeyboardTracking:Y (WT ready:Y, Arbiter ready:Y)
+2026-10-16 01:12:16.162 Df RecordSpeed[72435:2c18f] (UIKitCore) Unbalanced calls to begin/end appearance transitions for <UIViewController: 0x10ae38800>.
+2026-10-16 01:12:16.205 Df RecordSpeed[72435:2c18f] [com.apple.network:activity] <nw_activity 50:1 [B5C2BBD9-59E3-45B8-81FE-606CA0948A68] (global parent) (reporting strategy default) complete (reason success)> complete with reason 2 (success), duration 2312ms
+2026-10-16 01:12:16.205 Df RecordSpeed[72435:2c18f] [com.apple.network:activity] <nw_activity 50:2 [8B13E222-47E7-4DF9-B474-9D4834FF8821] (reporting strategy default) complete (reason success)> complete with reason 2 (success), duration 2312ms
+2026-10-16 01:12:16.205 Df RecordSpeed[72435:2c18f] [com.apple.network:activity] Unsetting the global parent activity <nw_activity 50:1 [B5C2BBD9-59E3-45B8-81FE-606CA0948A68] (global parent) (reporting strategy default) complete (reason success)>
+2026-10-16 01:12:16.205 Df RecordSpeed[72435:2c18f] [com.apple.network:activity] Unset the global parent activity
+2026-10-16 01:12:16.205 Df RecordSpeed[72435:2c18f] [com.apple.app_launch_measurement:ApplicationLaunch] alm_release_pageins_recording_assertion: releasing pageins recording assertion
+2026-10-16 01:12:16.237 Df RecordSpeed[72435:2c1d2] [com.apple.CFNetwork:Default] Garbage collection for alternative services
+2026-10-16 01:12:16.256 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C1 Hostname#8d505fbb:443 waiting parent-flow (satisfied (Path is satisfied), interface: en0)] event: path:satisfied @0.169s, uuid: 0B6E0A4C-40E1-45AA-A17F-BFCE17B42EBE
+2026-10-16 01:12:16.271 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C1 Hostname#8d505fbb:443 in_progress parent-flow (satisfied (Path is satisfied), interface: en0)] event: flow:start_connect @0.185s
+2026-10-16 01:12:16.271 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C1] reporting state preparing
+2026-10-16 01:12:16.327 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C1 Hostname#8d505fbb:443 in_progress parent-flow (satisfied (Path is satisfied), interface: en0)] event: flow:start_child @0.241s
+2026-10-16 01:12:16.327 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C1.1 Hostname#8d505fbb:443 initial path ((null))] event: path:start @0.241s
+2026-10-16 01:12:16.327 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C1.1 Hostname#8d505fbb:443 waiting path (satisfied (Path is satisfied), interface: en0)] event: path:satisfied @0.241s, uuid: 0B6E0A4C-40E1-45AA-A17F-BFCE17B42EBE
+2026-10-16 01:12:16.327 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C1.1 Hostname#8d505fbb:443 in_progress transform (satisfied (Path is satisfied), interface: en0)] event: transform:start @0.241s
+2026-10-16 01:12:16.328 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C1.1.1 Hostname#8d505fbb:443 initial path ((null))] event: path:start @0.241s
+2026-10-16 01:12:16.368 Df RecordSpeed[72435:2c18f] [com.apple.Accessibility:AXCommon] Read Per-App on Init: Smart invert = (null)
+2026-10-16 01:12:16.389 Df RecordSpeed[72435:2c1d9] [com.apple.UIKit:BackgroundTask] Ending background task with UIBackgroundTaskIdentifier: 2
+2026-10-16 01:12:16.389 Df RecordSpeed[72435:2c1d9] [com.apple.UIKit:BackgroundTask] Ending task with identifier 2 and description: <_UIBackgroundTaskInfo: 0x10aeb02c0>: taskID = 2, taskName = Persistent SceneSession Map Update, creationTime = 2468 (elapsed = 1), _expireHandler: <__NSGlobalBlock__: 0x1e78c84e8>
+2026-10-16 01:12:16.389 Df RecordSpeed[72435:2c1d9] [com.apple.UIKit:BackgroundTask] Decrementing reference count for assertion <BKSProcessAssertion: 0x10972ffd0> (used by background task with identifier 2: <_UIBackgroundTaskInfo: 0x10aeb02c0>: taskID = 2, taskName = Persistent SceneSession Map Update, creationTime = 2468 (elapsed = 1))
+2026-10-16 01:12:16.389 Df RecordSpeed[72435:2c1d9] [com.apple.UIKit:BackgroundTask] Will invalidate assertion: <BKSProcessAssertion: 0x10972ffd0> for task identifier: 2
+2026-10-16 01:12:16.489 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C1.1.1 Hostname#8d505fbb:443 waiting path (satisfied (Path is satisfied), interface: en0)] event: path:satisfied @0.403s, uuid: D82D203A-536E-4C15-B340-065DCF9038DD
+2026-10-16 01:12:16.513 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C1.1.1 Hostname#8d505fbb:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] event: resolver:start_dns @0.427s
+2026-10-16 01:12:16.536 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Task <6D162DB7-DEA3-45BA-A116-F96CD89EE60F>.<1> setting up Connection 1
+2026-10-16 01:12:16.563 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_endpoint_resolver_update [C1.1.1 Hostname#8d505fbb:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] Adding endpoint handler for IPv4#9a27494e:443
+2026-10-16 01:12:16.563 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_endpoint_resolver_update [C1.1.1 Hostname#8d505fbb:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] Adding endpoint handler for IPv4#4dcff71e:443
+2026-10-16 01:12:16.563 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C1.1.1 Hostname#8d505fbb:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] event: resolver:receive_dns @0.477s
+2026-10-16 01:12:16.571 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C1.1.1.1 IPv4#9a27494e:443 initial path ((null))] event: path:start @0.485s
+2026-10-16 01:12:16.571 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C1.1.1.1 IPv4#9a27494e:443 waiting path (satisfied (Path is satisfied), interface: en0)] event: path:satisfied @0.485s, uuid: D2449B6C-15BF-4026-9BE8-AF24A63601F7
+2026-10-16 01:12:16.605 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C1.1.1.1 IPv4#9a27494e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] event: flow:start_connect @0.519s
+2026-10-16 01:12:16.618 Df RecordSpeed[72435:2c18f] [com.apple.UIKit:AppLifecycle] sceneOfRecord: sceneID: sceneID:com.recordspeed.app-default  persistentID: 16A11AA5-2293-44E5-A148-B65E2FCDFE81
+2026-10-16 01:12:16.623 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_socket_handle_socket_event [C1.1.1.1:3] Socket received CONNECTED event
+2026-10-16 01:12:16.648 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_flow_connected [C1.1.1.1 IPv4#9a27494e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] Transport protocol connected (socket)
+2026-10-16 01:12:16.648 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C1.1.1.1 IPv4#9a27494e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] event: flow:finish_transport @0.562s
+2026-10-16 01:12:16.756 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_session_apply_protocol_options_for_transport_block_invoke_2(2367) [C1.1.1.1:2][0x10aeaad60] TLS configured [server(0) min_version(0x0303) max_version(0x0304) name(redacted) tickets(false) false_start(false) enforce_ev(false) enforce_ats(false) ats_non_pfs_ciphersuite_allowed(false) cc_mode_enforced(false) ech(false) pqtls(true), pake(false) skip_ats_trust(false)]
+2026-10-16 01:12:16.776 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2806) [C1.1.1.1:2][0x10aeaad60] Client handshake started
+2026-10-16 01:12:16.776 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C1.1.1.1:2][0x10aeaad60] Client handshake state: TLS client enter_early_data
+2026-10-16 01:12:16.776 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C1.1.1.1:2][0x10aeaad60] Client handshake state: TLS client read_server_hello
+2026-10-16 01:12:16.786 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C1.1.1.1:2][0x10aeaad60] Client handshake state: TLS 1.3 client read_hello_retry_request
+2026-10-16 01:12:16.786 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C1.1.1.1:2][0x10aeaad60] Client handshake state: TLS 1.3 client read_server_hello
+2026-10-16 01:12:16.786 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C1.1.1.1:2][0x10aeaad60] Client handshake state: TLS 1.3 client read_encrypted_extensions
+2026-10-16 01:12:16.786 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C1.1.1.1:2][0x10aeaad60] Client handshake state: TLS 1.3 client read_certificate_request
+2026-10-16 01:12:16.786 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C1.1.1.1:2][0x10aeaad60] Client handshake state: TLS 1.3 client read_server_certificate
+2026-10-16 01:12:16.787 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C1.1.1.1:2][0x10aeaad60] Client handshake state: TLS 1.3 client read_server_certificate_verify
+2026-10-16 01:12:16.787 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_evaluate_trust_async(2249) [C1.1.1.1:2][0x10aeaad60] Performing external trust evaluation
+2026-10-16 01:12:16.788 A  RecordSpeed[72435:2c1d5] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:16.788 A  RecordSpeed[72435:2c1d5] (Security) SecKeyCopyAttributes
+2026-10-16 01:12:16.788 A  RecordSpeed[72435:2c1d5] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:16.788 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_evaluate_trust_async_external(2234) [C1.1.1.1:2][0x10aeaad60] Asyncing for external verify block
+2026-10-16 01:12:16.788 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Connection 1: asked to evaluate TLS Trust
+2026-10-16 01:12:16.799 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Task <6D162DB7-DEA3-45BA-A116-F96CD89EE60F>.<1> auth completion disp=1 cred=0x0
+2026-10-16 01:12:16.800 Df RecordSpeed[72435:2c1d5] [com.apple.securityd:trust] (Trust 0x10acd6a00) No pending evals, starting
+2026-10-16 01:12:16.800 A  RecordSpeed[72435:2c1d5] (Security) SecTrustEvaluateIfNecessaryFastAsync
+2026-10-16 01:12:16.804 Df RecordSpeed[72435:2c1d5] [com.apple.securityd:keychain] System Keychain Always Supported set via feature flag to disabled
+2026-10-16 01:12:16.804 Df RecordSpeed[72435:2c1d5] [com.apple.xpc:connection] [0x10afe0b40] activating connection: mach=true listener=false peer=false name=com.apple.trustd
+2026-10-16 01:12:16.901 Df RecordSpeed[72435:2c1d5] [com.apple.xpc:connection] [0x10afe0c80] activating connection: mach=true listener=false peer=false name=com.apple.trustd
+2026-10-16 01:12:17.041 A  RecordSpeed[72435:2c1d9] (RunningBoardServices) didChangeInheritances
+2026-10-16 01:12:17.126 Df RecordSpeed[72435:2c1d5] [com.apple.securityd:trust] (Trust 0x10acd6a00) Completed async eval kickoff
+2026-10-16 01:12:17.449 Df RecordSpeed[72435:2c1de] [com.apple.securityd:trust] (Trust 0x10acd6a00) trustd returned 4
+2026-10-16 01:12:17.449 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] System Trust Evaluation yielded status(0)
+2026-10-16 01:12:17.449 Df RecordSpeed[72435:2c1de] [com.apple.securityd:trust] (Trust 0x10acd6880) No pending evals, starting
+2026-10-16 01:12:17.449 A  RecordSpeed[72435:2c1de] (Security) SecTrustEvaluateIfNecessaryFastAsync
+2026-10-16 01:12:17.450 Df RecordSpeed[72435:2c1de] [com.apple.xpc:connection] [0x10afe0a00] activating connection: mach=true listener=false peer=false name=com.apple.trustd
+2026-10-16 01:12:17.450 Df RecordSpeed[72435:2c1de] [com.apple.securityd:trust] (Trust 0x10acd6880) Completed async eval kickoff
+2026-10-16 01:12:17.450 Df RecordSpeed[72435:2c1de] [com.apple.xpc:connection] [0x10afe0c80] invalidated because the current process cancelled the connection by calling xpc_connection_cancel()
+2026-10-16 01:12:17.875 Df RecordSpeed[72435:2c1de] [com.apple.securityd:trust] (Trust 0x10acd6880) trustd returned 4
+2026-10-16 01:12:17.875 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Connection 1: TLS Trust result 0
+2026-10-16 01:12:17.875 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_evaluate_trust_async_external_block_invoke_3(2148) [C1.1.1.1:2][0x10aeaad60] Returning from external verify block with result: true
+2026-10-16 01:12:17.875 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_certificate_verify_callback(2430) [C1.1.1.1:2][0x10aeaad60] Certificate verification result: OK
+2026-10-16 01:12:17.876 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C1.1.1.1:2][0x10aeaad60] Client handshake state: TLS 1.3 client read_server_finished
+2026-10-16 01:12:17.876 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C1.1.1.1:2][0x10aeaad60] Client handshake state: TLS 1.3 client send_end_of_early_data
+2026-10-16 01:12:17.920 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C1.1.1.1:2][0x10aeaad60] Client handshake state: TLS 1.3 client send_client_encrypted_extensions
+2026-10-16 01:12:17.920 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C1.1.1.1:2][0x10aeaad60] Client handshake state: TLS 1.3 client send_client_certificate
+2026-10-16 01:12:17.920 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C1.1.1.1:2][0x10aeaad60] Client handshake state: TLS 1.3 client complete_second_flight
+2026-10-16 01:12:17.920 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C1.1.1.1:2][0x10aeaad60] Client handshake state: TLS 1.3 client done
+2026-10-16 01:12:17.920 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C1.1.1.1:2][0x10aeaad60] Client handshake state: TLS client finish_client_handshake
+2026-10-16 01:12:17.920 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C1.1.1.1:2][0x10aeaad60] Client handshake state: TLS client done
+2026-10-16 01:12:18.058 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2812) [C1.1.1.1:2][0x10aeaad60] Client handshake done
+2026-10-16 01:12:18.059 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:18.062 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyAttributes
+2026-10-16 01:12:18.062 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:18.062 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] nw_protocol_boringssl_signal_connected(895) [C1.1.1.1:2][0x10aeaad60] TLS connected [server(0) version(0x0304) ciphersuite(TLS_AES_256_GCM_SHA384) group(0x11ec) signature_alg(0x0403) alpn(h2) resumed(0) offered_ticket(0) in_early_data(0) early_data_accepted(0) false_started(0) ocsp_received(0) sct_received(0) connect_time(1283ms) flight_time(10ms) rtt(10ms) write_stalls(0) read_stalls(2) pake(0x0000)]
+2026-10-16 01:12:18.062 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_flow_connected [C1.1.1.1 IPv4#9a27494e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] Output protocol connected (CFNetworkConnection-2621852124)
+2026-10-16 01:12:18.158 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C1.1.1.1 IPv4#9a27494e:443 ready socket-flow (satisfied (Path is satisfied), interface: en0)] event: flow:child_finish_connect @2.072s
+2026-10-16 01:12:18.158 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C1.1.1 Hostname#8d505fbb:443 ready resolver (satisfied (Path is satisfied), interface: en0)] event: flow:child_finish_connect @2.072s
+2026-10-16 01:12:18.158 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C1.1 Hostname#8d505fbb:443 ready transform (satisfied (Path is satisfied), interface: en0)] event: flow:child_finish_connect @2.072s
+2026-10-16 01:12:18.158 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_flow_connected [C1 IPv4#9a27494e:443 in_progress parent-flow (satisfied (Path is satisfied), interface: en0)] Output protocol connected (endpoint_flow)
+2026-10-16 01:12:18.180 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C1 IPv4#9a27494e:443 ready parent-flow (satisfied (Path is satisfied), interface: en0)] event: flow:finish_connect @2.094s
+2026-10-16 01:12:18.206 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C1] reporting state ready
+2026-10-16 01:12:18.207 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:18.207 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyAttributes
+2026-10-16 01:12:18.207 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:18.215 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:18.215 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyAttributes
+2026-10-16 01:12:18.215 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:18.216 Df RecordSpeed[72435:2c1de] [com.apple.xpc:connection] [0x10afe0a00] invalidated because the current process cancelled the connection by calling xpc_connection_cancel()
+2026-10-16 01:12:18.216 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Connection 1: connected successfully
+2026-10-16 01:12:18.216 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Connection 1: TLS handshake complete
+2026-10-16 01:12:18.369 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Connection 1: ready C(N) E(N)
+2026-10-16 01:12:18.370 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C1] event: client:connection_reused @2.284s
+2026-10-16 01:12:18.414 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_protocol_socket_notify [C1.1.1.1:3] nw_protocol_notification_type_connection_idle is false
+2026-10-16 01:12:18.931 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Task <6D162DB7-DEA3-45BA-A116-F96CD89EE60F>.<1> now using Connection 1
+2026-10-16 01:12:18.932 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Task <6D162DB7-DEA3-45BA-A116-F96CD89EE60F>.<1> sent request, body N 0
+2026-10-16 01:12:19.095 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Task <6D162DB7-DEA3-45BA-A116-F96CD89EE60F>.<1> received response, status 400 content K
+2026-10-16 01:12:19.095 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Task <6D162DB7-DEA3-45BA-A116-F96CD89EE60F>.<1> done using Connection 1
+2026-10-16 01:12:19.095 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C1] event: client:connection_idle @3.009s
+2026-10-16 01:12:19.095 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_protocol_socket_notify [C1.1.1.1:3] nw_protocol_notification_type_connection_idle is true
+2026-10-16 01:12:19.095 A  RecordSpeed[72435:2c1de] (Security) SecTrustEvaluateIfNecessary
+2026-10-16 01:12:19.100 Df RecordSpeed[72435:2c1de] [com.apple.xpc:connection] [0x10afe0a00] activating connection: mach=true listener=false peer=false name=com.apple.trustd
+2026-10-16 01:12:19.406 Df RecordSpeed[72435:2c1de] [com.apple.xpc:connection] [0x10afe0a00] invalidated because the current process cancelled the connection by calling xpc_connection_cancel()
+2026-10-16 01:12:19.483 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Task <6D162DB7-DEA3-45BA-A116-F96CD89EE60F>.<1> response ended
+2026-10-16 01:12:19.484 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Summary] Task <6D162DB7-DEA3-45BA-A116-F96CD89EE60F>.<1> summary for task success {transaction_duration_ms=3480, response_status=400, connection=1, protocol="h2", domain_lookup_duration_ms=50, connect_duration_ms=1575, secure_connection_duration_ms=1283, private_relay=false, request_start_ms=2928, request_duration_ms=0, response_start_ms=3091, response_duration_ms=389, request_bytes=437, request_throughput_kbps=4113, response_bytes=481, response_throughput_kbps=9, cache_hit=false}
+2026-10-16 01:12:19.497 Df RecordSpeed[72435:2c1de] [com.apple.CoreAnalytics:client] No XPC connection in Simulator
+2026-10-16 01:12:19.497 Df RecordSpeed[72435:2c1d2] [com.apple.CFNetwork:Default] Task <6D162DB7-DEA3-45BA-A116-F96CD89EE60F>.<1> finished successfully
+2026-10-16 01:12:19.585 E  RecordSpeed[72435:2c1d2] [dev.expo.modules:expo-updates] 🟠 {"code":"Unknown","message":"HTTP response error 400: \134"channel-name\134": Required. The headers \134"expo-runtime-version\134", \134"expo-channel-name\134", and \134"expo-platform\134" are required. They can also be set with the query parameters \134"runtime-version\134", \134"channel-name\134", and \134"platform\134". Learn more: https:\134/\134/expo.fyi\134/eas-update-missing-headers","stacktrace":["RecordSpeed                         0x0000000104477b30 $s9EXUpdates14FileDownloaderC12downloadData33_75774A0A231786B0DCB0D3DA50F03832LL11withRequest13progressBlock07successP005errorP0y10Foundation10URLRequestV_ySdcSgyAJ0E0VSg_So13NSURLResponseCtcyAA12UpdatesErrorOctFyAP_ARSgs0W0_pSgtYbcfU_ + 648","RecordSpeed                         0x00000001044542fc $s9EXUpdates14FileDownloaderC12downloadData33_75774A0A231786B0DCB0D3DA50F03832LL11withRequest13progressBlock07successP005errorP0y10Foundation10URLRequestV_ySdcSgyAJ0E0VSg_So13NSURLResponseCtcyAA12UpdatesErrorOctFyAP_ARSgs0W0_pSgtYbcfU_TA + 32","RecordSpeed                         0x0000000104477c0<…>
+2026-10-16 01:12:19.591 E  RecordSpeed[72435:2c1d9] [dev.expo.modules:expo-updates] 🟠 {"level":"error","timestamp":1792113139000,"code":"UpdateFailedToLoad","message":"AppController appLoaderTask didFinishBackgroundUpdateWithStatus=Error: HTTP response error 400: \134"channel-name\134": Required. The headers \134"expo-runtime-version\134", \134"expo-channel-name\134", and \134"expo-platform\134" are required. They can also be set with the query parameters \134"runtime-version\134", \134"channel-name\134", and \134"platform\134". Learn more: https:\134/\134/expo.fyi\134/eas-update-missing-headers","stacktrace":["RecordSpeed                         0x000000010449b820 $s9EXUpdates16StartupProcedureC13appLoaderTask_35didFinishBackgroundUpdateWithStatus6update5erroryAA03AppeF0C_AA0ijL0OAA0J0CSgs5Error_pSgtFTf4dnnnn_n + 836","RecordSpeed                         0x0000000104499944 $s9EXUpdates16StartupProcedureC13appLoaderTask_35didFinishBackgroundUpdateWithStatus6update5erroryAA03AppeF0C_AA0ijL0OAA0J0CSgs5Error_pSgtFTo + 92","RecordSpeed                         0x000000010444ad1c $s9EXUpdates13AppLoaderTaskC25didFinishBackgroundUpdate0<…>
+2026-10-16 01:12:21.782 E  RecordSpeed[72435:2c1e0] [com.facebook.react.log:native] Module provider RNDatePickerManager does not conform to RCTModuleProvider
+2026-10-16 01:12:21.797 Df RecordSpeed[72435:2c1d5] [com.apple.xpc:connection] [0x10afe2d00] activating connection: mach=true listener=false peer=false name=com.apple.fontservicesd
+2026-10-16 01:12:21.980 Df RecordSpeed[72435:2c1e0] [com.apple.passkit:General] PKNotifyCoalescer: registered for notification com.apple.passd.listener.resumed.
+2026-10-16 01:12:21.981 Df RecordSpeed[72435:2c1e0] [com.apple.xpc:connection] [0x10afe0c80] activating connection: mach=true listener=false peer=false name=com.apple.passd.in-app-payment
+2026-10-16 01:12:21.988 Df RecordSpeed[72435:2c1e0] [com.apple.passkit:General] PKNotifyCoalescer: unregistered for notification com.apple.passd.listener.resumed.
+2026-10-16 01:12:21.989 Df RecordSpeed[72435:2c1de] [com.apple.xpc:connection] [0x10afe0c80] invalidated because the current process cancelled the connection by calling xpc_connection_cancel()
+2026-10-16 01:12:21.993 A  RecordSpeed[72435:2c1e0] (libsystem_containermanager.dylib) container_system_group_path_for_identifier
+2026-10-16 01:12:21.993 Df RecordSpeed[72435:2c1e0] [com.apple.containermanager:xpc] Requesting container lookup; class = 13, identifier = (null), group_identifier = systemgroup.com.apple.configurationprofiles, create = 1, temp = 0, euid = 501, uid = 501
+2026-10-16 01:12:21.993 A  RecordSpeed[72435:2c1e0] (libsystem_containermanager.dylib) container_query_t
+2026-10-16 01:12:21.993 Df RecordSpeed[72435:2c1e0] [com.apple.containermanager:xpc] Query; euid = 501, uid = 501, class = 13, identifier = [(null)](0), flags = 900000003
+2026-10-16 01:12:21.997 Df RecordSpeed[72435:2c1e0] [com.apple.containermanager:unspecified] _container_query_get_result_at_index: success
+2026-10-16 01:12:21.998 A  RecordSpeed[72435:2c1e0] (libsystem_containermanager.dylib) container_copy_object
+2026-10-16 01:12:21.998 Df RecordSpeed[72435:2c1e0] [com.apple.containermanager:unspecified] container_system_group_path_for_identifier: success
+2026-10-16 01:12:21.998 Df RecordSpeed[72435:2c1e0] [com.apple.ManagedConfiguration:MC] Got system group container path from MCM for systemgroup.com.apple.configurationprofiles: /Users/runner/Library/Developer/CoreSimulator/Devices/66EA9878-1C45-4F8F-8922-E00C331155E8/data/Containers/Shared/SystemGroup/systemgroup.com.apple.configurationprofiles
+2026-10-16 01:12:22.003 Df RecordSpeed[72435:2c1e0] [com.apple.CFNetwork:Default] Task <32B967B9-394B-4260-A195-FABC501C22C8>.<1> resuming, timeouts(60.0, 604800.0) qos(0x21) voucher((null)) activity(00000000-0000-0000-0000-000000000000)
+2026-10-16 01:12:22.012 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Connection 0: creating secure tcp or quic connection
+2026-10-16 01:12:22.013 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Connection 2: enabling TLS
+2026-10-16 01:12:22.013 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Connection 2: starting, TC(0x0)
+2026-10-16 01:12:22.013 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C2 70623288-3276-4308-9C08-E01E8543F6F2 Hostname#2bd26b04:443 quic-connection, url: https://m.stripe.com/6, definite, attribution: developer, context: com.apple.CFNetwork.NSURLSession.{34196FD2-2539-40EB-91DC-2F0DD2BC182C}{(null)}{Y}{2}{0x0} (private), proc: D8EF5D7A-CBE6-3E90-9027-58B77ABBB098, delegated upid: 0] start
+2026-10-16 01:12:22.028 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C2 Hostname#2bd26b04:443 initial parent-flow ((null))] event: path:start @0.014s
+2026-10-16 01:12:22.028 A  RecordSpeed[72435:2c1d9] (Security) SecItemCopyMatching_ios
+2026-10-16 01:12:22.028 Df RecordSpeed[72435:2c1d9] [com.apple.securityd:secitemratelimit] Not internal release, disabling SIRL
+2026-10-16 01:12:22.030 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C2 Hostname#2bd26b04:443 waiting parent-flow (satisfied (Path is satisfied), interface: en0)] event: path:satisfied @0.017s, uuid: 82F1CD90-4DAD-470D-A918-B1D8F6B6D043
+2026-10-16 01:12:22.031 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C2 Hostname#2bd26b04:443 in_progress parent-flow (satisfied (Path is satisfied), interface: en0)] event: flow:start_connect @0.018s
+2026-10-16 01:12:22.031 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C2] reporting state preparing
+2026-10-16 01:12:22.031 Df RecordSpeed[72435:2c1d9] [com.apple.securityd:thread-local-client-debug] SecSecurityClientGet new thread!
+2026-10-16 01:12:22.031 Df RecordSpeed[72435:2c1d9] [com.apple.xpc:connection] [0x10afe1cc0] activating connection: mach=true listener=false peer=false name=com.apple.securityd
+2026-10-16 01:12:22.034 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C2 Hostname#2bd26b04:443 in_progress parent-flow (satisfied (Path is satisfied), interface: en0)] event: flow:start_child @0.020s
+2026-10-16 01:12:22.034 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C2.1 Hostname#2bd26b04:443 initial path ((null))] event: path:start @0.021s
+2026-10-16 01:12:22.039 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C2.1 Hostname#2bd26b04:443 waiting path (satisfied (Path is satisfied), interface: en0)] event: path:satisfied @0.025s, uuid: 82F1CD90-4DAD-470D-A918-B1D8F6B6D043
+2026-10-16 01:12:22.039 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C2.1 Hostname#2bd26b04:443 in_progress transform (satisfied (Path is satisfied), interface: en0)] event: transform:start @0.025s
+2026-10-16 01:12:22.107 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C2.1.1 Hostname#2bd26b04:443 initial path ((null))] event: path:start @0.094s
+2026-10-16 01:12:22.115 E  RecordSpeed[72435:2c1e0] [com.facebook.react.log:javascript] '[expo-notifications] Error reading persisted server registration info: ', { [Error: FunctionCallException: Calling the 'getRegistrationInfoAsync' function has failed (at ExpoModulesCore/AsyncFunctionDefinition.swift:123)
+→ Caused by: ERR_NOTIFICATIONS_KEYCHAIN_ACCESS: undefined reason (at ExpoNotifications/ServerRegistrationModule.swift:161)] code: '-34018' }
+2026-10-16 01:12:22.184 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C2.1.1 Hostname#2bd26b04:443 waiting path (satisfied (Path is satisfied), interface: en0)] event: path:satisfied @0.171s, uuid: DC8F7EAB-665F-4760-B969-C63EC9E6D0CF
+2026-10-16 01:12:22.195 Df RecordSpeed[72435:2c1d2] [com.apple.FileURL:default] kExcludedFromBackupXattrName set on path: /Users/runner/Library/Developer/CoreSimulator/Devices/66EA9878-1C45-4F8F-8922-E00C331155E8/data/Containers/Data/Application/30F60578-8D75-4B1D-9E37-3095F9E4CBC3/Library/Application Support/com.recordspeed.app/RCTAsyncLocalStorage_V1
+2026-10-16 01:12:22.203 Df RecordSpeed[72435:2c1d9] [com.apple.CFNetwork:Default] Task <A991B629-40B8-465A-B822-327B29A96FA9>.<1> resuming, timeouts(60.0, 604800.0) qos(0x19) voucher((null)) activity(00000000-0000-0000-0000-000000000000)
+2026-10-16 01:12:22.204 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C2.1.1 Hostname#2bd26b04:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] event: resolver:start_dns @0.190s
+2026-10-16 01:12:22.205 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Task <32B967B9-394B-4260-A195-FABC501C22C8>.<1> setting up Connection 2
+2026-10-16 01:12:22.239 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_endpoint_resolver_update [C2.1.1 Hostname#2bd26b04:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] Adding endpoint handler for IPv4#d520466e:443
+2026-10-16 01:12:22.246 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_endpoint_resolver_update [C2.1.1 Hostname#2bd26b04:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] Adding endpoint handler for IPv4#b7cd3fbd:443
+2026-10-16 01:12:22.272 Df RecordSpeed[72435:2c18f] [com.apple.FileURL:default] kExcludedFromBackupXattrName set on path: /Users/runner/Library/Developer/CoreSimulator/Devices/66EA9878-1C45-4F8F-8922-E00C331155E8/data/Containers/Data/Application/30F60578-8D75-4B1D-9E37-3095F9E4CBC3/Library/Caches/com.hackemist.SDImageCache/default
+2026-10-16 01:12:22.304 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_endpoint_resolver_update [C2.1.1 Hostname#2bd26b04:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] Adding endpoint handler for IPv4#077507e2:443
+2026-10-16 01:12:22.305 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_endpoint_resolver_update [C2.1.1 Hostname#2bd26b04:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] Adding endpoint handler for IPv4#d9cec49b:443
+2026-10-16 01:12:22.305 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_endpoint_resolver_update [C2.1.1 Hostname#2bd26b04:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] Adding endpoint handler for IPv4#c359ce03:443
+2026-10-16 01:12:22.305 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_endpoint_resolver_update [C2.1.1 Hostname#2bd26b04:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] Adding endpoint handler for IPv4#aaae08a0:443
+2026-10-16 01:12:22.348 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_endpoint_resolver_update [C2.1.1 Hostname#2bd26b04:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] Adding endpoint handler for IPv4#461d66c8:443
+2026-10-16 01:12:22.348 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_endpoint_resolver_update [C2.1.1 Hostname#2bd26b04:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] Adding endpoint handler for IPv4#a4d1f94a:443
+2026-10-16 01:12:22.348 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C2.1.1 Hostname#2bd26b04:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] event: resolver:receive_dns @0.334s
+2026-10-16 01:12:22.348 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Connection 0: creating secure tcp or quic connection
+2026-10-16 01:12:22.369 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Connection 3: enabling TLS
+2026-10-16 01:12:22.369 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Connection 3: starting, TC(0x0)
+2026-10-16 01:12:22.369 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3 AE8540BC-FD00-4831-BC41-7573C8A39A5A Hostname#8d505fbb:443 quic-connection, url: https://u.expo.dev/82f173e3-9aff-489c-bb33-a77f7ae4f036, definite, attribution: developer, context: com.apple.CFNetwork.NSURLSession.{4FB1B4EF-B07B-43AE-AED9-C7BBC93B9053}{(null)}{Y}{2}{0x0} (private), proc: D8EF5D7A-CBE6-3E90-9027-58B77ABBB098, delegated upid: 0] start
+2026-10-16 01:12:22.369 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3 Hostname#8d505fbb:443 initial parent-flow ((null))] event: path:start @0.000s
+2026-10-16 01:12:22.370 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3 Hostname#8d505fbb:443 waiting parent-flow (satisfied (Path is satisfied), interface: en0)] event: path:satisfied @0.000s, uuid: 2B3E87EF-D5D7-4633-8613-2ECCB7FD355B
+2026-10-16 01:12:22.380 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3 Hostname#8d505fbb:443 in_progress parent-flow (satisfied (Path is satisfied), interface: en0)] event: flow:start_connect @0.010s
+2026-10-16 01:12:22.380 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C3] reporting state preparing
+2026-10-16 01:12:22.384 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3 Hostname#8d505fbb:443 in_progress parent-flow (satisfied (Path is satisfied), interface: en0)] event: flow:start_child @0.015s
+2026-10-16 01:12:22.386 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1 Hostname#8d505fbb:443 initial path ((null))] event: path:start @0.017s
+2026-10-16 01:12:22.386 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1 Hostname#8d505fbb:443 waiting path (satisfied (Path is satisfied), interface: en0)] event: path:satisfied @0.017s, uuid: 2B3E87EF-D5D7-4633-8613-2ECCB7FD355B
+2026-10-16 01:12:22.386 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1 Hostname#8d505fbb:443 in_progress transform (satisfied (Path is satisfied), interface: en0)] event: transform:start @0.017s
+2026-10-16 01:12:22.387 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.1 Hostname#8d505fbb:443 initial path ((null))] event: path:start @0.018s
+2026-10-16 01:12:22.388 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.1 Hostname#8d505fbb:443 waiting path (satisfied (Path is satisfied), interface: en0)] event: path:satisfied @0.018s, uuid: 47BF000F-3319-49AC-9860-4373062E813B
+2026-10-16 01:12:22.389 Df RecordSpeed[72435:2c18f] [PrototypeTools:domain] Not observing PTDefaults on customer install.
+2026-10-16 01:12:22.395 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.1 Hostname#8d505fbb:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] event: resolver:start_dns @0.025s
+2026-10-16 01:12:22.396 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Task <A991B629-40B8-465A-B822-327B29A96FA9>.<1> setting up Connection 3
+2026-10-16 01:12:22.396 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C2.1.1.1 IPv4#d520466e:443 initial path ((null))] event: path:start @0.383s
+2026-10-16 01:12:22.397 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C2.1.1.1 IPv4#d520466e:443 waiting path (satisfied (Path is satisfied), interface: en0)] event: path:satisfied @0.383s, uuid: 5BDC41DC-A8B2-45EF-B5E1-C4B9D648B0EA
+2026-10-16 01:12:22.566 Df RecordSpeed[72435:2c1d9] [com.apple.CFNetwork:Default] Task <0830B9F5-0E3B-4615-872D-E75B72048F94>.<1> resuming, timeouts(15.0, 604800.0) qos(0x19) voucher((null)) activity(00000000-0000-0000-0000-000000000000)
+2026-10-16 01:12:22.595 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C2.1.1.1 IPv4#d520466e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] event: flow:start_connect @0.581s
+2026-10-16 01:12:22.641 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Summary] Task <0830B9F5-0E3B-4615-872D-E75B72048F94>.<1> summary for task success {transaction_duration_ms=72, response_status=-1, cache_hit=false}
+2026-10-16 01:12:22.642 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Task <0830B9F5-0E3B-4615-872D-E75B72048F94>.<1> finished successfully
+2026-10-16 01:12:22.695 Df RecordSpeed[72435:2c1d2] [com.hackemist.SDWebImage:Default] Detected the current OS's ImageIO PNG Decoder is buggy on indexed color PNG. Perform workaround solution...
+2026-10-16 01:12:22.709 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_socket_handle_socket_event [C2.1.1.1:3] Socket received CONNECTED event
+2026-10-16 01:12:22.709 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_flow_connected [C2.1.1.1 IPv4#d520466e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] Transport protocol connected (socket)
+2026-10-16 01:12:22.710 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C2.1.1.1 IPv4#d520466e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] event: flow:finish_transport @0.696s
+2026-10-16 01:12:22.764 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_session_apply_protocol_options_for_transport_block_invoke_2(2367) [C2.1.1.1:2][0x112a1aae0] TLS configured [server(0) min_version(0x0303) max_version(0x0304) name(redacted) tickets(false) false_start(false) enforce_ev(false) enforce_ats(false) ats_non_pfs_ciphersuite_allowed(false) cc_mode_enforced(false) ech(false) pqtls(true), pake(false) skip_ats_trust(false)]
+2026-10-16 01:12:22.764 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2806) [C2.1.1.1:2][0x112a1aae0] Client handshake started
+2026-10-16 01:12:22.765 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C2.1.1.1:2][0x112a1aae0] Client handshake state: TLS client enter_early_data
+2026-10-16 01:12:22.770 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C2.1.1.1:2][0x112a1aae0] Client handshake state: TLS client read_server_hello
+2026-10-16 01:12:22.770 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.2 Hostname#8d505fbb:443 initial path ((null))] event: path:start @0.400s
+2026-10-16 01:12:22.770 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.2 Hostname#8d505fbb:443 waiting path (satisfied (Path is satisfied), interface: en0)] event: path:satisfied @0.401s, uuid: 141EFAC0-EC4D-4171-806B-2AF13E411DD4
+2026-10-16 01:12:22.771 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.2 Hostname#8d505fbb:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] event: resolver:start_dns @0.401s
+2026-10-16 01:12:22.771 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_endpoint_resolver_update [C3.1.1 Hostname#8d505fbb:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] Adding endpoint handler for IPv4#9a27494e:443
+2026-10-16 01:12:22.771 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_endpoint_resolver_update [C3.1.1 Hostname#8d505fbb:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] Adding endpoint handler for IPv4#4dcff71e:443
+2026-10-16 01:12:22.771 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.1 Hostname#8d505fbb:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] event: resolver:receive_dns @0.402s
+2026-10-16 01:12:22.772 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.1.1 IPv4#9a27494e:443 initial path ((null))] event: path:start @0.403s
+2026-10-16 01:12:22.772 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.1.1 IPv4#9a27494e:443 waiting path (satisfied (Path is satisfied), interface: en0)] event: path:satisfied @0.403s, uuid: 07C9FB1A-8464-4B7A-A028-35356F7FBF7C
+2026-10-16 01:12:22.781 Df RecordSpeed[72435:2c1de] [com.apple.network:quic] quic_conn_initialize_inner [C3.1.1.1:2] [-0d00d9ce1b93893a] created QUIC connection (spin bit enabled)
+2026-10-16 01:12:22.782 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.1.1 IPv4#9a27494e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] event: flow:start_connect @0.412s
+2026-10-16 01:12:22.793 Df RecordSpeed[72435:2c1de] [com.apple.network:quic] quic_crypto_new_flow [C3.1.1.1:2] [-0d00d9ce1b93893a] TLS stream is: [C4]
+2026-10-16 01:12:22.793 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C4 F0624E01-2809-4D4C-A026-43B3A8D549DD IPv4#9a27494e:443 quic-connection, url: https://u.expo.dev/82f173e3-9aff-489c-bb33-a77f7ae4f036, tls, definite, attribution: developer, context: com.apple.CFNetwork.NSURLSession.{4FB1B4EF-B07B-43AE-AED9-C7BBC93B9053}{(null)}{Y}{2}{0x0} (private), proc: D8EF5D7A-CBE6-3E90-9027-58B77ABBB098, delegated upid: 0] start
+2026-10-16 01:12:22.793 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C4 IPv4#9a27494e:443 initial socket-flow (satisfied (Path is satisfied), interface: en0)] event: path:start @0.000s
+2026-10-16 01:12:22.793 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C4 IPv4#9a27494e:443 waiting socket-flow (satisfied (Path is satisfied), interface: en0)] event: path:satisfied @0.000s, uuid: 07C9FB1A-8464-4B7A-A028-35356F7FBF7C
+2026-10-16 01:12:22.794 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C4 IPv4#9a27494e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] event: flow:start_connect @0.000s
+2026-10-16 01:12:22.794 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C4] reporting state preparing
+2026-10-16 01:12:22.794 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_flow_connected [C4 IPv4#9a27494e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] Transport protocol connected (quic-connection)
+2026-10-16 01:12:22.796 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C4 IPv4#9a27494e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] event: flow:finish_transport @0.002s
+2026-10-16 01:12:22.797 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_session_apply_protocol_options_for_transport_block_invoke_2(2367) [C4:1][0x112a1a0e0] TLS configured [server(0) min_version(0x0304) max_version(0x0304) name(redacted) tickets(false) false_start(false) enforce_ev(false) enforce_ats(false) ats_non_pfs_ciphersuite_allowed(false) cc_mode_enforced(false) ech(false) pqtls(true), pake(false) skip_ats_trust(false)]
+2026-10-16 01:12:22.797 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2806) [C4:1][0x112a1a0e0] Client handshake started
+2026-10-16 01:12:22.797 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C4:1][0x112a1a0e0] Client handshake state: TLS client enter_early_data
+2026-10-16 01:12:22.797 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C4:1][0x112a1a0e0] Client handshake state: TLS client read_server_hello
+2026-10-16 01:12:22.797 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_endpoint_resolver_update [C3.1.2 Hostname#8d505fbb:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] Adding endpoint handler for IPv4#9a27494e:443
+2026-10-16 01:12:22.797 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_endpoint_resolver_update [C3.1.2 Hostname#8d505fbb:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] Adding endpoint handler for IPv4#4dcff71e:443
+2026-10-16 01:12:22.797 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.2 Hostname#8d505fbb:443 in_progress resolver (satisfied (Path is satisfied), interface: en0)] event: resolver:receive_dns @0.428s
+2026-10-16 01:12:22.797 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_socket_handle_socket_event [C3.1.1.1:2] Socket received CONNECTED event
+2026-10-16 01:12:22.798 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C2.1.1.1:2][0x112a1aae0] Client handshake state: TLS 1.3 client read_hello_retry_request
+2026-10-16 01:12:22.798 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C2.1.1.1:2][0x112a1aae0] Client handshake state: TLS 1.3 client read_server_hello
+2026-10-16 01:12:22.798 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C2.1.1.1:2][0x112a1aae0] Client handshake state: TLS 1.3 client read_encrypted_extensions
+2026-10-16 01:12:22.798 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C2.1.1.1:2][0x112a1aae0] Client handshake state: TLS 1.3 client read_certificate_request
+2026-10-16 01:12:22.798 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C2.1.1.1:2][0x112a1aae0] Client handshake state: TLS 1.3 client read_server_certificate
+2026-10-16 01:12:22.798 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C2.1.1.1:2][0x112a1aae0] Client handshake state: TLS 1.3 client read_server_certificate_verify
+2026-10-16 01:12:22.798 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_evaluate_trust_async(2249) [C2.1.1.1:2][0x112a1aae0] Performing external trust evaluation
+2026-10-16 01:12:22.798 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:22.798 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_evaluate_trust_async_external(2234) [C2.1.1.1:2][0x112a1aae0] Asyncing for external verify block
+2026-10-16 01:12:22.798 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.2.1 IPv4#9a27494e:443 initial path ((null))] event: path:start @0.429s
+2026-10-16 01:12:22.798 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.2.1 IPv4#9a27494e:443 waiting path (satisfied (Path is satisfied), interface: en0)] event: path:satisfied @0.429s, uuid: 66BBB706-0CA0-4C8F-870B-4265C4AB33C5
+2026-10-16 01:12:22.799 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.2.1 IPv4#9a27494e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] event: flow:start_connect @0.429s
+2026-10-16 01:12:22.799 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Connection 2: asked to evaluate TLS Trust
+2026-10-16 01:12:22.801 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C4:1][0x112a1a0e0] Client handshake state: TLS 1.3 client read_hello_retry_request
+2026-10-16 01:12:22.801 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C4:1][0x112a1a0e0] Client handshake state: TLS 1.3 client read_server_hello
+2026-10-16 01:12:22.801 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C4:1][0x112a1a0e0] Client handshake state: TLS 1.3 client read_encrypted_extensions
+2026-10-16 01:12:22.801 Df RecordSpeed[72435:2c1d6] [com.apple.network:connection] nw_socket_handle_socket_event [C3.1.2.1:3] Socket received CONNECTED event
+2026-10-16 01:12:22.802 Df RecordSpeed[72435:2c1d6] [com.apple.network:connection] nw_flow_connected [C3.1.2.1 IPv4#9a27494e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] Transport protocol connected (socket)
+2026-10-16 01:12:22.802 Df RecordSpeed[72435:2c1d6] [com.apple.network:connection] [C3.1.2.1 IPv4#9a27494e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] event: flow:finish_transport @0.432s
+2026-10-16 01:12:22.803 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_session_apply_protocol_options_for_transport_block_invoke_2(2367) [C3.1.2.1:2][0x112a1afe0] TLS configured [server(0) min_version(0x0303) max_version(0x0304) name(redacted) tickets(false) false_start(false) enforce_ev(false) enforce_ats(false) ats_non_pfs_ciphersuite_allowed(false) cc_mode_enforced(false) ech(false) pqtls(true), pake(false) skip_ats_trust(false)]
+2026-10-16 01:12:22.803 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_info_handler(2806) [C3.1.2.1:2][0x112a1afe0] Client handshake started
+2026-10-16 01:12:22.803 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C3.1.2.1:2][0x112a1afe0] Client handshake state: TLS client enter_early_data
+2026-10-16 01:12:22.803 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C3.1.2.1:2][0x112a1afe0] Client handshake state: TLS client read_server_hello
+2026-10-16 01:12:22.803 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C4:1][0x112a1a0e0] Client handshake state: TLS 1.3 client read_certificate_request
+2026-10-16 01:12:22.803 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C4:1][0x112a1a0e0] Client handshake state: TLS 1.3 client read_server_certificate
+2026-10-16 01:12:22.804 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C4:1][0x112a1a0e0] Client handshake state: TLS 1.3 client read_server_certificate_verify
+2026-10-16 01:12:22.804 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_evaluate_trust_async(2249) [C4:1][0x112a1a0e0] Performing external trust evaluation
+2026-10-16 01:12:22.804 A  RecordSpeed[72435:2c1d6] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:22.804 A  RecordSpeed[72435:2c1d6] (Security) SecKeyCopyAttributes
+2026-10-16 01:12:22.804 A  RecordSpeed[72435:2c1d6] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:22.804 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_evaluate_trust_async_external(2234) [C4:1][0x112a1a0e0] Asyncing for external verify block
+2026-10-16 01:12:22.804 Df RecordSpeed[72435:2c1d6] [com.apple.CFNetwork:Default] Connection 3: asked to evaluate TLS Trust
+2026-10-16 01:12:22.805 Df RecordSpeed[72435:2c1d6] [com.apple.CFNetwork:Default] Task <A991B629-40B8-465A-B822-327B29A96FA9>.<1> auth completion disp=1 cred=0x0
+2026-10-16 01:12:22.806 Df RecordSpeed[72435:2c1d6] [com.apple.securityd:trust] (Trust 0x1109aad00) No pending evals, starting
+2026-10-16 01:12:22.806 A  RecordSpeed[72435:2c1d6] (Security) SecTrustEvaluateIfNecessaryFastAsync
+2026-10-16 01:12:22.809 Df RecordSpeed[72435:2c1d6] [com.apple.xpc:connection] [0x10d8f8780] activating connection: mach=true listener=false peer=false name=com.apple.trustd
+2026-10-16 01:12:22.810 Df RecordSpeed[72435:2c1d6] [com.apple.securityd:trust] (Trust 0x1109aad00) Completed async eval kickoff
+2026-10-16 01:12:22.810 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C3.1.2.1:2][0x112a1afe0] Client handshake state: TLS 1.3 client read_hello_retry_request
+2026-10-16 01:12:22.810 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C3.1.2.1:2][0x112a1afe0] Client handshake state: TLS 1.3 client read_server_hello
+2026-10-16 01:12:22.810 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C3.1.2.1:2][0x112a1afe0] Client handshake state: TLS 1.3 client read_encrypted_extensions
+2026-10-16 01:12:22.810 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C3.1.2.1:2][0x112a1afe0] Client handshake state: TLS 1.3 client read_certificate_request
+2026-10-16 01:12:22.811 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C3.1.2.1:2][0x112a1afe0] Client handshake state: TLS 1.3 client read_server_certificate
+2026-10-16 01:12:22.811 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C3.1.2.1:2][0x112a1afe0] Client handshake state: TLS 1.3 client read_server_certificate_verify
+2026-10-16 01:12:22.811 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_evaluate_trust_async(2249) [C3.1.2.1:2][0x112a1afe0] Performing external trust evaluation
+2026-10-16 01:12:22.811 A  RecordSpeed[72435:2c1d6] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:22.811 A  RecordSpeed[72435:2c1d6] (Security) SecKeyCopyAttributes
+2026-10-16 01:12:22.811 A  RecordSpeed[72435:2c1d6] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:22.812 Df RecordSpeed[72435:2c1d6] [com.apple.network:boringssl] boringssl_context_evaluate_trust_async_external(2234) [C3.1.2.1:2][0x112a1afe0] Asyncing for external verify block
+2026-10-16 01:12:22.812 Df RecordSpeed[72435:2c1d6] [com.apple.CFNetwork:Default] Connection 3: asked to evaluate TLS Trust
+2026-10-16 01:12:22.846 Df RecordSpeed[72435:2c1d6] [com.apple.securityd:trust] (Trust 0x1109aad00) trustd returned 4
+2026-10-16 01:12:22.846 Df RecordSpeed[72435:2c1d6] [com.apple.CFNetwork:Default] System Trust Evaluation yielded status(0)
+2026-10-16 01:12:22.846 Df RecordSpeed[72435:2c1d6] [com.apple.securityd:trust] (Trust 0x1109aa940) No pending evals, starting
+2026-10-16 01:12:22.846 A  RecordSpeed[72435:2c1d6] (Security) SecTrustEvaluateIfNecessaryFastAsync
+2026-10-16 01:12:22.847 Df RecordSpeed[72435:2c1d6] [com.apple.xpc:connection] [0x10d8f8500] activating connection: mach=true listener=false peer=false name=com.apple.trustd
+2026-10-16 01:12:22.847 Df RecordSpeed[72435:2c1d6] [com.apple.securityd:trust] (Trust 0x1109aa940) Completed async eval kickoff
+2026-10-16 01:12:22.847 Df RecordSpeed[72435:2c1d6] [com.apple.xpc:connection] [0x10d8f8780] invalidated because the current process cancelled the connection by calling xpc_connection_cancel()
+2026-10-16 01:12:22.848 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Task <32B967B9-394B-4260-A195-FABC501C22C8>.<1> auth completion disp=1 cred=0x0
+2026-10-16 01:12:22.848 Df RecordSpeed[72435:2c1de] [com.apple.securityd:trust] (Trust 0x1109aad00) No pending evals, starting
+2026-10-16 01:12:22.848 A  RecordSpeed[72435:2c1de] (Security) SecTrustEvaluateIfNecessaryFastAsync
+2026-10-16 01:12:22.848 Df RecordSpeed[72435:2c1de] [com.apple.xpc:connection] [0x10d8f8780] activating connection: mach=true listener=false peer=false name=com.apple.trustd
+2026-10-16 01:12:22.848 Df RecordSpeed[72435:2c1de] [com.apple.securityd:trust] (Trust 0x1109aad00) Completed async eval kickoff
+2026-10-16 01:12:22.907 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.1.2 IPv4#4dcff71e:443 initial path ((null))] event: path:start @0.538s
+2026-10-16 01:12:22.908 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.1.2 IPv4#4dcff71e:443 waiting path (satisfied (Path is satisfied), interface: en0)] event: path:satisfied @0.539s, uuid: B701778D-1B33-49FC-8872-0C93A125CE5E
+2026-10-16 01:12:23.197 Df RecordSpeed[72435:2c1de] [com.apple.network:quic] quic_conn_initialize_inner [C3.1.1.2:2] [-517bfe7f231dc06a] created QUIC connection (spin bit enabled)
+2026-10-16 01:12:23.198 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.1.2 IPv4#4dcff71e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] event: flow:start_connect @0.828s
+2026-10-16 01:12:23.203 Df RecordSpeed[72435:2c1de] [com.apple.network:quic] quic_crypto_new_flow [C3.1.1.2:2] [-517bfe7f231dc06a] TLS stream is: [C5]
+2026-10-16 01:12:23.203 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C5 78DDB62F-525F-4F89-90E0-820A926E8EF6 IPv4#4dcff71e:443 quic-connection, url: https://u.expo.dev/82f173e3-9aff-489c-bb33-a77f7ae4f036, tls, definite, attribution: developer, context: com.apple.CFNetwork.NSURLSession.{4FB1B4EF-B07B-43AE-AED9-C7BBC93B9053}{(null)}{Y}{2}{0x0} (private), proc: D8EF5D7A-CBE6-3E90-9027-58B77ABBB098, delegated upid: 0] start
+2026-10-16 01:12:23.203 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C5 IPv4#4dcff71e:443 initial socket-flow (satisfied (Path is satisfied), interface: en0)] event: path:start @0.000s
+2026-10-16 01:12:23.203 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C5 IPv4#4dcff71e:443 waiting socket-flow (satisfied (Path is satisfied), interface: en0)] event: path:satisfied @0.000s, uuid: B701778D-1B33-49FC-8872-0C93A125CE5E
+2026-10-16 01:12:23.284 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C5 IPv4#4dcff71e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] event: flow:start_connect @0.081s
+2026-10-16 01:12:23.286 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C5] reporting state preparing
+2026-10-16 01:12:23.286 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_flow_connected [C5 IPv4#4dcff71e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] Transport protocol connected (quic-connection)
+2026-10-16 01:12:23.286 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C5 IPv4#4dcff71e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] event: flow:finish_transport @0.083s
+2026-10-16 01:12:23.586 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_session_apply_protocol_options_for_transport_block_invoke_2(2367) [C5:1][0x112a1b760] TLS configured [server(0) min_version(0x0304) max_version(0x0304) name(redacted) tickets(false) false_start(false) enforce_ev(false) enforce_ats(false) ats_non_pfs_ciphersuite_allowed(false) cc_mode_enforced(false) ech(false) pqtls(true), pake(false) skip_ats_trust(false)]
+2026-10-16 01:12:23.586 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2806) [C5:1][0x112a1b760] Client handshake started
+2026-10-16 01:12:23.589 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C5:1][0x112a1b760] Client handshake state: TLS client enter_early_data
+2026-10-16 01:12:23.589 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C5:1][0x112a1b760] Client handshake state: TLS client read_server_hello
+2026-10-16 01:12:23.589 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_socket_handle_socket_event [C3.1.1.2:2] Socket received CONNECTED event
+2026-10-16 01:12:23.590 Df RecordSpeed[72435:2c1de] [com.apple.securityd:trust] (Trust 0x1109aa940) trustd returned 4
+2026-10-16 01:12:23.590 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Connection 3: TLS Trust result 0
+2026-10-16 01:12:23.590 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_evaluate_trust_async_external_block_invoke_3(2148) [C4:1][0x112a1a0e0] Returning from external verify block with result: true
+2026-10-16 01:12:23.590 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_certificate_verify_callback(2430) [C4:1][0x112a1a0e0] Certificate verification result: OK
+2026-10-16 01:12:23.590 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C4:1][0x112a1a0e0] Client handshake state: TLS 1.3 client read_server_finished
+2026-10-16 01:12:23.590 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C4:1][0x112a1a0e0] Client handshake state: TLS 1.3 client send_end_of_early_data
+2026-10-16 01:12:23.590 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C4:1][0x112a1a0e0] Client handshake state: TLS 1.3 client send_client_encrypted_extensions
+2026-10-16 01:12:23.590 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C4:1][0x112a1a0e0] Client handshake state: TLS 1.3 client send_client_certificate
+2026-10-16 01:12:23.590 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C4:1][0x112a1a0e0] Client handshake state: TLS 1.3 client complete_second_flight
+2026-10-16 01:12:23.591 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:23.591 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyAttributes
+2026-10-16 01:12:23.591 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:23.598 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:23.598 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyAttributes
+2026-10-16 01:12:23.598 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:23.598 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C4:1][0x112a1a0e0] Client handshake state: TLS 1.3 client done
+2026-10-16 01:12:23.598 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C4:1][0x112a1a0e0] Client handshake state: TLS client finish_client_handshake
+2026-10-16 01:12:23.599 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C4:1][0x112a1a0e0] Client handshake state: TLS client done
+2026-10-16 01:12:23.599 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2812) [C4:1][0x112a1a0e0] Client handshake done
+2026-10-16 01:12:23.599 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:23.599 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyAttributes
+2026-10-16 01:12:23.599 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:23.599 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] nw_protocol_boringssl_signal_connected(895) [C4:1][0x112a1a0e0] TLS connected [server(0) version(0x0304) ciphersuite(TLS_AES_256_GCM_SHA384) group(0x11ec) signature_alg(0x0403) alpn(h3) resumed(0) offered_ticket(0) in_early_data(0) early_data_accepted(0) false_started(0) ocsp_received(0) sct_received(0) connect_time(802ms) flight_time(6ms) rtt(4ms) write_stalls(0) read_stalls(5) pake(0x0000)]
+2026-10-16 01:12:23.600 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_flow_connected [C4 IPv4#9a27494e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] Output protocol connected (tls)
+2026-10-16 01:12:23.600 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C4 IPv4#9a27494e:443 ready socket-flow (satisfied (Path is satisfied), interface: en0)] event: flow:finish_connect @0.806s
+2026-10-16 01:12:23.600 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C4] reporting state ready
+2026-10-16 01:12:23.600 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_evaluate_trust_async_external_block_invoke_3(2148) [C3.1.2.1:2][0x112a1afe0] Returning from external verify block with result: true
+2026-10-16 01:12:23.600 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_certificate_verify_callback(2430) [C3.1.2.1:2][0x112a1afe0] Certificate verification result: OK
+2026-10-16 01:12:23.600 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C3.1.2.1:2][0x112a1afe0] Client handshake state: TLS 1.3 client read_server_finished
+2026-10-16 01:12:23.600 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C3.1.2.1:2][0x112a1afe0] Client handshake state: TLS 1.3 client send_end_of_early_data
+2026-10-16 01:12:23.600 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C3.1.2.1:2][0x112a1afe0] Client handshake state: TLS 1.3 client send_client_encrypted_extensions
+2026-10-16 01:12:23.600 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C3.1.2.1:2][0x112a1afe0] Client handshake state: TLS 1.3 client send_client_certificate
+2026-10-16 01:12:23.600 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C3.1.2.1:2][0x112a1afe0] Client handshake state: TLS 1.3 client complete_second_flight
+2026-10-16 01:12:23.601 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C3.1.2.1:2][0x112a1afe0] Client handshake state: TLS 1.3 client done
+2026-10-16 01:12:23.601 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C3.1.2.1:2][0x112a1afe0] Client handshake state: TLS client finish_client_handshake
+2026-10-16 01:12:23.601 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C3.1.2.1:2][0x112a1afe0] Client handshake state: TLS client done
+2026-10-16 01:12:23.601 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] boringssl_context_info_handler(2812) [C3.1.2.1:2][0x112a1afe0] Client handshake done
+2026-10-16 01:12:23.601 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:23.601 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyAttributes
+2026-10-16 01:12:23.601 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:23.601 Df RecordSpeed[72435:2c1de] [com.apple.network:boringssl] nw_protocol_boringssl_signal_connected(895) [C3.1.2.1:2][0x112a1afe0] TLS connected [server(0) version(0x0304) ciphersuite(TLS_AES_256_GCM_SHA384) group(0x11ec) signature_alg(0x0403) alpn(h2) resumed(0) offered_ticket(0) in_early_data(0) early_data_accepted(0) false_started(0) ocsp_received(0) sct_received(0) connect_time(798ms) flight_time(7ms) rtt(7ms) write_stalls(0) read_stalls(2) pake(0x0000)]
+2026-10-16 01:12:23.601 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_flow_connected [C3.1.2.1 IPv4#9a27494e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] Output protocol connected (CFNetworkConnection-2621852124)
+2026-10-16 01:12:23.602 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.2.1 IPv4#9a27494e:443 ready socket-flow (satisfied (Path is satisfied), interface: en0)] event: flow:child_finish_connect @1.232s
+2026-10-16 01:12:23.602 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1.2 Hostname#8d505fbb:443 ready resolver (satisfied (Path is satisfied), interface: en0)] event: flow:child_finish_connect @1.232s
+2026-10-16 01:12:23.602 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3.1 Hostname#8d505fbb:443 ready transform (satisfied (Path is satisfied), interface: en0)] event: flow:child_finish_connect @1.233s
+2026-10-16 01:12:23.602 Df RecordSpeed[72435:2c1de] [com.apple.network:quic] quic_frame_write_CONNECTION_CLOSE [C3.1.1.1:2] [-014e62321ec226c7094fb232c2c74dc70958eda6] sending CONNECTION_CLOSE, code NO_ERROR, type UNKNOWN, reason <null>
+2026-10-16 01:12:23.602 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C4 F0624E01-2809-4D4C-A026-43B3A8D549DD IPv4#9a27494e:443 quic-connection, url: https://u.expo.dev/82f173e3-9aff-489c-bb33-a77f7ae4f036, tls, definite, attribution: developer] cancel
+2026-10-16 01:12:23.602 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C4 F0624E01-2809-4D4C-A026-43B3A8D549DD IPv4#9a27494e:443 quic-connection, url: https://u.expo.dev/82f173e3-9aff-489c-bb33-a77f7ae4f036, tls, definite, attribution: developer] cancelled
+	[C4 07C9FB1A-8464-4B7A-A028-35356F7FBF7C 192.168.64.4:53845<->IPv4#9a27494e:443]
+	Connected Path: satisfied (Path is satisfied), interface: en0
+	Duration: 0.809s, QUIC @0.000s took 0.002s, TLS 1.3 took 0.802s
+	bytes in/out: 5311/3851, packets in/out: 6/7, rtt: 0.003s, retransmitted bytes: 0, out-of-order bytes: 1184
+	ecn packets sent/acked/marked/lost: 0/0/0/0
+2026-10-16 01:12:23.603 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C4] reporting state cancelled
+2026-10-16 01:12:23.603 Df RecordSpeed[72435:2c1de] [com.apple.network:quic] quic_conn_log_summary [C3.1.1.1:2] [-014e62321ec226c7094fb232c2c74dc70958eda6] 
+	Connection attempts: 1, RETRY received: no, PTOs: 1
+	Early data: no, Keep-alives sent/acknowledged: 0/0, ECN state: unsupported, L4S: disabled
+	RTT: base 2 ms, network 2 ms, latest 2 ms, minimum 2 ms, smoothed 3 ms (variance 1 ms)
+	Path MTU: 1280, minimum MSS: 1200
+	Migration events: 0, paths validated: 0
+	Inbound unidirectional/bidirectional streams: 0/0
+	Outbound unidirectional/bidirectional streams: 0/0
+	DATA_BLOCKED frames sent/received: 0/0
+	STREAM_DATA_BLOCKED frames sent/received: 0/0
+2026-10-16 01:12:23.603 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C5 78DDB62F-525F-4F89-90E0-820A926E8EF6 IPv4#4dcff71e:443 quic-connection, url: https://u.expo.dev/82f173e3-9aff-489c-bb33-a77f7ae4f036, tls, definite, attribution: developer] cancel
+2026-10-16 01:12:23.603 E  RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_connection_copy_protocol_metadata_internal_block_invoke [C5] Client called nw_connection_copy_protocol_metadata_internal on unconnected nw_connection
+2026-10-16 01:12:23.603 E  RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_connection_copy_protocol_metadata_internal_block_invoke [C5] Client called nw_connection_copy_protocol_metadata_internal on unconnected nw_connection
+2026-10-16 01:12:23.603 E  RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_connection_copy_connected_local_endpoint_block_invoke [C5] Client called nw_connection_copy_connected_local_endpoint on unconnected nw_connection
+2026-10-16 01:12:23.603 E  RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_connection_copy_connected_remote_endpoint_block_invoke [C5] Client called nw_connection_copy_connected_remote_endpoint on unconnected nw_connection
+2026-10-16 01:12:23.603 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C5 78DDB62F-525F-4F89-90E0-820A926E8EF6 IPv4#4dcff71e:443 quic-connection, url: https://u.expo.dev/82f173e3-9aff-489c-bb33-a77f7ae4f036, tls, definite, attribution: developer] cancelled
+	[C5 B701778D-1B33-49FC-8872-0C93A125CE5E <NULL><-><NULL>]
+	Connected Path: (null)
+	Duration: 0.400s, QUIC @0.081s took 0.000s,  took 4294967.295s
+2026-10-16 01:12:23.604 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C5] reporting state cancelled
+2026-10-16 01:12:23.604 Df RecordSpeed[72435:2c1de] [com.apple.network:quic] quic_conn_log_summary [C3.1.1.2:2] [-517bfe7f231dc06a] 
+	Connection attempts: 1, RETRY received: no, PTOs: 0
+2026-10-16 01:12:23.604 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_flow_connected [C3 IPv4#9a27494e:443 in_progress parent-flow (satisfied (Path is satisfied), interface: en0)] Output protocol connected (endpoint_flow)
+2026-10-16 01:12:23.604 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3 IPv4#9a27494e:443 ready parent-flow (satisfied (Path is satisfied), interface: en0)] event: flow:finish_connect @1.235s
+2026-10-16 01:12:23.604 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C3] reporting state ready
+2026-10-16 01:12:23.605 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:23.605 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyAttributes
+2026-10-16 01:12:23.605 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:23.605 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:23.605 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyAttributes
+2026-10-16 01:12:23.605 A  RecordSpeed[72435:2c1de] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:23.605 Df RecordSpeed[72435:2c1de] [com.apple.xpc:connection] [0x10d8f8500] invalidated because the current process cancelled the connection by calling xpc_connection_cancel()
+2026-10-16 01:12:23.691 Df RecordSpeed[72435:2c1de] [com.apple.network:quic] quic_path_destroy [C3.1.1.1:2] [-014e62321ec226c7094fb232c2c74dc70958eda6] destroying path 0x112832a00
+2026-10-16 01:12:23.692 Df RecordSpeed[72435:2c1de] [com.apple.network:quic] quic_path_destroy [C3.1.1.2:2] [-517bfe7f231dc06a] destroying path 0x112833d40
+2026-10-16 01:12:23.925 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Connection 3: connected successfully
+2026-10-16 01:12:23.925 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Connection 3: TLS handshake complete
+2026-10-16 01:12:23.927 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Connection 3: ready C(N) E(N)
+2026-10-16 01:12:23.929 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] [C3] event: client:connection_reused @1.559s
+2026-10-16 01:12:23.929 Df RecordSpeed[72435:2c1de] [com.apple.network:connection] nw_protocol_socket_notify [C3.1.2.1:3] nw_protocol_notification_type_connection_idle is false
+2026-10-16 01:12:24.134 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Task <A991B629-40B8-465A-B822-327B29A96FA9>.<1> now using Connection 3
+2026-10-16 01:12:24.135 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Task <A991B629-40B8-465A-B822-327B29A96FA9>.<1> sent request, body N 0
+2026-10-16 01:12:24.135 Df RecordSpeed[72435:2c1de] [com.apple.securityd:trust] (Trust 0x1109aad00) trustd returned 4
+2026-10-16 01:12:24.135 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] System Trust Evaluation yielded status(0)
+2026-10-16 01:12:24.135 Df RecordSpeed[72435:2c1de] [com.apple.securityd:trust] (Trust 0x1109aab80) No pending evals, starting
+2026-10-16 01:12:24.135 A  RecordSpeed[72435:2c1de] (Security) SecTrustEvaluateIfNecessaryFastAsync
+2026-10-16 01:12:24.198 Df RecordSpeed[72435:2c1de] [com.apple.xpc:connection] [0x10d8f8000] activating connection: mach=true listener=false peer=false name=com.apple.trustd
+2026-10-16 01:12:24.198 Df RecordSpeed[72435:2c1de] [com.apple.securityd:trust] (Trust 0x1109aab80) Completed async eval kickoff
+2026-10-16 01:12:24.198 Df RecordSpeed[72435:2c1de] [com.apple.xpc:connection] [0x10d8f8780] invalidated because the current process cancelled the connection by calling xpc_connection_cancel()
+2026-10-16 01:12:24.255 Df RecordSpeed[72435:2c1d5] [com.apple.securityd:trust] (Trust 0x1109aab80) trustd returned 4
+2026-10-16 01:12:24.255 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Connection 2: TLS Trust result 0
+2026-10-16 01:12:24.255 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_evaluate_trust_async_external_block_invoke_3(2148) [C2.1.1.1:2][0x112a1aae0] Returning from external verify block with result: true
+2026-10-16 01:12:24.255 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_certificate_verify_callback(2430) [C2.1.1.1:2][0x112a1aae0] Certificate verification result: OK
+2026-10-16 01:12:24.255 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C2.1.1.1:2][0x112a1aae0] Client handshake state: TLS 1.3 client read_server_finished
+2026-10-16 01:12:24.258 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C2.1.1.1:2][0x112a1aae0] Client handshake state: TLS 1.3 client send_end_of_early_data
+2026-10-16 01:12:24.259 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C2.1.1.1:2][0x112a1aae0] Client handshake state: TLS 1.3 client send_client_encrypted_extensions
+2026-10-16 01:12:24.262 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C2.1.1.1:2][0x112a1aae0] Client handshake state: TLS 1.3 client send_client_certificate
+2026-10-16 01:12:24.262 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C2.1.1.1:2][0x112a1aae0] Client handshake state: TLS 1.3 client complete_second_flight
+2026-10-16 01:12:24.263 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C2.1.1.1:2][0x112a1aae0] Client handshake state: TLS 1.3 client done
+2026-10-16 01:12:24.263 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C2.1.1.1:2][0x112a1aae0] Client handshake state: TLS client finish_client_handshake
+2026-10-16 01:12:24.263 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_info_handler(2823) [C2.1.1.1:2][0x112a1aae0] Client handshake state: TLS client done
+2026-10-16 01:12:24.263 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] boringssl_context_info_handler(2812) [C2.1.1.1:2][0x112a1aae0] Client handshake done
+2026-10-16 01:12:24.264 A  RecordSpeed[72435:2c1d5] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:24.264 Df RecordSpeed[72435:2c1d5] [com.apple.network:boringssl] nw_protocol_boringssl_signal_connected(895) [C2.1.1.1:2][0x112a1aae0] TLS connected [server(0) version(0x0304) ciphersuite(TLS_AES_256_GCM_SHA384) group(0x11ec) signature_alg(0x0804) alpn(h2) resumed(0) offered_ticket(0) in_early_data(0) early_data_accepted(0) false_started(0) ocsp_received(0) sct_received(0) connect_time(1500ms) flight_time(33ms) rtt(33ms) write_stalls(0) read_stalls(2) pake(0x0000)]
+2026-10-16 01:12:24.265 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] nw_flow_connected [C2.1.1.1 IPv4#d520466e:443 in_progress socket-flow (satisfied (Path is satisfied), interface: en0)] Output protocol connected (CFNetworkConnection-2621852124)
+2026-10-16 01:12:24.268 E  RecordSpeed[72435:2c18f] [com.apple.UIKit:UIFocus] RCTScrollViewComponentView implements focusItemsInRect: - caching for linear focus movement is limited as long as this view is on screen.
+2026-10-16 01:12:24.269 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C2.1.1.1 IPv4#d520466e:443 ready socket-flow (satisfied (Path is satisfied), interface: en0)] event: flow:child_finish_connect @2.255s
+2026-10-16 01:12:24.269 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C2.1.1 Hostname#2bd26b04:443 ready resolver (satisfied (Path is satisfied), interface: en0)] event: flow:child_finish_connect @2.255s
+2026-10-16 01:12:24.273 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C2.1 Hostname#2bd26b04:443 ready transform (satisfied (Path is satisfied), interface: en0)] event: flow:child_finish_connect @2.259s
+2026-10-16 01:12:24.428 Df RecordSpeed[72435:2c1de] [com.apple.CFNetwork:Default] Task <8815B667-0552-4F24-9788-6B86629D9FC7>.<2> resuming, timeouts(15.0, 604800.0) qos(0x19) voucher((null)) activity(00000000-0000-0000-0000-000000000000)
+2026-10-16 01:12:24.434 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] nw_flow_connected [C2 IPv4#d520466e:443 in_progress parent-flow (satisfied (Path is satisfied), interface: en0)] Output protocol connected (endpoint_flow)
+2026-10-16 01:12:24.435 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C2 IPv4#d520466e:443 ready parent-flow (satisfied (Path is satisfied), interface: en0)] event: flow:finish_connect @2.422s
+2026-10-16 01:12:24.441 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C2] reporting state ready
+2026-10-16 01:12:24.441 A  RecordSpeed[72435:2c1d5] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:24.441 A  RecordSpeed[72435:2c1d5] (Security) SecKeyCopyPublicBytes
+2026-10-16 01:12:24.442 Df RecordSpeed[72435:2c1d5] [com.apple.xpc:connection] [0x10d8f8000] invalidated because the current process cancelled the connection by calling xpc_connection_cancel()
+2026-10-16 01:12:24.444 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Task <A991B629-40B8-465A-B822-327B29A96FA9>.<1> received response, status 400 content K
+2026-10-16 01:12:24.444 A  RecordSpeed[72435:2c1d5] (Security) SecTrustEvaluateIfNecessary
+2026-10-16 01:12:24.444 Df RecordSpeed[72435:2c1d6] [com.apple.CFNetwork:Summary] Task <8815B667-0552-4F24-9788-6B86629D9FC7>.<2> summary for task success {transaction_duration_ms=15, response_status=-1, cache_hit=false}
+2026-10-16 01:12:24.444 Df RecordSpeed[72435:2c1d6] [com.apple.CFNetwork:Default] Task <8815B667-0552-4F24-9788-6B86629D9FC7>.<2> finished successfully
+2026-10-16 01:12:24.444 Df RecordSpeed[72435:2c1d5] [com.apple.xpc:connection] [0x10d8f9400] activating connection: mach=true listener=false peer=false name=com.apple.trustd
+2026-10-16 01:12:24.452 Df RecordSpeed[72435:2c1d5] [com.apple.xpc:connection] [0x10d8f9400] invalidated because the current process cancelled the connection by calling xpc_connection_cancel()
+2026-10-16 01:12:24.454 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Connection 2: connected successfully
+2026-10-16 01:12:24.454 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Connection 2: TLS handshake complete
+2026-10-16 01:12:24.455 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Connection 2: ready C(N) E(N)
+2026-10-16 01:12:24.455 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C2] event: client:connection_reused @2.442s
+2026-10-16 01:12:24.455 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] nw_protocol_socket_notify [C2.1.1.1:3] nw_protocol_notification_type_connection_idle is false
+2026-10-16 01:12:24.507 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Task <32B967B9-394B-4260-A195-FABC501C22C8>.<1> now using Connection 2
+2026-10-16 01:12:24.508 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Task <32B967B9-394B-4260-A195-FABC501C22C8>.<1> sent request, body S 208
+2026-10-16 01:12:24.508 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Task <A991B629-40B8-465A-B822-327B29A96FA9>.<1> done using Connection 3
+2026-10-16 01:12:24.508 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C3] event: client:connection_idle @2.139s
+2026-10-16 01:12:24.509 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] nw_protocol_socket_notify [C3.1.2.1:3] nw_protocol_notification_type_connection_idle is true
+2026-10-16 01:12:24.526 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Task <A991B629-40B8-465A-B822-327B29A96FA9>.<1> response ended
+2026-10-16 01:12:24.526 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Summary] Task <A991B629-40B8-465A-B822-327B29A96FA9>.<1> summary for task success {transaction_duration_ms=2322, response_status=400, connection=3, protocol="h2", domain_lookup_duration_ms=27, connect_duration_ms=806, secure_connection_duration_ms=798, private_relay=false, request_start_ms=1930, request_duration_ms=0, response_start_ms=2240, response_duration_ms=82, request_bytes=437, request_throughput_kbps=22267, response_bytes=481, response_throughput_kbps=46, cache_hit=false}
+2026-10-16 01:12:24.527 Df RecordSpeed[72435:2c1d2] [com.apple.CFNetwork:Default] Task <A991B629-40B8-465A-B822-327B29A96FA9>.<1> finished successfully
+2026-10-16 01:12:24.689 E  RecordSpeed[72435:2c1d2] [dev.expo.modules:expo-updates] 🟠 {"timestamp":1792113144000,"code":"Unknown","message":"HTTP response error 400: \134"channel-name\134": Required. The headers \134"expo-runtime-version\134", \134"expo-channel-name\134", and \134"expo-platform\134" are required. They can also be set with the query parameters \134"runtime-version\134", \134"channel-name\134", and \134"platform\134". Learn more: https:\134/\134/expo.fyi\134/eas-update-missing-headers","level":"error","stacktrace":["RecordSpeed                         0x0000000104477b30 $s9EXUpdates14FileDownloaderC12downloadData33_75774A0A231786B0DCB0D3DA50F03832LL11withRequest13progressBlock07successP005errorP0y10Foundation10URLRequestV_ySdcSgyAJ0E0VSg_So13NSURLResponseCtcyAA12UpdatesErrorOctFyAP_ARSgs0W0_pSgtYbcfU_ + 648","RecordSpeed                         0x00000001044542fc $s9EXUpdates14FileDownloaderC12downloadData33_75774A0A231786B0DCB0D3DA50F03832LL11withRequest13progressBlock07successP005errorP0y10Foundation10URLRequestV_ySdcSgyAJ0E0VSg_So13NSURLResponseCtcyAA12UpdatesErrorOctFyAP_ARSgs0W0_pSgtYbcfU_TA + 32","RecordSpeed<…>
+2026-10-16 01:12:24.697 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Task <32B967B9-394B-4260-A195-FABC501C22C8>.<1> received response, status 200 content K
+2026-10-16 01:12:24.697 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Task <32B967B9-394B-4260-A195-FABC501C22C8>.<1> done using Connection 2
+2026-10-16 01:12:24.697 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C2] event: client:connection_idle @2.683s
+2026-10-16 01:12:24.698 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] nw_protocol_socket_notify [C2.1.1.1:3] nw_protocol_notification_type_connection_idle is true
+2026-10-16 01:12:24.699 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Task <32B967B9-394B-4260-A195-FABC501C22C8>.<1> response ended
+2026-10-16 01:12:24.748 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Summary] Task <32B967B9-394B-4260-A195-FABC501C22C8>.<1> summary for task success {transaction_duration_ms=2743, response_status=200, connection=2, protocol="h2", domain_lookup_duration_ms=144, connect_duration_ms=1841, secure_connection_duration_ms=1500, private_relay=false, request_start_ms=2503, request_duration_ms=0, response_start_ms=2691, response_duration_ms=14, request_bytes=344, request_throughput_kbps=4959, response_bytes=579, response_throughput_kbps=312, cache_hit=false}
+2026-10-16 01:12:24.748 Df RecordSpeed[72435:2c1d6] [com.apple.CFNetwork:Default] Task <32B967B9-394B-4260-A195-FABC501C22C8>.<1> finished successfully
+2026-10-16 01:12:25.290 Df RecordSpeed[72435:2c1d2] [com.apple.CFNetwork:Default] Connection 3: cleaning up
+2026-10-16 01:12:25.291 Df RecordSpeed[72435:2c1d2] [com.apple.network:connection] [C3 AE8540BC-FD00-4831-BC41-7573C8A39A5A Hostname#8d505fbb:443 quic-connection, url: https://u.expo.dev/82f173e3-9aff-489c-bb33-a77f7ae4f036, definite, attribution: developer] cancel
+2026-10-16 01:12:25.291 Df RecordSpeed[72435:2c1d2] [com.apple.network:connection] [C3 AE8540BC-FD00-4831-BC41-7573C8A39A5A Hostname#8d505fbb:443 quic-connection, url: https://u.expo.dev/82f173e3-9aff-489c-bb33-a77f7ae4f036, definite, attribution: developer] cancelled
+	[C3.1.2.1 66BBB706-0CA0-4C8F-870B-4265C4AB33C5 192.168.64.4:49985<->IPv4#9a27494e:443]
+	Connected Path: satisfied (Path is satisfied), interface: en0
+	Privacy Stance: Not Eligible
+	Duration: 2.922s, DNS @0.401s took 0.027s, TCP @0.429s took 0.003s, TLS 1.3 took 0.798s
+	bytes in/out: 5010/2198, packets in/out: 4/6, rtt: 0.002s, retransmitted bytes: 0, out-of-order bytes: 0
+	ecn packets sent/acked/marked/lost: 6/4/0/0
+2026-10-16 01:12:25.360 Df RecordSpeed[72435:2c1d2] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C3] reporting state cancelled
+2026-10-16 01:12:25.360 Df RecordSpeed[72435:2c1d2] [com.apple.CFNetwork:Default] Connection 3: done
+2026-10-16 01:12:26.104 Df RecordSpeed[72435:2c18f] [com.apple.KeyboardArbiter:Client] RX sceneBecameFocused:(null)
+2026-10-16 01:13:23.890 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] nw_socket_handle_socket_event [C2.1.1.1:3] Socket received READ_CLOSE event
+2026-10-16 01:13:23.893 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Connection 2: final read 0:0, complete[Y], final[N]
+2026-10-16 01:13:23.894 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Connection 2: cleaning up
+2026-10-16 01:13:23.894 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C2 70623288-3276-4308-9C08-E01E8543F6F2 Hostname#2bd26b04:443 quic-connection, url: https://m.stripe.com/6, definite, attribution: developer] cancel
+2026-10-16 01:13:23.895 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] [C2 70623288-3276-4308-9C08-E01E8543F6F2 Hostname#2bd26b04:443 quic-connection, url: https://m.stripe.com/6, definite, attribution: developer] cancelled
+	[C2.1.1.1 5BDC41DC-A8B2-45EF-B5E1-C4B9D648B0EA 192.168.64.4:49984<->IPv4#d520466e:443]
+	Connected Path: satisfied (Path is satisfied), interface: en0
+	Privacy Stance: Not Eligible
+	Duration: 61.882s, DNS @0.190s took 0.144s, TCP @0.581s took 0.115s, TLS 1.3 took 1.500s
+	bytes in/out: 5750/2090, packets in/out: 5/6, rtt: 0.021s, retransmitted bytes: 0, out-of-order bytes: 0
+	ecn packets sent/acked/marked/lost: 6/5/0/0
+2026-10-16 01:13:23.899 Df RecordSpeed[72435:2c1d5] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C2] reporting state cancelled
+2026-10-16 01:13:23.899 Df RecordSpeed[72435:2c1d5] [com.apple.CFNetwork:Default] Connection 2: done
