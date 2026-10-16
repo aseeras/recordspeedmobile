@@ -336,6 +336,8 @@ export const ES: Record<string, string> = {
   "Ask a question…": "Haga una pregunta…",
   "Your question": "Su pregunta",
   "Thinking…": "Pensando…",
+  "Read replies aloud": "Leer las respuestas en voz alta",
+  "Not read aloud: it includes details from your account.": "No se lee en voz alta: incluye datos de su cuenta.",
   "💬 Ask": "💬 Preguntar",
   "The assistant is unavailable right now.": "El asistente no está disponible en este momento.",
 
