@@ -34,6 +34,10 @@ export default {
       infoPlist: {
         NSCameraUsageDescription:
           "Enable Camera Access so that you can take pictures",
+        // The app doesn't open the photo library, but expo-image and expo-file-system include code that can, and
+        // App Store Connect rejects a build without this sentence (ITMS-90683).
+        NSPhotoLibraryUsageDescription:
+          "RecordSpeed only opens your photos when you choose one to add.",
         // Only standard HTTPS encryption, so TestFlight doesn't ask about export compliance on every build.
         ITSAppUsesNonExemptEncryption: false,
       },
