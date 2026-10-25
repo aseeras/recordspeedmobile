@@ -22,6 +22,7 @@ for (const file of files) {
 // Text that reaches t() through a variable: menu titles, sign-out notices, consent points, delete-account lists.
 const dynamic = [
   /title: "([^"]+)"/g, /^\s+(?:idle|ended): "([^"]+)"/gm, /whatIsDeleted="([^"]+)"/g,
+  /^\s+(?:starting|listening|thinking|speaking|muted): "([^"]+)"/gm,
 ];
 for (const file of files) {
   const src = fs.readFileSync(file, "utf8");
