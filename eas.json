@@ -28,7 +28,7 @@
         "image": "latest"
       },
       "ios": {
-        "image": "latest"
+        "image": "sdk-57"
       },
       "env": {
         "EXPO_PUBLIC_API_BASE_URL": "https://api.recordspeed.com"
