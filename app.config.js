@@ -12,7 +12,18 @@ export default {
       backgroundColor: "#4A68DC",
     },
     assetBundlePatterns: ["**/*"],
-    plugins: ["expo-apple-authentication", "expo-router"],
+    plugins: [
+      "expo-apple-authentication",
+      "expo-router",
+      [
+        "expo-speech-recognition",
+        {
+          microphonePermission: "Allow RecordSpeed to use the microphone so you can talk to the assistant.",
+          speechRecognitionPermission:
+            "Allow RecordSpeed to turn what you say to the assistant into text. This happens on your iPhone.",
+        },
+      ],
+    ],
     ios: {
       supportsTablet: true,
       bundleIdentifier: "com.recordspeed.app",

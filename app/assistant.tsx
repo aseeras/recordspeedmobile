@@ -1,6 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
+  AccessibilityInfo,
   ActivityIndicator,
+  Animated,
+  Easing,
   Keyboard,
   Platform,
   Pressable,
@@ -14,7 +17,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAccountCredentials } from "@/lib/auth/hooks";
 import { askAssistant, AssistantMessage, AssistantSuggestion } from "@/lib/assistant/request";
 import { useSpokenReplies } from "@/lib/assistant/voice";
-import { t } from "@/lib/i18n";
+import { canTalk, listenOnce, prepareTalk } from "@/lib/assistant/listen";
+import { LinearGradient } from "expo-linear-gradient";
+import { language, t } from "@/lib/i18n";
 
 // Screens the assistant may suggest, per account type, mapped to app routes.
 const SCREENS: Record<string, Record<string, string>> = {
@@ -43,9 +48,57 @@ const STARTERS: Record<string, string[]> = {
 
 type Entry = AssistantMessage & { suggestions?: AssistantSuggestion[]; error?: boolean; notSpoken?: boolean };
 
+// Talk mode: a spoken back-and-forth. What's said is recognised on the iPhone (see listen.ts); replies are spoken
+// in the Jennifer voice unless they hold account details, which stay on screen only.
+type TalkState = "off" | "starting" | "listening" | "thinking" | "speaking" | "muted";
+const TALK_STATUS: Record<Exclude<TalkState, "off">, string> = {
+  starting: "Getting ready…",
+  listening: "Listening…",
+  thinking: "Thinking…",
+  speaking: "Speaking…",
+  muted: "Microphone off",
+};
+
+// The assistant's orb: breathes while listening, turns while thinking, swells while speaking.
+function Orb({ state, size = 40 }: { state: TalkState; size?: number }) {
+  const motion = useRef(new Animated.Value(0)).current;
+  const [reduceMotion, setReduceMotion] = useState(false);
+  useEffect(() => {
+    AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion).catch(() => {});
+  }, []);
+  useEffect(() => {
+    motion.setValue(0);
+    if (reduceMotion || state === "off" || state === "muted") return;
+    const turning = state === "thinking" || state === "starting";
+    const loop = Animated.loop(
+      turning
+        ? Animated.timing(motion, { toValue: 1, duration: 1400, easing: Easing.linear, useNativeDriver: true })
+        : Animated.sequence([
+            Animated.timing(motion, { toValue: 1, duration: state === "speaking" ? 450 : 1100, useNativeDriver: true }),
+            Animated.timing(motion, { toValue: 0, duration: state === "speaking" ? 450 : 1100, useNativeDriver: true }),
+          ]),
+    );
+    loop.start();
+    return () => loop.stop();
+  }, [state, reduceMotion, motion]);
+  const turning = state === "thinking" || state === "starting";
+  const transform = turning
+    ? [{ rotate: motion.interpolate({ inputRange: [0, 1], outputRange: ["0deg", "360deg"] }) }]
+    : [{ scale: motion.interpolate({ inputRange: [0, 1], outputRange: [1, state === "speaking" ? 1.15 : 1.08] }) }];
+  return (
+    <Animated.View
+      accessibilityElementsHidden
+      importantForAccessibility="no-hide-descendants"
+      style={{ width: size, height: size, borderRadius: size / 2, overflow: "hidden", opacity: state === "muted" ? 0.4 : 1, transform }}
+    >
+      <LinearGradient colors={["#00C8FF", "#4F46E5", "#E8A200"]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }} />
+    </Animated.View>
+  );
+}
+
 // The RecordSpeed assistant: answers questions and looks up the user's own requests, shares and plan (read-only).
 export default function AssistantScreen() {
-  const { from } = useLocalSearchParams<{ from?: string }>();
+  const { from, talk: talkParam } = useLocalSearchParams<{ from?: string; talk?: string }>();
   const { data: credentials } = useAccountCredentials();
   const type = credentials?.type === "attorney" ? "attorney" : "patient";
   const [entries, setEntries] = useState<Entry[]>([]);
@@ -55,6 +108,16 @@ export default function AssistantScreen() {
   const insets = useSafeAreaInsets();
   const scroll = useRef<ScrollView>(null);
   const spoken = useSpokenReplies();
+  const [talkable] = useState(canTalk);
+  const [talk, setTalk] = useState<TalkState>("off");
+  const [heard, setHeard] = useState("");
+  const talkRun = useRef<AbortController | null>(null);
+  const listening = useRef<AbortController | null>(null);
+  const muted = useRef(false);
+  const unmute = useRef<(() => void) | null>(null);
+  // ask() reads the latest conversation, not the one from when talk mode started.
+  const entriesRef = useRef(entries);
+  entriesRef.current = entries;
 
   // The screen fills the whole display, so lifting the content by the keyboard's height keeps the question
   // box just above the keyboard. Android resizes the window on its own.
@@ -72,11 +135,12 @@ export default function AssistantScreen() {
     setTimeout(() => scroll.current?.scrollToEnd({ animated: true }), 50);
   }, [entries, busy, keyboardHeight]);
 
-  async function ask(text: string) {
+  // Returns the reply's speech token when it may be spoken (talk mode uses it), or null.
+  async function ask(text: string, { talking = false } = {}): Promise<string | null> {
     const question = text.trim();
-    if (!question || busy || !credentials?.authToken) return;
+    if (!question || (busy && !talking) || !credentials?.authToken) return null;
     const history: AssistantMessage[] = [
-      ...entries.filter((e) => !e.error).map(({ role, content }) => ({ role, content })),
+      ...entriesRef.current.filter((e) => !e.error).map(({ role, content }) => ({ role, content })),
       { role: "user", content: question },
     ];
     setEntries((prev) => [...prev, { role: "user", content: question }]);
@@ -87,8 +151,9 @@ export default function AssistantScreen() {
       const reply = await askAssistant({ authToken: credentials.authToken, messages: history, screen: from });
       const suggestions = reply.suggestions.filter((s) => SCREENS[type][s.target]);
       // Replies with account details are never sent to the voice service, so they stay text; say so.
-      const notSpoken = spoken.voice && reply.speechWithheld === "account_details";
+      const notSpoken = (spoken.voice || talking) && reply.speechWithheld === "account_details";
       setEntries((prev) => [...prev, { role: "assistant", content: reply.message, suggestions, notSpoken }]);
+      if (talking) return reply.speech ?? null;
       if (spoken.voice && reply.speech) spoken.speak(reply.speech);
     } catch (error) {
       setEntries((prev) => [
@@ -99,10 +164,96 @@ export default function AssistantScreen() {
     } finally {
       setBusy(false);
     }
+    return null;
   }
 
+  const stopSpeaking = spoken.stop;
+  const endTalk = useCallback(() => {
+    talkRun.current?.abort();
+    talkRun.current = null;
+    listening.current?.abort();
+    muted.current = false;
+    unmute.current?.();
+    stopSpeaking();
+    setHeard("");
+    setTalk("off");
+  }, [stopSpeaking]);
+  useEffect(() => endTalk, [endTalk]);
+
+  async function startTalk() {
+    if (talkRun.current) return;
+    const run = new AbortController();
+    talkRun.current = run;
+    setTalk("starting");
+    Keyboard.dismiss();
+    if (!(await prepareTalk())) {
+      endTalk();
+      setEntries((prev) => [
+        ...prev,
+        { role: "assistant", content: t("Talking needs the microphone. You can turn it on in Settings, or type your question instead."), error: true },
+      ]);
+      return;
+    }
+    let silences = 0;
+    while (!run.signal.aborted) {
+      if (muted.current) {
+        setTalk("muted");
+        await new Promise<void>((resolve) => (unmute.current = resolve));
+        continue;
+      }
+      setTalk("listening");
+      setHeard("");
+      const ctl = new AbortController();
+      listening.current = ctl;
+      let said = "";
+      try {
+        said = await listenOnce(language(), { onPartial: setHeard, signal: ctl.signal });
+      } catch {
+        if (run.signal.aborted) break;
+        endTalk();
+        setEntries((prev) => [
+          ...prev,
+          { role: "assistant", content: t("Talking isn't available on this iPhone right now. You can type your question instead."), error: true },
+        ]);
+        return;
+      }
+      setHeard("");
+      if (run.signal.aborted) break;
+      if (!said) {
+        if (muted.current) continue;
+        if (++silences >= 3) break;
+        continue;
+      }
+      silences = 0;
+      setTalk("thinking");
+      const speech = await ask(said, { talking: true });
+      if (run.signal.aborted) break;
+      if (speech) {
+        setTalk("speaking");
+        await spoken.speak(speech);
+      }
+    }
+    if (talkRun.current === run) endTalk();
+  }
+
+  function toggleMute() {
+    muted.current = !muted.current;
+    if (muted.current) listening.current?.abort();
+    else {
+      unmute.current?.();
+      unmute.current = null;
+    }
+    setTalk((s) => (muted.current ? "muted" : s === "muted" ? "listening" : s));
+  }
+
+  // Opened from the Talk button: start talking straight away.
+  useEffect(() => {
+    if (talkParam === "1" && talkable && credentials?.authToken) startTalk();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [talkParam, talkable, !!credentials?.authToken]);
+
   function open(target: string) {
-    spoken.stop();
+    endTalk();
     router.dismiss();
     router.replace(SCREENS[type][target] as Href);
   }
@@ -113,9 +264,16 @@ export default function AssistantScreen() {
       style={{ paddingTop: insets.top, paddingBottom: keyboardHeight > 0 ? keyboardHeight : insets.bottom }}
     >
       <View className="flex-row items-center px-5 pt-3 pb-3 border-b border-gray-200">
+        {talk !== "off" && (
+          <View className="mr-3">
+            <Orb state={talk} size={32} />
+          </View>
+        )}
         <View className="flex-1">
           <Text className="text-lg font-semibold text-gray-900">{t("RecordSpeed assistant")}</Text>
-          <Text className="text-xs text-gray-500">{t("AI · can look up your account, read-only")}</Text>
+          <Text className="text-xs text-gray-500" accessibilityLiveRegion="polite">
+            {talk === "off" ? t("AI · can look up your account, read-only") : t(TALK_STATUS[talk])}
+          </Text>
         </View>
         <Pressable
           role="switch"
@@ -126,7 +284,7 @@ export default function AssistantScreen() {
         >
           <Text className={`text-base ${spoken.voice ? "text-white" : "text-gray-500"}`}>{spoken.voice ? "🔊" : "🔇"}</Text>
         </Pressable>
-        <Pressable accessibilityRole="button" accessibilityLabel={t("Close")} onPress={() => { spoken.stop(); router.dismiss(); }} className="w-10 h-10 items-center justify-center rounded-lg border border-gray-300">
+        <Pressable accessibilityRole="button" accessibilityLabel={t("Close")} onPress={() => { endTalk(); router.dismiss(); }} className="w-10 h-10 items-center justify-center rounded-lg border border-gray-300">
           <Text className="text-base text-gray-700">✕</Text>
         </Pressable>
       </View>
@@ -175,7 +333,12 @@ export default function AssistantScreen() {
             )}
           </View>
         ))}
-        {busy && (
+        {!!heard && (
+          <View className="self-end max-w-[88%] rounded-2xl rounded-br-sm bg-indigo-100 px-3 py-2">
+            <Text className="text-base text-indigo-900">{heard}</Text>
+          </View>
+        )}
+        {busy && talk === "off" && (
           <View className="self-start flex-row items-center" style={{ gap: 6 }}>
             <ActivityIndicator size="small" color="#4F46E5" />
             <Text className="text-sm text-gray-500">{t("Thinking…")}</Text>
@@ -184,7 +347,40 @@ export default function AssistantScreen() {
       </ScrollView>
 
       <Text className="text-[11px] text-gray-400 px-4 pt-2 border-t border-gray-200">{t("AI can make mistakes. It can't make changes to your account.")}</Text>
+      {talk !== "off" ? (
+        <View className="flex-row items-center px-3 pt-2 pb-3" style={{ gap: 8 }}>
+          <Orb state={talk} size={48} />
+          <Text className="flex-1 text-base text-gray-700">{t(TALK_STATUS[talk])}</Text>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={talk === "muted" ? t("Unmute") : t("Mute")}
+            onPress={toggleMute}
+            className="h-12 px-4 rounded-xl border border-gray-300 items-center justify-center"
+          >
+            <Text className="text-gray-800 font-semibold">{talk === "muted" ? t("Unmute") : t("Mute")}</Text>
+          </Pressable>
+          <Pressable
+            accessibilityRole="button"
+            onPress={endTalk}
+            className="h-12 px-4 rounded-xl bg-red-600 items-center justify-center"
+          >
+            <Text className="text-white font-semibold">{t("End")}</Text>
+          </Pressable>
+        </View>
+      ) : (
       <View className="flex-row items-end px-3 pt-2 pb-3" style={{ gap: 8 }}>
+        {talkable && (
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={t("Talk")}
+            accessibilityHint={t("Ask out loud. What you say is turned into text on this iPhone.")}
+            onPress={startTalk}
+            className="h-12 w-12 rounded-xl items-center justify-center overflow-hidden"
+          >
+            <LinearGradient colors={["#00C8FF", "#4F46E5"]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ position: "absolute", inset: 0 }} />
+            <Text className="text-xl">🎙️</Text>
+          </Pressable>
+        )}
         {/* Plain styles, not classes, so the typed text always has a visible color and size. It grows to
             about five lines so a long question stays readable; Return still sends. */}
         <TextInput
@@ -223,6 +419,7 @@ export default function AssistantScreen() {
           <Text className="text-white font-semibold">{t("Send")}</Text>
         </Pressable>
       </View>
+      )}
     </View>
   );
 }

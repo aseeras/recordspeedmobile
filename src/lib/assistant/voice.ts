@@ -18,9 +18,13 @@ export function useSpokenReplies() {
       .catch(() => {});
   }, []);
 
+  const finished = useRef<(() => void) | null>(null);
+
   const stop = useCallback(() => {
     const current = player.current;
     player.current = null;
+    finished.current?.();
+    finished.current = null;
     if (!current) return;
     try {
       current.pause();
@@ -40,22 +44,29 @@ export function useSpokenReplies() {
     });
   }, [stop]);
 
+  // Resolves once the reply has been heard, stopped or failed, so talk mode knows when to listen again.
   const speak = useCallback(
-    async (token: string) => {
-      stop();
-      try {
+    (token: string) =>
+      new Promise<void>((resolve) => {
+        stop();
+        finished.current = resolve;
         // They asked to hear replies, so play even with the ring/silent switch on silent.
-        await setAudioModeAsync({ playsInSilentMode: true });
-        const next = createAudioPlayer({ uri: `${API_BASE_URL}/assistant_speeches?token=${encodeURIComponent(token)}` });
-        player.current = next;
-        next.addListener("playbackStatusUpdate", (status) => {
-          if (status.didJustFinish && player.current === next) stop();
-        });
-        next.play();
-      } catch {
-        // stays text only
-      }
-    },
+        setAudioModeAsync({ playsInSilentMode: true })
+          .then(() => {
+            if (finished.current !== resolve) return;
+            const next = createAudioPlayer({ uri: `${API_BASE_URL}/assistant_speeches?token=${encodeURIComponent(token)}` });
+            player.current = next;
+            next.addListener("playbackStatusUpdate", (status) => {
+              if (status.didJustFinish && player.current === next) stop();
+            });
+            next.play();
+            // A reply that never loads (network gone) shouldn't leave talk mode waiting forever.
+            setTimeout(() => {
+              if (player.current === next && !next.isLoaded) stop();
+            }, 15000);
+          })
+          .catch(() => stop()); // stays text only
+      }),
     [stop],
   );
 
