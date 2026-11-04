@@ -46,6 +46,10 @@ export interface CrmMeeting {
   status: "scheduled" | "transcribed" | "summarized" | "no_transcript" | "cancelled";
   suggestions_status: "none" | "pending" | "applied" | "dismissed"; has_transcript: boolean;
   organizer: Staff | null; account: { id: number; name: string }; deal: { id: number; name: string; stage: Stage } | null;
+  video_provider?: "daily" | null;
+}
+export interface MeetingVideo {
+  guest_link: string; transcription_status: "off" | "running" | "stopped"; customer_agreed: boolean; agreed_by: string | null; agreed_at: string | null; open: boolean;
 }
 export interface MeetingSuggestions {
   note: string;
@@ -56,5 +60,5 @@ export interface MeetingSuggestions {
 }
 export interface MeetingDetail extends CrmMeeting {
   transcript: string | null; summary: string | null; suggestions: MeetingSuggestions | null; phi_allowed: boolean;
-  can_fetch_transcript?: boolean;
+  can_fetch_transcript?: boolean; video?: MeetingVideo | null;
 }

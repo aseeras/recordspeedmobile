@@ -1,9 +1,9 @@
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { Linking, Switch, Text, TextInput, View } from "react-native";
+import { Linking, Share, Switch, Text, TextInput, View } from "react-native";
 import { crm, dollarsToCents, money } from "@/api";
 import { DateField } from "@/DateField";
-import { isLive, meetingLabel, when } from "@/meetings";
+import { isLive, joinVideoCall, meetingLabel, when } from "@/meetings";
 import { useDeals, useMeeting } from "@/queries";
 import type { MeetingSuggestions, Stage } from "@/types";
 import { STAGE_LABEL, STAGES } from "@/types";
@@ -128,7 +128,30 @@ export default function MeetingScreen() {
         {m.deal ? <Text style={{ color: C.brand }} onPress={() => router.push(`/deal/${m.deal!.id}`)}>{m.deal.name} ›</Text> : null}
       </View>
 
-      {isLive(m) ? (
+      {m.video && m.status === "scheduled" ? (
+        <Card title="RecordSpeed video call">
+          <Button title="Join video call" onPress={() => { setActionError(null); joinVideoCall(m.id).catch(setActionError); }} />
+          <Button kind="secondary" title="Share link with the customer"
+            onPress={() => Share.share({ message: `Join our RecordSpeed video call: ${m.video!.guest_link}` })} />
+          <Text style={{ fontWeight: "600", color: C.ink }}>Transcription</Text>
+          <Muted>{m.video.customer_agreed ? `${m.video.agreed_by ?? "The customer"} agreed to transcription.`
+            : "The customer hasn't agreed yet. They're asked when they open their link; without a yes, the call isn't transcribed."}</Muted>
+          {m.video.transcription_status === "running" ? (
+            <>
+              <Text style={{ color: "#B42318", fontWeight: "700" }}>● Transcribing</Text>
+              <Button kind="secondary" title="Stop transcription" onPress={() => run("/stop_transcription")} disabled={busy} />
+            </>
+          ) : (
+            <Button title={m.video.transcription_status === "stopped" ? "Start transcription again" : "Start transcription"}
+              onPress={() => run("/start_transcription")} disabled={busy || !m.video.customer_agreed} />
+          )}
+          <Muted>Start it once you're both in the call. The transcript appears here a few minutes after the call.</Muted>
+          <Button kind="secondary" small title="Cancel meeting"
+            onPress={() => confirm("Cancel this meeting?", "The customer's link will stop working.", async () => { await crm(`/meetings/${m.id}`, { method: "DELETE" }); refresh(); }, "Cancel meeting")} />
+        </Card>
+      ) : null}
+
+      {isLive(m) && !m.video ? (
         <Card>
           {m.meet_url ? <Button title="Join Google Meet" onPress={() => Linking.openURL(m.meet_url!)} /> : null}
           <Muted>{`Guests: ${m.attendee_emails.join(", ") || "none"}`}</Muted>

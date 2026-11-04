@@ -18,6 +18,12 @@ export function meetingLabel(m: CrmMeeting) {
 
 export const isLive = (m: CrmMeeting) => m.status === "scheduled" && new Date(m.ends_at).getTime() > Date.now();
 
+// Opens a RecordSpeed video call in Safari (camera and microphone work there), joined as the host.
+export async function joinVideoCall(meetingId: number) {
+  const { join_url } = await crm<{ join_url: string }>(`/meetings/${meetingId}/join`, { method: "POST", body: {} });
+  await Linking.openURL(join_url);
+}
+
 // Meetings for a deal or an account, with Join for upcoming ones and a form to add another: scheduled in Google when
 // Google is connected, otherwise logged with the Meet link from Google Calendar (the transcript is pasted afterwards).
 export function MeetingsSection({ dealId, accountId, contacts, defaultTitle }: { dealId?: number; accountId: number; contacts: CrmContact[]; defaultTitle: string }) {
@@ -28,21 +34,24 @@ export function MeetingsSection({ dealId, accountId, contacts, defaultTitle }: {
     <View style={{ gap: 8 }}>
       {(data?.meetings ?? []).map((m) => (
         <Row key={m.id} title={m.title} subtitle={`${when(m.starts_at)} · ${meetingLabel(m)}`} onPress={() => router.push(`/meeting/${m.id}`)}
-          right={isLive(m) && m.meet_url ? <Button small title="Join" onPress={() => Linking.openURL(m.meet_url!)} /> : undefined} />
+          right={isLive(m) && m.video_provider === "daily" ? <Button small title="Join" onPress={() => { joinVideoCall(m.id).catch(() => router.push(`/meeting/${m.id}`)); }} />
+            : isLive(m) && m.meet_url ? <Button small title="Join" onPress={() => Linking.openURL(m.meet_url!)} /> : undefined} />
       ))}
       {data && data.meetings.length === 0 ? <Muted>No meetings yet.</Muted> : null}
       {data ? (
         open ? <ScheduleMeeting dealId={dealId} accountId={accountId} contacts={contacts} defaultTitle={defaultTitle} google={data.google_connected}
-          onDone={() => setOpen(false)} />
-          : <Button small kind="secondary" title={data.google_connected ? "+ Schedule Google Meet" : "+ Add a meeting"} onPress={() => setOpen(true)} />
+          video={Boolean(data.video_connected)} onDone={() => setOpen(false)} />
+          : <Button small kind="secondary" title={data.video_connected ? "+ New video call or meeting" : data.google_connected ? "+ Schedule Google Meet" : "+ Add a meeting"}
+            onPress={() => setOpen(true)} />
       ) : null}
     </View>
   );
 }
 
-function ScheduleMeeting({ dealId, accountId, contacts, defaultTitle, google, onDone }: {
-  dealId?: number; accountId: number; contacts: CrmContact[]; defaultTitle: string; google: boolean; onDone: () => void;
+function ScheduleMeeting({ dealId, accountId, contacts, defaultTitle, google, video, onDone }: {
+  dealId?: number; accountId: number; contacts: CrmContact[]; defaultTitle: string; google: boolean; video: boolean; onDone: () => void;
 }) {
+  const [kind, setKind] = useState<"video" | "meet">(video ? "video" : "meet");
   const refresh = useRefreshAll();
   const withEmail = contacts.filter((c) => c.email);
   const [title, setTitle] = useState(defaultTitle);
@@ -65,7 +74,7 @@ function ScheduleMeeting({ dealId, accountId, contacts, defaultTitle, google, on
       const startsAt = new Date(y, mo - 1, d, h, m).toISOString(); // the phone's own time zone
       await crm("/meetings", { method: "POST", body: { meeting: {
         crm_account_id: accountId, crm_deal_id: dealId ?? null, title, starts_at: startsAt, duration_minutes: Number(length),
-        attendee_emails: [...invite, ...others.split(",").map((e) => e.trim()).filter(Boolean)], meet_url: link.trim() || null,
+        attendee_emails: [...invite, ...others.split(",").map((e) => e.trim()).filter(Boolean)], meet_url: kind === "meet" ? link.trim() || null : null, video: kind === "video" ? "daily" : "meet",
       } } });
       refresh();
       onDone();
@@ -74,6 +83,8 @@ function ScheduleMeeting({ dealId, accountId, contacts, defaultTitle, google, on
 
   return (
     <View style={{ gap: 10 }}>
+      {video ? <Choice label="Type" options={["video", "meet"] as const} value={kind} onChange={setKind}
+        labels={{ video: "RecordSpeed video call", meet: "Google Meet" }} /> : null}
       <Field label="Title" value={title} onChangeText={setTitle} />
       <DateField label="Date" value={date} onChange={setDate} />
       <TimeField label="Time" value={time} onChange={setTime} />
@@ -91,13 +102,14 @@ function ScheduleMeeting({ dealId, accountId, contacts, defaultTitle, google, on
         </View>
       ) : null}
       <Field label="Other emails (comma-separated)" value={others} onChangeText={setOthers} autoCapitalize="none" keyboardType="email-address" />
-      {!google ? <Field label="Meet link (optional)" value={link} onChangeText={setLink} autoCapitalize="none" keyboardType="url"
+      {kind === "meet" && !google ? <Field label="Meet link (optional)" value={link} onChangeText={setLink} autoCapitalize="none" keyboardType="url"
         placeholder="https://meet.google.com/abc-defg-hij" /> : null}
       <ErrorText error={error} />
-      <Button title={busy ? "Saving…" : google ? "Schedule Google Meet" : "Add meeting"} onPress={save} disabled={busy} />
+      <Button title={busy ? "Saving…" : kind === "video" ? "Create video call" : google ? "Schedule Google Meet" : "Add meeting"} onPress={save} disabled={busy} />
       <Text style={[s.muted, { color: C.muted }]}>
-        {google ? "Google sends the invites from your calendar. Turn on transcription in the call."
-          : "Create the Meet in Google Calendar as usual and paste its link here. After the call, open the meeting and paste the transcript or your notes."}
+        {kind === "video" ? "Then open the meeting to share the customer's link. They join in their browser and are asked whether the call may be transcribed."
+          : google ? "Google sends the invites from your calendar. Turn on transcription in the call."
+            : "Create the Meet in Google Calendar as usual and paste its link here. After the call, open the meeting and paste the transcript or your notes."}
       </Text>
     </View>
   );

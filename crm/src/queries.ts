@@ -25,6 +25,6 @@ export const useDemoRequests = () => useQuery({ queryKey: ["demo_requests"], que
 
 export const useMeetings = (filter: { dealId?: number; accountId?: number } = {}) => {
   const q = filter.dealId ? `?deal_id=${filter.dealId}` : filter.accountId ? `?account_id=${filter.accountId}` : "";
-  return useQuery({ queryKey: ["meetings", q], queryFn: () => crm<{ meetings: CrmMeeting[]; google_connected: boolean }>(`/meetings${q}`) });
+  return useQuery({ queryKey: ["meetings", q], queryFn: () => crm<{ meetings: CrmMeeting[]; google_connected: boolean; video_connected?: boolean }>(`/meetings${q}`) });
 };
 export const useMeeting = (id: string) => useQuery({ queryKey: ["meeting", id], queryFn: () => crm<{ meeting: MeetingDetail }>(`/meetings/${id}`) });
