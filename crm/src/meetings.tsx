@@ -18,7 +18,8 @@ export function meetingLabel(m: CrmMeeting) {
 
 export const isLive = (m: CrmMeeting) => m.status === "scheduled" && new Date(m.ends_at).getTime() > Date.now();
 
-// Meetings for a deal or an account, with Join for upcoming ones and a form to schedule another.
+// Meetings for a deal or an account, with Join for upcoming ones and a form to add another: scheduled in Google when
+// Google is connected, otherwise logged with the Meet link from Google Calendar (the transcript is pasted afterwards).
 export function MeetingsSection({ dealId, accountId, contacts, defaultTitle }: { dealId?: number; accountId: number; contacts: CrmContact[]; defaultTitle: string }) {
   const router = useRouter();
   const { data } = useMeetings(dealId ? { dealId } : { accountId });
@@ -30,17 +31,17 @@ export function MeetingsSection({ dealId, accountId, contacts, defaultTitle }: {
           right={isLive(m) && m.meet_url ? <Button small title="Join" onPress={() => Linking.openURL(m.meet_url!)} /> : undefined} />
       ))}
       {data && data.meetings.length === 0 ? <Muted>No meetings yet.</Muted> : null}
-      {data && !data.google_connected ? <Muted>{"Google Meet isn't connected yet."}</Muted> : null}
-      {data?.google_connected ? (
-        open ? <ScheduleMeeting dealId={dealId} accountId={accountId} contacts={contacts} defaultTitle={defaultTitle} onDone={() => setOpen(false)} />
-          : <Button small kind="secondary" title="+ Schedule Google Meet" onPress={() => setOpen(true)} />
+      {data ? (
+        open ? <ScheduleMeeting dealId={dealId} accountId={accountId} contacts={contacts} defaultTitle={defaultTitle} google={data.google_connected}
+          onDone={() => setOpen(false)} />
+          : <Button small kind="secondary" title={data.google_connected ? "+ Schedule Google Meet" : "+ Add a meeting"} onPress={() => setOpen(true)} />
       ) : null}
     </View>
   );
 }
 
-function ScheduleMeeting({ dealId, accountId, contacts, defaultTitle, onDone }: {
-  dealId?: number; accountId: number; contacts: CrmContact[]; defaultTitle: string; onDone: () => void;
+function ScheduleMeeting({ dealId, accountId, contacts, defaultTitle, google, onDone }: {
+  dealId?: number; accountId: number; contacts: CrmContact[]; defaultTitle: string; google: boolean; onDone: () => void;
 }) {
   const refresh = useRefreshAll();
   const withEmail = contacts.filter((c) => c.email);
@@ -50,6 +51,7 @@ function ScheduleMeeting({ dealId, accountId, contacts, defaultTitle, onDone }: 
   const [length, setLength] = useState<"15" | "30" | "45" | "60">("30");
   const [invite, setInvite] = useState<string[]>(withEmail.map((c) => c.email!));
   const [others, setOthers] = useState("");
+  const [link, setLink] = useState("");
   const [error, setError] = useState<unknown>(null);
   const [busy, setBusy] = useState(false);
 
@@ -63,7 +65,7 @@ function ScheduleMeeting({ dealId, accountId, contacts, defaultTitle, onDone }: 
       const startsAt = new Date(y, mo - 1, d, h, m).toISOString(); // the phone's own time zone
       await crm("/meetings", { method: "POST", body: { meeting: {
         crm_account_id: accountId, crm_deal_id: dealId ?? null, title, starts_at: startsAt, duration_minutes: Number(length),
-        attendee_emails: [...invite, ...others.split(",").map((e) => e.trim()).filter(Boolean)],
+        attendee_emails: [...invite, ...others.split(",").map((e) => e.trim()).filter(Boolean)], meet_url: link.trim() || null,
       } } });
       refresh();
       onDone();
@@ -89,9 +91,14 @@ function ScheduleMeeting({ dealId, accountId, contacts, defaultTitle, onDone }: 
         </View>
       ) : null}
       <Field label="Other emails (comma-separated)" value={others} onChangeText={setOthers} autoCapitalize="none" keyboardType="email-address" />
+      {!google ? <Field label="Meet link (optional)" value={link} onChangeText={setLink} autoCapitalize="none" keyboardType="url"
+        placeholder="https://meet.google.com/abc-defg-hij" /> : null}
       <ErrorText error={error} />
-      <Button title={busy ? "Scheduling…" : "Schedule Google Meet"} onPress={save} disabled={busy} />
-      <Text style={[s.muted, { color: C.muted }]}>Google sends the invites from your calendar. Turn on transcription in the call.</Text>
+      <Button title={busy ? "Saving…" : google ? "Schedule Google Meet" : "Add meeting"} onPress={save} disabled={busy} />
+      <Text style={[s.muted, { color: C.muted }]}>
+        {google ? "Google sends the invites from your calendar. Turn on transcription in the call."
+          : "Create the Meet in Google Calendar as usual and paste its link here. After the call, open the meeting and paste the transcript or your notes."}
+      </Text>
     </View>
   );
 }

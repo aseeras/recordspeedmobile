@@ -56,4 +56,5 @@ export interface MeetingSuggestions {
 }
 export interface MeetingDetail extends CrmMeeting {
   transcript: string | null; summary: string | null; suggestions: MeetingSuggestions | null; phi_allowed: boolean;
+  can_fetch_transcript?: boolean;
 }
