@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Linking, Text, View } from "react-native";
 import { crm, money } from "@/api";
 import { LogActivity, Timeline } from "@/activity";
+import { MeetingsSection } from "@/meetings";
 import { useAccount, useDeals } from "@/queries";
 import { KIND_LABEL, KINDS } from "@/types";
 import { Button, C, Card, Choice, ErrorText, Field, Loading, Muted, Row, Screen, StageBadge, confirm, s, useRefreshAll } from "@/ui";
@@ -89,6 +90,10 @@ export default function AccountScreen() {
           </View>
         ))}
         <AddPerson accountId={account.id} />
+      </Card>
+
+      <Card title="Video meetings (Google Meet)">
+        <MeetingsSection accountId={account.id} contacts={contacts} defaultTitle={`${account.name} · RecordSpeed`} />
       </Card>
 
       <Card title="Log activity or add a follow-up">

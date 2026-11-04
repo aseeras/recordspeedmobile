@@ -9,7 +9,7 @@ export const KIND_LABEL: Record<string, string> = {
 export const KINDS = Object.keys(KIND_LABEL);
 export const ACTIVITY_LABEL: Record<string, string> = { call: "Call", email: "Email", meeting: "Meeting", note: "Note", task: "Follow-up", stage_change: "Stage" };
 
-export interface Staff { id: number; name: string }
+export interface Staff { id: number; name: string; email?: string }
 export interface Account { id: number; email: string; fullName: string; firstName: string; type: string }
 export interface CrmContact { id: number; crm_account_id: number; first_name: string; last_name: string | null; full_name: string; title: string | null; email: string | null; phone: string | null }
 export interface CrmAccount {
@@ -39,4 +39,21 @@ export interface AsanaUser { gid: string; name: string; email: string | null }
 export interface DemoRequest {
   id: number; name: string; email: string; organization: string | null; role: string | null; phone: string | null; message: string | null;
   status: "new" | "contacted" | "converted" | "closed"; created_at: string; deal_id: number | null;
+}
+
+export interface CrmMeeting {
+  id: number; title: string; starts_at: string; ends_at: string; attendee_emails: string[]; meet_url: string | null;
+  status: "scheduled" | "transcribed" | "summarized" | "no_transcript" | "cancelled";
+  suggestions_status: "none" | "pending" | "applied" | "dismissed"; has_transcript: boolean;
+  organizer: Staff | null; account: { id: number; name: string }; deal: { id: number; name: string; stage: Stage } | null;
+}
+export interface MeetingSuggestions {
+  note: string;
+  follow_ups: { subject: string; due_on: string | null; assignee_email: string | null }[];
+  stage: { to: Stage; reason: string } | null;
+  contacts: { first_name: string; last_name: string; title: string; email: string }[];
+  amount_cents: number | null;
+}
+export interface MeetingDetail extends CrmMeeting {
+  transcript: string | null; summary: string | null; suggestions: MeetingSuggestions | null; phi_allowed: boolean;
 }
