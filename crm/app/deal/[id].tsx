@@ -4,6 +4,7 @@ import { Linking, Text, View } from "react-native";
 import { crm, dollarsToCents, money, shortDate } from "@/api";
 import { DateField } from "@/DateField";
 import { LogActivity, Timeline } from "@/activity";
+import { MeetingsSection } from "@/meetings";
 import { useDeal } from "@/queries";
 import { KIND_LABEL, OPEN_STAGES, STAGE_LABEL, Stage } from "@/types";
 import { Button, C, Card, Choice, ErrorText, Field, Loading, Muted, Screen, StageBadge, confirm, s, useRefreshAll } from "@/ui";
@@ -91,6 +92,10 @@ export default function DealScreen() {
           </View>
         </Card>
       ) : null}
+
+      <Card title="Video meetings (Google Meet)">
+        <MeetingsSection dealId={deal.id} accountId={deal.account.id} contacts={contacts} defaultTitle={`${deal.account.name} · RecordSpeed`} />
+      </Card>
 
       <Card title="Log activity or add a follow-up">
         <LogActivity accountId={deal.account.id} dealId={deal.id} contacts={contacts} staff={staff} />

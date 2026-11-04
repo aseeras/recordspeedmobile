@@ -1,7 +1,7 @@
 import { useQuery as useRawQuery, UseQueryOptions } from "@tanstack/react-query";
 import { useAuth } from "./auth";
 import { crm, staff } from "./api";
-import type { AsanaProject, AsanaUser, CrmAccount, CrmActivity, CrmContact, CrmDeal, DemoRequest, Report, Staff } from "./types";
+import type { AsanaProject, AsanaUser, CrmAccount, CrmActivity, CrmContact, CrmDeal, CrmMeeting, DemoRequest, MeetingDetail, Report, Staff } from "./types";
 
 // Only ask the API once someone is signed in (the tabs mount for a moment before the sign-in redirect).
 function useQuery<T>(options: UseQueryOptions<T>) {
@@ -22,3 +22,9 @@ export const useFollowUps = (mine: boolean) =>
 export const useProjects = () =>
   useQuery({ queryKey: ["projects"], queryFn: () => staff<{ connected: boolean; projects: AsanaProject[]; users?: AsanaUser[] }>("/projects") });
 export const useDemoRequests = () => useQuery({ queryKey: ["demo_requests"], queryFn: () => staff<{ demo_requests: DemoRequest[] }>("/demo_requests") });
+
+export const useMeetings = (filter: { dealId?: number; accountId?: number } = {}) => {
+  const q = filter.dealId ? `?deal_id=${filter.dealId}` : filter.accountId ? `?account_id=${filter.accountId}` : "";
+  return useQuery({ queryKey: ["meetings", q], queryFn: () => crm<{ meetings: CrmMeeting[]; google_connected: boolean }>(`/meetings${q}`) });
+};
+export const useMeeting = (id: string) => useQuery({ queryKey: ["meeting", id], queryFn: () => crm<{ meeting: MeetingDetail }>(`/meetings/${id}`) });

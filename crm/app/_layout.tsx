@@ -31,6 +31,8 @@ function Gate() {
       <Stack.Screen name="new_deal" options={{ title: "New deal", presentation: "modal" }} />
       <Stack.Screen name="new_account" options={{ title: "New organization", presentation: "modal" }} />
       <Stack.Screen name="reports" options={{ title: "Sales reports" }} />
+      <Stack.Screen name="meetings" options={{ title: "Meetings" }} />
+      <Stack.Screen name="meeting/[id]" options={{ title: "Meeting" }} />
       <Stack.Screen name="demo_requests" options={{ title: "Demo requests" }} />
     </Stack>
   );

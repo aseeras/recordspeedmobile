@@ -55,3 +55,37 @@ export function DateField({ label, value, onChange }: { label: string; value: st
     </View>
   );
 }
+
+// A time of day ("HH:MM", 24-hour) chosen with the iPhone's time wheel; a text box in the web preview.
+export function TimeField({ label, value, onChange }: { label: string; value: string; onChange: (hhmm: string) => void }) {
+  const [open, setOpen] = useState(false);
+  const [h, m] = value.split(":").map(Number);
+  const asDate = new Date(2000, 0, 1, h || 0, m || 0);
+  const shown = asDate.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+  if (Platform.OS === "web") {
+    return (
+      <View style={{ gap: 4 }}>
+        <Text style={s.label}>{label}</Text>
+        <TextInput style={s.input} value={value} onChangeText={onChange} placeholder="10:00" placeholderTextColor="#B3A493" />
+      </View>
+    );
+  }
+  return (
+    <View style={{ gap: 4 }}>
+      <Text style={s.label}>{label}</Text>
+      <Pressable onPress={() => setOpen(!open)} accessibilityRole="button" accessibilityLabel={`${label}: ${shown}`} style={s.input}>
+        <Text style={{ fontSize: 16, color: C.ink }}>{shown}</Text>
+      </Pressable>
+      {open ? (
+        <View style={{ alignItems: "center" }}>
+          <DateTimePicker value={asDate} mode="time" display={Platform.OS === "ios" ? "spinner" : "default"} minuteInterval={5}
+            onChange={(event, date) => {
+              if (Platform.OS === "android") setOpen(false);
+              if (event.type === "set" && date) onChange(`${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`);
+            }} />
+          {Platform.OS === "ios" ? <Text style={{ color: C.brand, fontWeight: "700", padding: 8 }} onPress={() => setOpen(false)}>Done</Text> : null}
+        </View>
+      ) : null}
+    </View>
+  );
+}

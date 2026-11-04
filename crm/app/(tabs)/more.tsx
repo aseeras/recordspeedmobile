@@ -12,6 +12,7 @@ export default function More() {
   return (
     <Screen>
       <Card>
+        <Row title="Meetings" subtitle="Google Meet calls, transcripts and updates to review" onPress={() => router.push("/meetings")} />
         <Row title="Sales reports" subtitle="Pipeline, wins, win rate, by type" onPress={() => router.push("/reports")} />
         <Row title="Demo requests" subtitle={fresh ? `${fresh} new from the website` : "From the website"} onPress={() => router.push("/demo_requests")} />
         <Row title="Staff portal" subtitle="portal.recordspeed.com/staff" onPress={() => Linking.openURL("https://portal.recordspeed.com/staff")} />
