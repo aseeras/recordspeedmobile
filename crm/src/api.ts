@@ -51,3 +51,24 @@ export const dollarsToCents = (text: string) => {
   const n = Number(text.replace(/[$,\s]/g, ""));
   return Number.isFinite(n) && n > 0 ? Math.round(n * 100) : 0;
 };
+
+// Dates are typed and shown the American way (MM/DD/YYYY); the API takes YYYY-MM-DD.
+export const isoToUs = (iso: string | null) => {
+  if (!iso) return "";
+  const [y, m, d] = iso.slice(0, 10).split("-");
+  return `${m}/${d}/${y}`;
+};
+export const usToday = () => isoToUs(today());
+// "11/4/2026", "11/04/26" or "" -> "2026-11-04" (or null for blank). Throws on anything that isn't a real date.
+export function usToIso(text: string): string | null {
+  const t = text.trim();
+  if (!t) return null;
+  const m = t.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2}|\d{4})$/);
+  if (!m) throw new Error("Enter the date as MM/DD/YYYY, like 12/01/2026.");
+  const year = m[3].length === 2 ? 2000 + Number(m[3]) : Number(m[3]);
+  const month = Number(m[1]);
+  const day = Number(m[2]);
+  const date = new Date(year, month - 1, day);
+  if (date.getMonth() !== month - 1 || date.getDate() !== day) throw new Error(`${t} isn't a real date.`);
+  return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+}
