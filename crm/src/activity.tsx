@@ -2,7 +2,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, Text, View } from "react-native";
-import { crm, shortDate, today } from "./api";
+import { crm, shortDate, today, usToday, usToIso } from "./api";
 import type { CrmActivity, CrmContact, Staff } from "./types";
 import { ACTIVITY_LABEL } from "./types";
 import { Button, C, Choice, ErrorText, Field, Muted, confirm, s, useRefreshAll } from "./ui";
@@ -72,7 +72,7 @@ export function LogActivity({ accountId, dealId, contacts, staff }: { accountId?
     setError(null);
     try {
       await crm("/activities", { method: "POST", body: { activity: {
-        kind, subject, body: body || null, due_on: kind === "task" && due ? due : null, crm_account_id: accountId ?? null, crm_deal_id: dealId ?? null,
+        kind, subject, body: body || null, due_on: kind === "task" ? usToIso(due) : null, crm_account_id: accountId ?? null, crm_deal_id: dealId ?? null,
         crm_contact_id: contactId, ...(kind === "task" && assigneeId ? { assignee_id: assigneeId } : {}),
       } } });
       setSubject(""); setBody(""); setDue("");
@@ -91,7 +91,7 @@ export function LogActivity({ accountId, dealId, contacts, staff }: { accountId?
       <Field label="Notes" value={body} onChangeText={setBody} multiline placeholder="No patient information here." />
       {kind === "task" ? (
         <>
-          <Field label="Due (YYYY-MM-DD)" value={due} onChangeText={setDue} placeholder={today()} autoCorrect={false} />
+          <Field label="Due (MM/DD/YYYY)" value={due} onChangeText={setDue} placeholder={usToday()} autoCorrect={false} keyboardType="numbers-and-punctuation" />
           <Choice label="For" options={staff.map((x) => String(x.id))} value={assigneeId}
             onChange={(v) => setAssigneeId(v === assigneeId ? null : v)} labels={Object.fromEntries(staff.map((x) => [String(x.id), x.name]))} />
         </>

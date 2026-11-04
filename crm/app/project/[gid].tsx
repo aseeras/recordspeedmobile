@@ -2,7 +2,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { Linking, Pressable, Text, View } from "react-native";
-import { shortDate, staff, today } from "@/api";
+import { shortDate, staff, today, usToday, usToIso } from "@/api";
 import { useProjects } from "@/queries";
 import type { AsanaTask } from "@/types";
 import { Button, C, Card, Choice, ErrorText, Field, Loading, Muted, Screen, s, useRefreshAll } from "@/ui";
@@ -52,7 +52,7 @@ export default function Project() {
     setBusy(true);
     setError(null);
     try {
-      await staff("/tasks", { method: "POST", body: { project_gid: project!.gid, name, section_gid: section ? project!.section_gids[section] : null, assignee, due_on: due || null } });
+      await staff("/tasks", { method: "POST", body: { project_gid: project!.gid, name, section_gid: section ? project!.section_gids[section] : null, assignee, due_on: usToIso(due) } });
       setName(""); setDue("");
       await refresh();
     } catch (e) { setError(e); } finally { setBusy(false); }
@@ -72,7 +72,7 @@ export default function Project() {
         <Choice label="Section" options={project.sections} value={section} onChange={(v) => setSection(v === section ? null : v)} />
         <Choice label="Assign to" options={users.map((u) => u.email!)} value={assignee} onChange={(v) => setAssignee(v === assignee ? null : v)}
           labels={Object.fromEntries(users.map((u) => [u.email!, u.name.includes("@") ? u.name.split("@")[0] : u.name]))} />
-        <Field label="Due (YYYY-MM-DD)" value={due} onChangeText={setDue} placeholder={today()} autoCorrect={false} />
+        <Field label="Due (MM/DD/YYYY)" value={due} onChangeText={setDue} placeholder={usToday()} autoCorrect={false} keyboardType="numbers-and-punctuation" />
         <ErrorText error={error} />
         <Button title={busy ? "Adding…" : "Add task"} onPress={add} disabled={busy || !name.trim()} />
       </Card>
