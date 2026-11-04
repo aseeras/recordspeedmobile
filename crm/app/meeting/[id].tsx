@@ -163,9 +163,10 @@ export default function MeetingScreen() {
           </>
         ) : m.status === "cancelled" ? <Muted>This meeting was cancelled.</Muted> : (
           <View style={{ gap: 8 }}>
-            <Muted>{isLive(m) ? "After the call, Meet's transcript shows up here within about 15 minutes." : "No transcript yet. Meet can take a few minutes."}</Muted>
-            {!isLive(m) ? <Button kind="secondary" title="Check for the transcript now" onPress={() => run("/fetch_transcript")} disabled={busy} /> : null}
-            <Field label="Or paste a transcript or notes" value={paste} onChangeText={setPaste} multiline />
+            <Muted>{!m.can_fetch_transcript ? "After the call, paste Meet's transcript (from Google's email or the Doc in your Drive) or your notes."
+              : isLive(m) ? "After the call, Meet's transcript shows up here within about 15 minutes." : "No transcript yet. Meet can take a few minutes."}</Muted>
+            {!isLive(m) && m.can_fetch_transcript ? <Button kind="secondary" title="Check for the transcript now" onPress={() => run("/fetch_transcript")} disabled={busy} /> : null}
+            <Field label={m.can_fetch_transcript ? "Or paste a transcript or notes" : "Paste the transcript or notes"} value={paste} onChangeText={setPaste} multiline />
             <Button small title="Save transcript" onPress={() => run("/transcript", { transcript: paste })} disabled={busy || !paste.trim()} />
           </View>
         )}
