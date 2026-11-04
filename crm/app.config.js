@@ -21,7 +21,7 @@ module.exports = {
     owner: "aseeras",
     extra: {
       apiBaseUrl: process.env.EXPO_PUBLIC_API_BASE_URL || "https://api.recordspeed.com",
-      // eas: { projectId } is added by `eas init` the first time you build.
+      eas: { projectId: "7c0f3554-85e7-46f1-bced-01b47c4d05e0" },
     },
   },
 };
