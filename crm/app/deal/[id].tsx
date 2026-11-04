@@ -1,7 +1,8 @@
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Linking, Text, View } from "react-native";
-import { crm, dollarsToCents, isoToUs, money, shortDate, usToIso } from "@/api";
+import { crm, dollarsToCents, money, shortDate } from "@/api";
+import { DateField } from "@/DateField";
 import { LogActivity, Timeline } from "@/activity";
 import { useDeal } from "@/queries";
 import { KIND_LABEL, OPEN_STAGES, STAGE_LABEL, Stage } from "@/types";
@@ -17,7 +18,7 @@ export default function DealScreen() {
   const [edit, setEdit] = useState(false);
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
-  const [closeOn, setCloseOn] = useState("");
+  const [closeOn, setCloseOn] = useState<string | null>(null);
   const [ownerId, setOwnerId] = useState<string | null>(null);
   const [contactId, setContactId] = useState<string | null>(null);
   const [saveError, setSaveError] = useState<unknown>(null);
@@ -26,7 +27,7 @@ export default function DealScreen() {
     if (!data) return;
     setName(data.deal.name);
     setAmount(data.deal.amount_cents ? String(data.deal.amount_cents / 100) : "");
-    setCloseOn(isoToUs(data.deal.close_on));
+    setCloseOn(data.deal.close_on);
     setOwnerId(data.deal.owner ? String(data.deal.owner.id) : null);
     setContactId(data.deal.crm_contact_id ? String(data.deal.crm_contact_id) : null);
   }, [data]);
@@ -45,7 +46,7 @@ export default function DealScreen() {
     setSaveError(null);
     try {
       await crm(`/deals/${deal.id}`, { method: "PATCH", body: { deal: {
-        name, amount_cents: dollarsToCents(amount), close_on: usToIso(closeOn), owner_id: ownerId, crm_contact_id: contactId,
+        name, amount_cents: dollarsToCents(amount), close_on: closeOn, owner_id: ownerId, crm_contact_id: contactId,
       } } });
       setEdit(false);
       refresh();
@@ -100,7 +101,7 @@ export default function DealScreen() {
           <View style={{ gap: 10 }}>
             <Field label="Deal name" value={name} onChangeText={setName} />
             <Field label="Annual value ($)" value={amount} onChangeText={setAmount} keyboardType="decimal-pad" />
-            <Field label="Expected close (MM/DD/YYYY)" value={closeOn} onChangeText={setCloseOn} autoCorrect={false} keyboardType="numbers-and-punctuation" />
+            <DateField label="Expected close" value={closeOn} onChange={setCloseOn} />
             <Choice label="Owner" options={staff.map((x) => String(x.id))} value={ownerId} onChange={setOwnerId} labels={Object.fromEntries(staff.map((x) => [String(x.id), x.name]))} />
             {contacts.length > 0 ? (
               <Choice label="Main contact" options={contacts.map((c) => String(c.id))} value={contactId}
