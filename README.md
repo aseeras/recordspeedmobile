@@ -25,7 +25,7 @@ GOOGLE_SERVICES_JSON=
 
 # Build & Deployment
 
-Build and deployment is handled using EAS and explained in grater detail in [the wiki](https://github.com/ingenious-agency/record_speed_mobile/wiki/Build-&-Deployment).
+Build and deployment use EAS (Expo account `aseeras`): `eas build` for store builds, `eas submit` to send them to App Store Connect, and `eas update` for over-the-air JavaScript updates.
 
 ## Shipping updates without a new build (EAS Update)
 
