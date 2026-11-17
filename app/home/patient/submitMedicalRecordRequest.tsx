@@ -12,13 +12,9 @@ export default function HomePatientSubmitMedicalRecordRequest() {
 
       <View className="flex items-center bg-white w-full h-full mt-4 rounded-2xl">
         <MedicalRequestSubmissionForm
-          onCancel={() => {
-            if (router.canGoBack()) {
-              router.back();
-            } else {
-              router.replace("/home");
-            }
-          }}
+          // Always back to the requests list. Going "back" isn't safe here: the menu replaces screens rather than
+          // stacking them, so right after signing in the screen underneath is the sign-in screen.
+          onCancel={() => router.replace("/home")}
         />
       </View>
     </>
