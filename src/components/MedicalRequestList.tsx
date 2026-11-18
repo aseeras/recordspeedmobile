@@ -45,7 +45,7 @@ export default function MedicalRequestList({
                 refreshControl={
                   <RefreshControl
                     refreshing={isFetching}
-                    onRefresh={() => refetch()}
+                    onRefresh={() => { refetch(); }}
                   />
                 }
               />

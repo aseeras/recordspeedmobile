@@ -51,6 +51,8 @@ export default {
     },
     web: {
       favicon: "./assets/favicon.png",
+      // SDK 58 defaults to server output; the web build is served as a single-page app.
+      output: "single",
     },
     extra: {
       eas: {

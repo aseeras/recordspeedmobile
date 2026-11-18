@@ -21,7 +21,7 @@ function Gate() {
 
   if (!ready) return <Loading />;
   return (
-    <Stack screenOptions={{ headerTintColor: C.ink, headerStyle: { backgroundColor: C.bg }, headerShadowVisible: false, contentStyle: { backgroundColor: C.bg } }}>
+    <Stack screenOptions={{ headerTransparent: false, headerTintColor: C.ink, headerStyle: { backgroundColor: C.bg }, headerShadowVisible: false, contentStyle: { backgroundColor: C.bg } }}>
       <Stack.Screen name="(tabs)" options={{ headerShown: false, title: "Back" }} />
       <Stack.Screen name="sign_in" options={{ headerShown: false }} />
       <Stack.Screen name="two_factor" options={{ title: "Two-step sign-in" }} />
