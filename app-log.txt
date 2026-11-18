@@ -1,0 +1,20 @@
+Timestamp               Ty Process[PID:TID]
+2026-11-18 12:01:28.964 E  RecordSpeed[12140:41f1e] [com.apple.UIKit:UIFocus] RCTScrollViewComponentView implements focusItemsInRect: - caching for linear focus movement is limited as long as this view is on screen.
+2026-11-18 12:01:29.266 Df RecordSpeed[12140:4201d] [com.apple.CFNetwork:Default] Task <CD4BB0C8-60A0-4757-ACC0-140E62F0D981>.<2> resuming, timeouts(15.0, 604800.0) qos(0x19) voucher((null)) activity(00000000-0000-0000-0000-000000000000)
+2026-11-18 12:01:29.270 Df RecordSpeed[12140:41f48] [com.apple.CFNetwork:Summary] Task <CD4BB0C8-60A0-4757-ACC0-140E62F0D981>.<2> summary for task success {transaction_duration_ms=3, response_status=-1, cache_hit=false}
+2026-11-18 12:01:29.270 Df RecordSpeed[12140:41f48] [com.apple.CFNetwork:Default] Task <CD4BB0C8-60A0-4757-ACC0-140E62F0D981>.<2> finished successfully
+2026-11-18 12:01:39.057 Df RecordSpeed[12140:41f1e] [com.apple.UIKit:AppLifecycle] sceneOfRecord: sceneID: sceneID:com.recordspeed.app-default  persistentID: D06624E9-5523-4F5F-AA80-A7F8A38BB2D7
+2026-11-18 12:01:46.908 Df RecordSpeed[12140:41f1e] [com.apple.KeyboardArbiter:Client] RX sceneBecameFocused:(null)
+2026-11-18 12:02:26.810 Df RecordSpeed[12140:41f48] [com.apple.network:connection] nw_socket_handle_socket_event [C2.1.1.1:3] Socket received READ_CLOSE event
+2026-11-18 12:02:26.811 Df RecordSpeed[12140:41f48] [com.apple.CFNetwork:Default] Connection 2: final read 0:0, complete[Y], final[N]
+2026-11-18 12:02:26.812 Df RecordSpeed[12140:41f48] [com.apple.CFNetwork:Default] Connection 2: cleaning up
+2026-11-18 12:02:26.812 Df RecordSpeed[12140:41f48] [com.apple.network:connection] [C2 171114F6-1C6B-4773-B01E-4E640BAACBA7 Hostname#bd267b85:443 quic-connection, url: https://m.stripe.com/6, definite, attribution: developer] cancel
+2026-11-18 12:02:26.813 Df RecordSpeed[12140:41f48] [com.apple.network:connection] [C2 171114F6-1C6B-4773-B01E-4E640BAACBA7 Hostname#bd267b85:443 quic-connection, url: https://m.stripe.com/6, definite, attribution: developer] cancelled
+	[C2.1.1.1 F797FFF6-AFC6-4461-8E2D-D4B6E943F612 192.168.64.3:51810<->IPv4#93892750:443]
+	Connected Path: satisfied (Path is satisfied), interface: en0
+	Privacy Stance: Not Eligible
+	Duration: 60.156s, DNS @0.007s took 0.022s, TCP @0.036s took 0.056s, TLS 1.3 took 0.060s
+	bytes in/out: 7927/2090, packets in/out: 5/6, rtt: 0.025s, retransmitted bytes: 0, out-of-order bytes: 0
+	ecn packets sent/acked/marked/lost: 6/5/0/0
+2026-11-18 12:02:26.814 Df RecordSpeed[12140:41f48] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C2] reporting state cancelled
+2026-11-18 12:02:26.814 Df RecordSpeed[12140:41f48] [com.apple.CFNetwork:Default] Connection 2: done
