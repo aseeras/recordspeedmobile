@@ -47,8 +47,7 @@ export default {
         foregroundImage: "./assets/adaptive-icon.png",
         backgroundColor: "#ffffff",
       },
-      googleServicesFile: "./google-services.json",
-      package: "com.example.record_speed_mobile",
+      package: "com.recordspeed.app",
     },
     web: {
       favicon: "./assets/favicon.png",
