@@ -13,6 +13,7 @@ export default {
     },
     assetBundlePatterns: ["**/*"],
     plugins: [
+      "./plugins/with-stripe-cocoapods",
       "expo-apple-authentication",
       "expo-router",
       [
