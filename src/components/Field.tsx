@@ -48,7 +48,7 @@ export function FieldsInfo({ fields }: { fields: any[] }) {
 }
 
 export const TextInput = React.forwardRef<
-  BaseInput,
+  React.ComponentRef<typeof BaseInput>,
   TextInputProps & { field: any }
 >(({ field, secureTextEntry, onFocus, onBlur, ...props }, ref) => {
   const [hide, setHide] = useState(secureTextEntry);

@@ -5,7 +5,9 @@ import { t } from "@/lib/i18n";
 export default function Layout() {
   return (
     <Stack
+      id={undefined} /* Expo Router 58 types need it spelled out when strictNullChecks is off */
       screenOptions={{
+        headerTransparent: false, // SDK 58 made iOS headers see-through by default; keep them solid
         navigationBarHidden: true,
         navigationBarColor: "transparent",
         header({ options }) {

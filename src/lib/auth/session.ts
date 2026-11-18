@@ -59,8 +59,8 @@ let watching = false;
 export function watchForEndedSessions() {
   if (watching) return;
   watching = true;
-  const originalFetch = global.fetch;
-  global.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
     const response = await originalFetch(input, init);
     const url = typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
     const sent = new Headers(init?.headers).get("Authorization");

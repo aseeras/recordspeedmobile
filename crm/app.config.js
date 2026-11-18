@@ -15,7 +15,7 @@ module.exports = {
       bundleIdentifier: "com.recordspeed.crm",
       infoPlist: { ITSAppUsesNonExemptEncryption: false },
     },
-    web: { bundler: "metro", favicon: "./assets/favicon.png" },
+    web: { bundler: "metro", favicon: "./assets/favicon.png", output: "single" }, // SDK 58 defaults to server output
     plugins: ["expo-router"],
     experiments: { typedRoutes: false },
     owner: "aseeras",

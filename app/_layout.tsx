@@ -67,7 +67,9 @@ export default function AppLayout() {
         >
           <LanguageRoot>
           <Stack
+            id={undefined} /* Expo Router 58 types need it spelled out when strictNullChecks is off */
             screenOptions={{
+              headerTransparent: false, // SDK 58 made iOS headers see-through by default; keep them solid
               headerTitle: "",
               headerShadowVisible: false,
               headerBackVisible: false,

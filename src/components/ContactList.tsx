@@ -28,7 +28,7 @@ export default function ContactList({
                 refreshControl={
                   <RefreshControl
                     refreshing={isFetching}
-                    onRefresh={() => refetch()}
+                    onRefresh={() => { refetch(); }}
                   />
                 }
               />

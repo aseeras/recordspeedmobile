@@ -52,7 +52,7 @@ export default function HomePatientAccessLog() {
       <View className="flex items-center bg-white w-full h-full mt-4 rounded-2xl">
         <ScrollView
           className="w-full"
-          refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} />}
+          refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={() => { refetch(); }} />}
         >
           <View className="w-full px-6 pt-6 pb-32">
             <Text className="text-base text-gray-700 pb-2">{t("Everyone who opened, downloaded or worked on your records in the past year, and everyone you shared them with.")}</Text>
