@@ -8,5 +8,5 @@
     },
     "preview": { "distribution": "internal", "env": { "EXPO_PUBLIC_API_BASE_URL": "https://api.recordspeed.com" } }
   },
-  "submit": { "production": { "ios": { "appleTeamId": "G3A4C87SVV" } } }
+  "submit": { "production": { "ios": { "appleTeamId": "G3A4C87SVV", "ascAppId": "6830727133" } } }
 }
